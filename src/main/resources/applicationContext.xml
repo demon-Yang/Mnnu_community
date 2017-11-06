@@ -53,6 +53,7 @@
         <!-- 定义事务传播属性 -->  
         <tx:attributes>  
             <tx:method name="insert*" propagation="REQUIRED" />  
+            <tx:method name="register*" propagation="REQUIRED" />  
             <tx:method name="update*" propagation="REQUIRED" />  
             <tx:method name="edit*" propagation="REQUIRED" />  
             <tx:method name="save*" propagation="REQUIRED" />  

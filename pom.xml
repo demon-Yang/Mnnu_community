@@ -125,6 +125,23 @@
 	    <version>5.1.26</version>
 	</dependency>
 	
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+   		<version>1.4</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.2.1</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>Mnnu_community</finalName>
