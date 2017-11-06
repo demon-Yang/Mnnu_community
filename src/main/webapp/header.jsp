@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.slider.min.js"></script>
    	<script type="text/javascript" src="js/header.js"></script>
-
+   	<script type="text/javascript" src="js/register.js"></script>
 </head>
 <body>
     <!-- 登陆框 -->
@@ -70,30 +70,31 @@
 	                <tr>
 	                    <td colspan="2"><hr/></td>
 	                </tr>
-	                <tr>
-	                    <td><input type="text" name="" placeholder="请输入用户ID"/></td>
-	                    <td></td>
+	                 <tr>
+	                    <td><input type="email" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
+	                    <td class="email_info"></td>
 	                </tr>
 	                <tr>
-	                    <td><input type="email" name="" placeholder="请输入邮箱账号"/></td>
-	                    <td></td>
+	                    <td><input type="text" name="uname" class="uname" placeholder="  请输入用户名"/></td>
+	                    <td class="uname_info"></td>
 	                </tr>
 	                <tr>
-	                    <td><input type="password" name="" placeholder="请输入密码"/></td>
-	                    <td></td>
+	                    <td><input type="password" name="upwd" class="upwd" placeholder="请输入密码"/></td>
+	                    <td class="upwd_info"></td>
 	                </tr>
 	                <tr>
-	                    <td><input type="password" name="" placeholder="请确认密码"/></td>
-	                    <td></td>
+	                    <td><input type="password" name="urpwd" class="urpwd" placeholder="请确认密码"/></td>
+	                    <td class="urpwd_info"></td>
 	                </tr>
 	                <tr>
 	                    <td>
-	                        <input type="button" class="rsend" value="发送验证码" onclick="rcountdown()" /><input type="text" name="" id="vcode" placeholder="请输入验证码"/>
+	                        <input type="button" class="rsend" value="发送验证码"/><input type="text" id="rvcode" placeholder="请输入验证码"/>
 	                    </td>
+	                    <td class="vcode_info"></td>
 	                </tr>
 	                <tr>
-	                    <td colspan="1"><input type="button" value="返回" id="rreturn" onclick="loginshow()"/></td>
-	                    <td align="left"><input type="submit" value="提交"/></td>
+	                    <td><input type="button" value="返回" id="rreturn" onclick="loginshow()"/></td>
+	                    <td align="left"><input type="submit" value="提交" onclick="register()"/></td>
 	                </tr>
 	            </table>
 	        </form>

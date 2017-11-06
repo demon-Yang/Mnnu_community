@@ -89,7 +89,7 @@ body{background: url("../images/bg.jpg");}
 .register .right input[type='email']{width: 220px;height: 35px;margin-left: 30px;border-radius: 5px;margin-bottom: 10px;line-height: 35px;font-size: 15px;}
 .register .right input[type='text']{width: 220px;height: 35px;margin-left: 30px;border-radius: 5px;margin-bottom: 10px;line-height: 35px;font-size: 15px;}
 .register .right input[type='password']{width: 220px;height: 35px;margin-left: 30px;border-radius: 5px;margin-bottom: 10px;line-height: 35px;font-size: 15px;}
-.register .right #vcode{width: 100px;height: 30px;margin-left:30px;border-radius: 5px;margin-bottom: 10px;line-height: 35px;font-size: 15px;}
+.register .right #rvcode{width: 100px;height: 30px;margin-left:30px;border-radius: 5px;margin-bottom: 10px;line-height: 35px;font-size: 15px;}
 .register .right input[type='button']{height: 35px;width: 90px;border-radius: 5px;background-color: #9e9e9e;text-align: center;margin-left: 30px;margin-bottom: 10px;}
 .register .right #rreturn{height: 35px;width: 90px;border-radius: 5px;background-color: #8ad576;text-align: center;margin-left: 80px;margin-top: 20px;margin-bottom: 0;}
 .register .right input[type='submit']{width: 100px;height: 35px;margin-left: 10px;border-radius: 8px;margin-top: 20px;line-height: 35px;font-size: 15px;background-color: #8ad576;}

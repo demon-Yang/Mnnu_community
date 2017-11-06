@@ -28,23 +28,9 @@
             }
      });
 })
-  //倒计时
-  function rcountdown(){
-      $('.rsend').val('60秒后重发');
-      var second = 60;
-      var timer = null;
-      timer = setInterval(function(){
-          second -= 1;
-          if(second >0 ){
-              $('.rsend').attr("disabled",true);
-              $('.rsend').val(second+"秒后重发");
-          }else{
-              clearInterval(timer);
-              $('.rsend').attr("disabled",false);
-              $('.rsend').val("发送验证码");
-          }
-      },1000);
-  }
+  
+  
+  //忘记密码倒计时
   function fcountdown(){
       $('.fsend').val('60秒后重发');
       var second = 60;
@@ -61,6 +47,7 @@
           }
       },1000);
   }
+  
   function loginshow(){
 		/*关闭其他momal*/
 		if($(".registermodal").is(":visible"))

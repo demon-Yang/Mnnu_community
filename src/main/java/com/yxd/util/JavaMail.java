@@ -18,9 +18,10 @@ public class JavaMail {
     public static String myEmailSMTPHost = "smtp.163.com";
 
     // 收件人邮箱
-    public static String receiveMailAccount = "457890978@qq.com";
-	public boolean send(int vcode) throws Exception {
+    public static String receiveMailAccount ;
+	public static boolean send(int vcode,String uemail) throws Exception {
 		
+			receiveMailAccount = uemail;
 	        // 1. 创建参数配置, 用于连接邮件服务器的参数配置
 	        Properties props = new Properties();                    // 参数配置
 	        props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
