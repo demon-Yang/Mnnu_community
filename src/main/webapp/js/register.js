@@ -26,17 +26,6 @@ $(function(){
 			});
 		}
 	});	
-	//表单提交
-	$("#regsiter_form").submit(function(){
-		$.ajax({
-			type:"post",
-			url:"user/register.do",
-			data:{uemail:$(".register .uemail").val(),uname:$(".register .uname").val(),upwd:$(".register .upwd").val()},
-			success:function(data){
-					alert("注册成功");
-			}
-		});
-	});
 })
 	
 //注册倒计时
@@ -128,7 +117,16 @@ $(function(){
   	  }
 	 
 	  if(result == 0){
-		  return true;
+		  $.ajax({
+				type:"post",
+				url:"user/register.do",
+				async:false,
+				data:{uemail:$(".register .uemail").val(),uname:$(".register .uname").val(),upwd:$(".register .upwd").val()},
+				success:function(data){
+					alert("注册成功");
+					location.reload();
+				}
+			});
 	  }else 
 		  return false;
   }

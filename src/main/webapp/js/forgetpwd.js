@@ -26,22 +26,6 @@ $(function(){
 			});
 		}
 	});	
-	//表单提交
-	$("#forgetpwd_form").submit(function(){
-		$.ajax({
-			type:"post",
-			url:"user/forgetpwd.do",
-			async:false,
-			data:{uemail:$(".forgetpwd .uemail").val()},
-			success:function(data){
-				if(data == 0)
-					$(".forgetpwd .uemail_info").html("*该邮箱未注册");
-				else{
-					alert("密码已发送至您的邮箱");
-				}
-			}
-		});
-	});
 })
 	
 //注册倒计时
@@ -94,7 +78,20 @@ $(function(){
   	  }
 	 
 	  if(result == 0){
-		  return true;
+		  $.ajax({
+				type:"post",
+				url:"user/forgetpwd.do",
+				async:false,
+				data:{uemail:$(".forgetpwd .uemail").val()},
+				success:function(data){
+					if(data == 0)
+						$(".forgetpwd .uemail_info").html("*该邮箱未注册");
+					else{
+						alert("密码已发送至您的邮箱");
+						location.onload();
+					}
+				}
+			});
 	  }else 
 		  return false;
   }

@@ -1,23 +1,3 @@
-$(function(){
-	//表单提交
-	$("#login_form").submit(function(){
-		$.ajax({
-			type:"post",
-			url:"user/login.do",
-			async:false,
-			data:{uemail:$(".login .uemail").val(),upwd:$(".login .upwd").val()},
-			success:function(data){
-				if(data == 0){
-					$(".login .uemail_info").html("*邮箱或密码错误");
-				}
-				else{
-					alert("登录成功");
-				}
-			}
-		});
-	});
-})
-	
 //登录提交
   function login(){
 	  var uemail = $(".login .uemail").val();
@@ -57,7 +37,31 @@ $(function(){
 	  }
 	  
 	  if(result == 0){
-		  return true;
+		  $.ajax({
+				type:"post",
+				url:"user/login.do",
+				async:false,
+				data:{uemail:$(".login .uemail").val(),upwd:$(".login .upwd").val()},
+				success:function(data){
+					if(data == 0){
+						$(".login .uemail_info").html("*邮箱或密码错误");
+					}
+					else{
+						location.reload();
+					}
+				}
+			});
 	  }else 
 		  return false;
   }
+//退出登录
+  function loginout() {
+	if(confirm("确定退出登录吗？"))
+		$.ajax({
+			type:"get",
+			url:"user/loginout.do",
+			success:function(data){
+				location.reload();
+			}
+		});
+}

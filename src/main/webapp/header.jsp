@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
                         <td class="uslider_info error"></td>
                     </tr>
                     <tr>
-                        <td colspan="3" align="left"><input type="submit" value="登录" onclick="return login()"/></td>
+                        <td colspan="3" align="left"><input type="button" value="登录" onclick="return login()"/></td>
                     </tr>
                 </table>
             </form>
@@ -96,7 +97,7 @@
 	                </tr>
 	                <tr>
 	                    <td><input type="button" value="返回" id="rreturn" onclick="loginshow()"/></td>
-	                    <td align="left"><input type="submit" value="提交" onclick="return register()"/></td>
+	                    <td align="left"><input type="button" id="rsubmit" value="提交" onclick="return register()"/></td>
 	                </tr>
 	            </table>
 	        </form>
@@ -134,7 +135,7 @@
 	                </tr>
 	                <tr>
 	                    <td colspan="1"><input type="button" value="返回" id="freturn" onclick="loginshow()"/></td>
-	                    <td colspan="2" align="left"><input type="submit" value="提交" onclick="return forgetpwd()"/></td>
+	                    <td colspan="2" align="left"><input type="button" id="fsubmit" value="提交" onclick="return forgetpwd()"/></td>
 	                </tr>
 	            </table>
 	        </form>
@@ -175,8 +176,14 @@
                     </ul>
                 </li>
                 <li><a href="#">留言·表白</a></li>
-                <li><a href="#" onclick="registershow()">注册</a></li>
-                <li><a href="#" onclick="loginshow()">登陆</a></li>
+                <c:if test="${user == null}">
+	                <li><a href="#" onclick="registershow()">注册</a></li>
+	                <li><a href="#" onclick="loginshow()">登陆</a></li>
+	            </c:if>
+	            <c:if test="${user != null}">
+	                <li><a href="#" onclick="loginout()">退出登录</a></li>
+	                <li style="width:34px;"><a href="#" ><img src="images/userdefault.png"></a></li>
+	            </c:if>
             </ul>
         </div>
     </div>

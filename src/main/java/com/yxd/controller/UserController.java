@@ -32,7 +32,14 @@ public class UserController {
 			return "1";
 		}
 	}
-	
+	/**
+	 * 退出登录
+	 * */
+	@ResponseBody
+	@RequestMapping("/loginout.do")
+	public void loginout(HttpServletRequest request) {
+		request.getSession().invalidate();
+	}
 	/**
 	 * 注册
 	 * */
@@ -102,7 +109,6 @@ public class UserController {
 		}
 	}
 	/**
-	 * 注册表单
 	 * 获取验证码
 	 * */
 	@ResponseBody
@@ -112,5 +118,29 @@ public class UserController {
 		if(request.getSession().getAttribute("rvcode") != null) 
 			rvcode = request.getSession().getAttribute("rvcode").toString();
 		return rvcode;
+	}
+	/**
+	 * 个人信息
+	 * 查询原密码
+	 * */
+	@ResponseBody
+	@RequestMapping("/queryUpwd.do")
+	public String queryUpwd(HttpServletRequest request,@RequestParam("oupwd")String oupwd) {
+		String upwd = ((User)request.getSession().getAttribute("user")).getUpwd();
+		if(oupwd == upwd)
+			return "1";
+		else
+			return "0";
+	}
+	/**
+	 * 个人信息
+	 * 修改原密码
+	 * */
+	@ResponseBody
+	@RequestMapping("/changeUpwd.do")
+	public String changeUpwd(HttpServletRequest request,@RequestParam("upwd")String upwd) {
+		String uemail = ((User)request.getSession().getAttribute("user")).getUemail();
+		userService.changeUpwd(uemail, upwd);
+		return "1";
 	}
 }

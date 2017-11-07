@@ -15,4 +15,6 @@ public interface UserDao {
 	public String forgetpwd(String uemail);
 	//用户注册
 	public int register(User user);
+	//修改原密码
+	public int changeUpwd(@Param("uemail")String uemail,@Param("upwd")String upwd);
 }

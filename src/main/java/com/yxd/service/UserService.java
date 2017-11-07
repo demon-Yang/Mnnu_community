@@ -27,4 +27,8 @@ public class UserService {
 	public int register(User user) {
 		 return userDao.register(user);
 	}
+	//修改原密码
+	public int changeUpwd(String uemail,String upwd) {
+		return userDao.changeUpwd(uemail, upwd);
+	}
 }
