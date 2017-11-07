@@ -33,11 +33,11 @@
                     </tr>
                     <tr>
                         <td colspan="2"><input type="text" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
-                        <td class="uemail_info"></td>
+                        <td class="uemail_info error"></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input type="password" name="upwd" class="upwd" placeholder="请输入密码"/></td>
-                        <td class="upwd_info"></td>
+                        <td class="upwd_info error"></td>
                     </tr>
                     <tr>
                         <td><span class="nocount">没账号？</span><a href="#" class="registernow"  onclick="registershow()">立即注册</a></td>
@@ -46,7 +46,7 @@
                     </tr>
                     <tr>
                         <td colspan="2"><div id="slider" class="slider"></div><input type="hidden" class="uslider" value=""/></td>
-                        <td class="uslider_info"></td>
+                        <td class="uslider_info error"></td>
                     </tr>
                     <tr>
                         <td colspan="3" align="left"><input type="submit" value="登录" onclick="return login()"/></td>
@@ -74,25 +74,25 @@
 	                </tr>
 	                 <tr>
 	                    <td><input type="text" name="uemail" class="uemail" placeholder="  请输入邮箱账号"/></td>
-	                    <td class="uemail_info"></td>
+	                    <td class="uemail_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td><input type="text" name="uname" class="uname" placeholder="  请输入用户名"/></td>
-	                    <td class="uname_info"></td>
+	                    <td class="uname_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td><input type="password" name="upwd" class="upwd" placeholder="请输入密码"/></td>
-	                    <td class="upwd_info"></td>
+	                    <td class="upwd_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td><input type="password" name="urpwd" class="urpwd" placeholder="请确认密码"/></td>
-	                    <td class="urpwd_info"></td>
+	                    <td class="urpwd_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td>
 	                        <input type="button" class="rsend" value="发送验证码"/><input type="text" id="rvcode" class="uvcode" placeholder="请输入验证码"/>
 	                    </td>
-	                    <td class="uvcode_info"></td>
+	                    <td class="uvcode_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td><input type="button" value="返回" id="rreturn" onclick="loginshow()"/></td>
@@ -120,8 +120,8 @@
 	                    <td colspan="2"><hr/></td>
 	                </tr>
 	                <tr>
-	                    <td><input type="email" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
-						<td class="uemail_info"></td>
+	                    <td><input type="text" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
+						<td class="uemail_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td align="left">
@@ -130,7 +130,7 @@
 	                </tr>
 	                <tr>
 	                    <td><input type="text" name="uvcode" class="uvcode" placeholder="请输入验证码"/></td>
-	                    <td class="uvcode_info"></td>
+	                    <td class="uvcode_info error"></td>
 	                </tr>
 	                <tr>
 	                    <td colspan="1"><input type="button" value="返回" id="freturn" onclick="loginshow()"/></td>

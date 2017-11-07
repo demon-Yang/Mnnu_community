@@ -4,10 +4,10 @@ $(function(){
 	$(".register .rsend").click(function(){
 		var uemail = $(".register .uemail").val();
 		if(uemail == ''){
-			$(".register .uemail_info").html("不能为空");
+			$(".register .uemail_info").html("*不能为空");
 			return;
 		}else if(!email.test(uemail)){
-			$(".register .uemail_info").html("邮箱格式错误");
+			$(".register .uemail_info").html("*邮箱格式错误");
 			return;
 		}else{
 			$.ajax({
@@ -16,7 +16,7 @@ $(function(){
 				data:{uemail:uemail},
 				success:function(data){
 					if(data == 1){
-						$(".register .uemail_info").html("该邮箱已注册");
+						$(".register .uemail_info").html("*该邮箱已注册");
 					}
 					else{
 						$(".register .uemail_info").html("");
@@ -66,11 +66,11 @@ $(function(){
 	  var email=/^[\w]+(\.[\w]+)*@[\w]+(\.[\w]+)+$/;
 	  var result = 0;
 	  if(uemail == ''){
-			$(".register .uemail_info").html("不能为空");
+			$(".register .uemail_info").html("*不能为空");
 			result++;
 	  }else{
 		  if(!email.test(uemail)){
-				$(".register .uemail_info").html("邮箱格式错误");
+				$(".register .uemail_info").html("*邮箱格式错误");
 				result++;
 		  }else{
 			  	$(".register .uemail_info").html("");
@@ -78,11 +78,11 @@ $(function(){
 	  }
 	  
 	  if(uname == ''){
-			$(".register .uname_info").html("不能为空");
+			$(".register .uname_info").html("*不能为空");
 			result++;
 	  }else{
 		  if(uname.length<3||uname.length>15){
-			  	$(".register .uname_info").html("长度3-15之间");
+			  	$(".register .uname_info").html("*长度3-15之间");
 			  	result++;
 		  }else{
 			  	$(".register .uname_info").html("");
@@ -90,11 +90,11 @@ $(function(){
 	  }
 	  
 	  if(upwd == ''){
-			$(".register .upwd_info").html("不能为空");
+			$(".register .upwd_info").html("*不能为空");
 			result++;
 	  }else{
 		  if(upwd.length<6||upwd.length>20){
-			  $(".register .upwd_info").html("长度6-20之间");
+			  $(".register .upwd_info").html("*长度6-20之间");
 			  result++;
 		  }else{
 			  	$(".register .upwd_info").html("");
@@ -102,11 +102,11 @@ $(function(){
 	  }
 	  
 	  if(urpwd == ''){
-			$(".register .urpwd_info").html("不能为空");
+			$(".register .urpwd_info").html("*不能为空");
 			result++;
 	  }else{
 		  if(upwd != urpwd){
-			  $(".register .urpwd_info").html("与密码不相同");
+			  $(".register .urpwd_info").html("*与密码不相同");
 			  result++;
 		  }else{
 			  	$(".register .urpwd_info").html("");
@@ -116,11 +116,11 @@ $(function(){
 	  var rvcode = getRvcode();
 	 
 	  if(uvcode == ''){
-		  $(".register .uvcode_info").html("不能为空");
+		  $(".register .uvcode_info").html("*不能为空");
 		  result++;
   	  }else{
   		 if(uvcode != rvcode){
-			  $(".register .uvcode_info").html("验证码错误");
+			  $(".register .uvcode_info").html("*验证码错误");
 			  result++;
   		 }else{
 			  	$(".register .uvcode_info").html("");

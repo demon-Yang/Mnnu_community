@@ -4,10 +4,10 @@ $(function(){
 	$(".forgetpwd .fsend").click(function(){
 		var uemail = $(".forgetpwd .uemail").val();
 		if(uemail == ''){
-			$(".forgetpwd .uemail_info").html("不能为空");
+			$(".forgetpwd .uemail_info").html("*不能为空");
 			return;
 		}else if(!email.test(uemail)){
-			$(".forgetpwd .uemail_info").html("邮箱格式错误");
+			$(".forgetpwd .uemail_info").html("*邮箱格式错误");
 			return;
 		}else{
 			$.ajax({
@@ -16,7 +16,7 @@ $(function(){
 				data:{uemail:uemail},
 				success:function(data){
 					if(data == 0){
-						$(".forgetpwd .uemail_info").html("该邮箱未注册");
+						$(".forgetpwd .uemail_info").html("*该邮箱未注册");
 					}
 					else{
 						$(".forgetpwd .uemail_info").html("");
@@ -35,7 +35,7 @@ $(function(){
 			data:{uemail:$(".forgetpwd .uemail").val()},
 			success:function(data){
 				if(data == 0)
-					$(".forgetpwd .uemail_info").html("该邮箱未注册");
+					$(".forgetpwd .uemail_info").html("*该邮箱未注册");
 				else{
 					alert("密码已发送至您的邮箱");
 				}
@@ -68,11 +68,11 @@ $(function(){
 	  var email=/^[\w]+(\.[\w]+)*@[\w]+(\.[\w]+)+$/;
 	  var result = 0;
 	  if(uemail == ''){
-			$(".forgetpwd .uemail_info").html("不能为空");
+			$(".forgetpwd .uemail_info").html("*不能为空");
 			result++;
 	  }else{
 		  if(!email.test(uemail)){
-				$(".forgetpwd .uemail_info").html("邮箱格式错误");
+				$(".forgetpwd .uemail_info").html("*邮箱格式错误");
 				result++;
 		  }else{
 			  	$(".forgetpwd .uemail_info").html("");
@@ -82,11 +82,11 @@ $(function(){
 	  var rvcode = getRvcode();
 	 
 	  if(uvcode == ''){
-		  $(".forgetpwd .uvcode_info").html("不能为空");
+		  $(".forgetpwd .uvcode_info").html("*不能为空");
 		  result++;
   	  }else{
   		 if(uvcode != rvcode){
-			  $(".forgetpwd .uvcode_info").html("验证码错误");
+			  $(".forgetpwd .uvcode_info").html("*验证码错误");
 			  result++;
   		 }else{
 			  	$(".forgetpwd .uvcode_info").html("");
