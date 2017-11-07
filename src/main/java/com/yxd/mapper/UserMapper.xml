@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 用户注册 -->
 	<insert id="register" parameterType="User">
-		insert into tb_user values(null,#{uemail},#{uname},#{upwd},null,null)
+		insert into tb_user values(null,#{uemail},#{uname},#{upwd},#{uportrait},null)
 	</insert>
 	<!-- 修改原密码-->
 	<update id="changeUpwd">

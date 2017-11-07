@@ -54,6 +54,7 @@ public class UserController {
 		user.setUemail(uemail);
 		user.setUname(uname);
 		user.setUpwd(upwd);
+		user.setUportrait("images/userdefault.png");
 		userService.register(user);
 		return "1";
 	}
@@ -132,25 +133,24 @@ public class UserController {
 			@RequestParam(value = "uportrait", required = false) MultipartFile uportrait) {
 		String path = request.getSession().getServletContext().getRealPath("user/uportrait");
 		String fileName = uportrait.getOriginalFilename();  
-		String uportraitPath = "/images/userdefault.png";
+		String uportraitPath = "images/userdefault.png";
 		if(!fileName.trim().isEmpty()&&fileName != null) {
 			String fileType = fileName.substring(fileName.lastIndexOf(".")); 
 	        User user = (User)request.getSession().getAttribute("user");
 			String uemail = user.getUemail();
-			/*File targetFile = new File(path,uemail+fileType);
+			File targetFile = new File(path,uemail+fileType);
 			if (!targetFile.exists()) {
 				targetFile.mkdirs();
 			}
 			// 保存
 			try {
-				uportraitFile.transferTo(targetFile);
+				uportrait.transferTo(targetFile);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}*/
+			}
 			uportraitPath = "user/uportrait/"+uemail+fileType;
 		}
-		System.out.println(uportraitPath);
-		//userService.updateBase(uname, umotto, uportraitPath);
+		userService.updateBase(uname, umotto, uportraitPath);
 		return "更新成功";
 	}
 	/**
