@@ -10,7 +10,9 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.slider.min.js"></script>
    	<script type="text/javascript" src="js/header.js"></script>
+   	<script type="text/javascript" src="js/login.js"></script>
    	<script type="text/javascript" src="js/register.js"></script>
+   	<script type="text/javascript" src="js/forgetpwd.js"></script>
 </head>
 <body>
     <!-- 登陆框 -->
@@ -20,7 +22,7 @@
             <img src="images/loginbg.jpg"/>
         </div>
         <div class="right">
-            <form action="">
+            <form id="login_form">
                 <table>
                     <tr>
                         <td colspan="2" align="left"><span class="title">登录</span></td>
@@ -30,12 +32,12 @@
                         <td colspan="3"><hr/></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="text" name="uemail" placeholder="请输入邮箱账号"/></td>
-                        <td></td>
+                        <td colspan="2"><input type="text" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
+                        <td class="uemail_info"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="password" name="upwd" placeholder="请输入密码"/></td>
-                        <td></td>
+                        <td colspan="2"><input type="password" name="upwd" class="upwd" placeholder="请输入密码"/></td>
+                        <td class="upwd_info"></td>
                     </tr>
                     <tr>
                         <td><span class="nocount">没账号？</span><a href="#" class="registernow"  onclick="registershow()">立即注册</a></td>
@@ -43,11 +45,11 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><div id="slider" class="slider"></div></td>
-                        <td></td>
+                        <td colspan="2"><div id="slider" class="slider"></div><input type="hidden" class="uslider" value=""/></td>
+                        <td class="uslider_info"></td>
                     </tr>
                     <tr>
-                        <td colspan="3" align="left"><input type="submit" value="登录"/></td>
+                        <td colspan="3" align="left"><input type="submit" value="登录" onclick="return login()"/></td>
                     </tr>
                 </table>
             </form>
@@ -71,7 +73,7 @@
 	                    <td colspan="2"><hr/></td>
 	                </tr>
 	                 <tr>
-	                    <td><input type="email" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
+	                    <td><input type="text" name="uemail" class="uemail" placeholder="  请输入邮箱账号"/></td>
 	                    <td class="uemail_info"></td>
 	                </tr>
 	                <tr>
@@ -108,7 +110,7 @@
 	        <img src="images/loginbg.jpg"/>
 	    </div>
 	    <div class="right">
-	        <form action="">
+	        <form id="forgetpwd_form">
 	            <table>
 	                <tr>
 	                    <td align="left"><span class="title">找回密码</span></td>
@@ -118,21 +120,21 @@
 	                    <td colspan="2"><hr/></td>
 	                </tr>
 	                <tr>
-	                    <td><input type="email" name="uemail" placeholder="请输入邮箱账号"/></td>
-	
+	                    <td><input type="email" name="uemail" class="uemail" placeholder="请输入邮箱账号"/></td>
+						<td class="uemail_info"></td>
 	                </tr>
 	                <tr>
 	                    <td align="left">
-	                        <input type="button" class="fsend" value="发送验证码" onclick="fcountdown()" />
+	                        <input type="button" class="fsend" value="发送验证码"/>
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td><input type="text" name="uvcode" placeholder="请输入验证码"/></td>
-	                    <td></td>
+	                    <td><input type="text" name="uvcode" class="uvcode" placeholder="请输入验证码"/></td>
+	                    <td class="uvcode_info"></td>
 	                </tr>
 	                <tr>
 	                    <td colspan="1"><input type="button" value="返回" id="freturn" onclick="loginshow()"/></td>
-	                    <td colspan="2" align="left"><input type="submit" value="提交"/></td>
+	                    <td colspan="2" align="left"><input type="submit" value="提交" onclick="return forgetpwd()"/></td>
 	                </tr>
 	            </table>
 	        </form>

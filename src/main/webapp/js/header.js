@@ -24,7 +24,7 @@
 	 $("#slider").slider({
             width:250,
             callback: function(result) {
-               /*  $("#result1").text(result); */
+                 $(".login .uslider").val(result); 
             }
      });
 })

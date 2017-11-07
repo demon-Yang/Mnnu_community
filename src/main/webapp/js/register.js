@@ -19,6 +19,7 @@ $(function(){
 						$(".register .uemail_info").html("该邮箱已注册");
 					}
 					else{
+						$(".register .uemail_info").html("");
 						rcountdown();
 					}
 				}
@@ -32,7 +33,6 @@ $(function(){
 			url:"user/register.do",
 			data:{uemail:$(".register .uemail").val(),uname:$(".register .uname").val(),upwd:$(".register .upwd").val()},
 			success:function(data){
-				if(data == 1)
 					alert("注册成功");
 			}
 		});

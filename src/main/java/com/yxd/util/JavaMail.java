@@ -19,7 +19,7 @@ public class JavaMail {
 
     // 收件人邮箱
     public static String receiveMailAccount ;
-	public static boolean send(int vcode,String uemail) throws Exception {
+	public static boolean send(String code,String uemail) throws Exception {
 		
 			receiveMailAccount = uemail;
 	        // 1. 创建参数配置, 用于连接邮件服务器的参数配置
@@ -34,7 +34,7 @@ public class JavaMail {
 	        //session.setDebug(true);   // 设置为debug模式, 可以查看详细的发送 log
 	        
 	        // 3. 创建一封邮件
-	        MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount,vcode);
+	        MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount,code);
 	        
 	        // 4. 根据 Session 获取邮件传输对象
 	        Transport transport = session.getTransport();
@@ -56,7 +56,7 @@ public class JavaMail {
      * @param sendMail 发件人邮箱
      * @param receiveMail 收件人邮箱
      */
-	public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,int vcode) throws Exception {
+	public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String code) throws Exception {
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);
         
@@ -70,7 +70,10 @@ public class JavaMail {
         message.setSubject("闽师社区验证码", "UTF-8");
         
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setContent("收到请回复："+vcode, "text/html;charset=UTF-8");
+        if(code.length() == 4)
+        	message.setContent("验证码："+code, "text/html;charset=UTF-8");
+        else
+        	message.setContent("您的密码为："+code, "text/html;charset=UTF-8");
         
         // 6. 设置发件时间
         message.setSentDate(new Date());

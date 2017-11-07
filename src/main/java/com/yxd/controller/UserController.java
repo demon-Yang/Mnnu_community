@@ -17,6 +17,22 @@ import com.yxd.util.JavaMail;
 public class UserController {
 	@Resource
 	private UserService userService;
+	
+	/**
+	 * 登录
+	 * */
+	@ResponseBody
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request,@RequestParam("uemail")String uemail,@RequestParam("upwd")String upwd) {
+		User user = userService.login(uemail, upwd);
+		if(user == null)
+			return "0";
+		else {
+			request.getSession().setAttribute("user",user);
+			return "1";
+		}
+	}
+	
 	/**
 	 * 注册
 	 * */
@@ -31,7 +47,24 @@ public class UserController {
 		userService.register(user);
 		return "1";
 	}
+	
 	/**
+	 * 忘记密码
+	 * @throws Exception 
+	 * */
+	@ResponseBody
+	@RequestMapping("/forgetpwd.do")
+	public String forgetpwd(HttpServletRequest request,@RequestParam("uemail")String uemail) throws Exception {
+		String pwd = userService.forgetpwd(uemail);
+		if(pwd == null)
+			return "0";
+		else {
+			//JavaMail.send(pwd ,uemail);
+			return "1";
+		} 
+	}
+	/**
+	 * 注册表单
 	 * 发送验证码 
 	 * */
 	@ResponseBody
@@ -40,7 +73,7 @@ public class UserController {
 		int result = userService.queryByEmail(uemail);
 		if(result == 0) {
 			int rvcode = (int)(Math.random()*9000+1000);
-			//JavaMail.send(vcode ,uemail);
+			//JavaMail.send(rvcode+"" ,uemail);
 			System.out.println(rvcode);
 			request.getSession().setAttribute("rvcode",rvcode);
 			return "0";
@@ -50,6 +83,26 @@ public class UserController {
 		}
 	}
 	/**
+	 * 忘记密码表单
+	 * 发送验证码 
+	 * */
+	@ResponseBody
+	@RequestMapping("/fsendVcode.do")
+	public String fsendVcode(HttpServletRequest request ,@RequestParam("uemail")String uemail) throws Exception {
+		int result = userService.queryByEmail(uemail);
+		if(result != 0) {
+			int rvcode = (int)(Math.random()*9000+1000);
+			//JavaMail.send(rvcode+"" ,uemail);
+			System.out.println(rvcode);
+			request.getSession().setAttribute("rvcode",rvcode);
+			return "1";
+		}
+		else {
+			return "0";
+		}
+	}
+	/**
+	 * 注册表单
 	 * 获取验证码
 	 * */
 	@ResponseBody
