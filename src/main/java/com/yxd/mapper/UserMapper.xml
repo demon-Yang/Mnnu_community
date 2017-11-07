@@ -23,4 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeUpwd">
 		update tb_user set upwd = #{upwd} where uemail = #{uemail}
 	</update>
+	<!-- 更新用户信息-->
+	<update id="updateBase">
+		update tb_user set uname = #{uname},umotto = #{umotto},uportrait = #{uportrait} where uemail = #{uemail}
+	</update>
 </mapper>

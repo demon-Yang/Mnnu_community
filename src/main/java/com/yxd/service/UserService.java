@@ -31,4 +31,8 @@ public class UserService {
 	public int changeUpwd(String uemail,String upwd) {
 		return userDao.changeUpwd(uemail, upwd);
 	}
+	//更新用户信息
+	public int updateBase(String uname,String umotto,String uportrait) {
+		return userDao.updateBase(uname, umotto, uportrait);
+	}
 }
