@@ -32,7 +32,7 @@ public class UserService {
 		return userDao.changeUpwd(uemail, upwd);
 	}
 	//更新用户信息
-	public int updateBase(String uname,String umotto,String uportrait) {
-		return userDao.updateBase(uname, umotto, uportrait);
+	public int updateBase(String uname,String umotto,String uportrait,String uemail) {
+		return userDao.updateBase(uname, umotto, uportrait,uemail);
 	}
 }

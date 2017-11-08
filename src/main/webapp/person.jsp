@@ -34,9 +34,12 @@
 				  	type:"post",
 				  	fileElementId : ["uportrait"],
 				  	enctype:'multipart/form-data',
+				  	dataType:"JSON",
 				  	data:{uname:uname,umotto:umotto},
 					success:function(data){
-						alert(data);
+						if(data == 1)
+							alert("更新成功");
+						location.reload();
 					}
 				});
 		  }else 
@@ -124,7 +127,7 @@
             <div class="right">
                 <div class="private">
                         <p>>><span class="nav">个人主页</span></p>
-                        <div class="img"><img src="images/person1.jpg"></div>
+                        <div class="img"><img src="${user.uportrait }"></div>
                         <div class="info">
                             <p>用户名:<span>${user.uname }</span></p>
                             <p>邮箱:<span>${user.uemail }</span></p>
@@ -148,11 +151,11 @@
                                             <td><input type="text" name="uname" class="uname" value="${user.uname }"/></td>
                                         </tr>
                                        <tr>
-                                        	<td colspan="2" class="uname_info error"></td>
+                                        	<td colspan="2" class="uname_info error" align="center"></td>
                                         </tr>
                                         <tr>
                                             <td align="right">格言：</td>
-                                            <td><textarea name="umotto" class="umotto" cols="25" rows="4" placeholder="三十个字以内"></textarea></td>
+                                            <td><textarea name="umotto" class="umotto" cols="25" rows="4" placeholder="三十个字以内" maxlength="50"></textarea></td>
                                         </tr>
                                         <tr>
                                         	<td colspan="2"></td>

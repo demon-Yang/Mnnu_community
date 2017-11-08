@@ -182,7 +182,7 @@
 	            </c:if>
 	            <c:if test="${user != null}">
 	                <li><a href="#" onclick="loginout()">退出登录</a></li>
-	                <li style="width:34px;"><a href="#" ><img src="images/userdefault.png"></a></li>
+	                <li style="width:34px;"><a href="person.jsp" ><img src="${user.uportrait }"></a></li>
 	            </c:if>
             </ul>
         </div>

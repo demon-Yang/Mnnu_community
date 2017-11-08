@@ -19,7 +19,7 @@ body{background: url("../images/bg.jpg");}
 .header .menu li a{font-size: 15px; }
 .header .menu li:nth-child(7){float: right;}
 .header .menu li:nth-child(8){float: right;}
-.header .menu li:nth-child(8) img{float: right;width: 35px;height:35px;border-radius: 4px;}
+.header .menu li:nth-child(8) img{float: right;width: 34px;height:34px;border-radius: 15px;}
 .header .menu li:hover { background-color: #ffffff;}
 .header .menu a {display: block;}
 .header .menu li:hover > a { border-left: 3px solid #C4302B; color: #000000}
@@ -297,6 +297,7 @@ body{background: url("../images/bg.jpg");}
 .person .container .right .update input[type='button']{width: 60px; height: 25px; line-height: 25px;border-radius: 4px;text-align: center;background-color: #a7afba;margin-right: 10px;}
 .person .container .right .update input[type='file']{width: 200px; height: 25px; line-height: 20px;}
 .person .container .right .update textarea{font-size: 14px;border-radius: 4px;}
+.person .container .right .update .error{color: red;}
 
 
 /*personforum.html*/

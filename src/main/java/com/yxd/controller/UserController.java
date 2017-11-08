@@ -133,7 +133,7 @@ public class UserController {
 			@RequestParam(value = "uportrait", required = false) MultipartFile uportrait) {
 		String path = request.getSession().getServletContext().getRealPath("user/uportrait");
 		String fileName = uportrait.getOriginalFilename();  
-		String uportraitPath = "images/userdefault.png";
+		String uportraitPath = ((User)request.getSession().getAttribute("user")).getUportrait();
 		if(!fileName.trim().isEmpty()&&fileName != null) {
 			String fileType = fileName.substring(fileName.lastIndexOf(".")); 
 	        User user = (User)request.getSession().getAttribute("user");
@@ -150,8 +150,13 @@ public class UserController {
 			}
 			uportraitPath = "user/uportrait/"+uemail+fileType;
 		}
-		userService.updateBase(uname, umotto, uportraitPath);
-		return "更新成功";
+		userService.updateBase(uname, umotto, uportraitPath,((User)request.getSession().getAttribute("user")).getUemail());
+		User user = (User)request.getSession().getAttribute("user");
+		user.setUname(uname);
+		user.setUmotto(umotto);
+		user.setUportrait(uportraitPath);
+		request.getSession().setAttribute("user",user);
+		return "1";
 	}
 	/**
 	 * 个人信息
@@ -161,7 +166,7 @@ public class UserController {
 	@RequestMapping("/queryUpwd.do")
 	public String queryUpwd(HttpServletRequest request,@RequestParam("oupwd")String oupwd) {
 		String upwd = ((User)request.getSession().getAttribute("user")).getUpwd();
-		if(oupwd == upwd)
+		if(oupwd.equals(upwd)) 
 			return "1";
 		else
 			return "0";
@@ -175,6 +180,9 @@ public class UserController {
 	public String changeUpwd(HttpServletRequest request,@RequestParam("upwd")String upwd) {
 		String uemail = ((User)request.getSession().getAttribute("user")).getUemail();
 		userService.changeUpwd(uemail, upwd);
+		User user = (User)request.getSession().getAttribute("user");
+		user.setUpwd(upwd);
+		request.getSession().setAttribute("user",user);
 		return "1";
 	}
 }

@@ -18,5 +18,5 @@ public interface UserDao {
 	//修改原密码
 	public int changeUpwd(@Param("uemail")String uemail,@Param("upwd")String upwd);
 	//更新用户信息
-	public int updateBase(@Param("uname")String uname,@Param("umotto")String umotto,@Param("uportrait")String uportrait);
+	public int updateBase(@Param("uname")String uname,@Param("umotto")String umotto,@Param("uportrait")String uportrait,@Param("uemail")String uemail);
 }
