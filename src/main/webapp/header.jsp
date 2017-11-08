@@ -8,12 +8,14 @@
     <title>头部</title>
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
   	<link type="text/css" rel="stylesheet" href="css/jquery.slider.css" />
+  	<link type="text/css" rel="stylesheet" href="BeAlert/BeAlert.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.slider.min.js"></script>
    	<script type="text/javascript" src="js/header.js"></script>
    	<script type="text/javascript" src="js/login.js"></script>
    	<script type="text/javascript" src="js/register.js"></script>
    	<script type="text/javascript" src="js/forgetpwd.js"></script>
+   	<script type="text/javascript" src="BeAlert/BeAlert.js"></script>
 </head>
 <body>
     <!-- 登陆框 -->

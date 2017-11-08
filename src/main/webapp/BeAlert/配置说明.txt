@@ -1,0 +1,26 @@
+﻿How to use?
+1、需要jquery的支持，所以请先确认已经引入jquery文件；
+
+<script src="jquery.min.js"></script>
+2、添加css和js文件到你的页面中
+
+<link rel="stylesheet" href="BeAlert.css">
+<script src="BeAlert.js"></script>
+3、按说明调用函数
+
+alert(title,message,callback,config);
+confirm(title,message,callback,config);
+
+Settings
+参数	 默认值	 描述
+title	 null	 标题
+message	 null	 内容
+callback null	 回调函数
+config	 null	 配置参数:
+          	 width:  宽度,
+           	 height: 最小高度,
+           	 type: 'warning'|'error'|'success'|'info'|'question',
+           	 showConfirmButton: 是否显示确认按钮,
+           	 showCancelButton: 是否显示取消按钮,
+           	 confirmButtonText: '确认',
+           	 cancelButtonText: '取消'

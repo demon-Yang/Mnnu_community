@@ -47,6 +47,8 @@
 						$(".login .uemail_info").html("*邮箱或密码错误");
 					}
 					else{
+						alert("Hello world!", "welcome to my world :)", function () {
+			            }, {type: 'success', confirmButtonText: 'OK'});
 						location.reload();
 					}
 				}
@@ -56,12 +58,17 @@
   }
 //退出登录
   function loginout() {
-	if(confirm("确定退出登录吗？"))
-		$.ajax({
-			type:"get",
-			url:"user/loginout.do",
-			success:function(data){
-				location.reload();
-			}
-		});
+	confirm("系统提示", "您确定要退出登录吗!", function (isConfirm) {
+		if(isConfirm) {
+			$.ajax({
+				type:"get",
+				url:"user/loginout.do",
+				success:function(data){
+					location.reload();
+				}
+			});
+        }else {
+            return;
+        }
+    }, {confirmButtonText: '确定', cancelButtonText: '取消', width: 400});
 }
