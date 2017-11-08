@@ -38,8 +38,9 @@
 				  	data:{uname:uname,umotto:umotto},
 					success:function(data){
 						if(data == 1)
-							alert("更新成功");
-						location.reload();
+							alert("系统提示", "更新成功！", function () {
+								location.reload();
+				            }, {type: 'success', confirmButtonText: '确定'});
 					}
 				});
 		  }else 
@@ -105,8 +106,9 @@
 				async:false,
 				data:{upwd:upwd},
 				success:function(data){
-					alert("修改成功");
-					location.reload();
+					alert("系统提示", "修改成功！", function () {
+						location.reload();
+		            }, {type: 'success', confirmButtonText: '确定'});
 				}
 			});
 	    }else 

@@ -47,8 +47,6 @@
 						$(".login .uemail_info").html("*邮箱或密码错误");
 					}
 					else{
-						alert("Hello world!", "welcome to my world :)", function () {
-			            }, {type: 'success', confirmButtonText: 'OK'});
 						location.reload();
 					}
 				}

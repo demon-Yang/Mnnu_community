@@ -123,8 +123,9 @@ $(function(){
 				async:false,
 				data:{uemail:$(".register .uemail").val(),uname:$(".register .uname").val(),upwd:$(".register .upwd").val()},
 				success:function(data){
-					alert("注册成功");
-					location.reload();
+					alert("系统提示", "注册成功！", function () {
+						location.reload();
+		            }, {type: 'success', confirmButtonText: '确定'});
 				}
 			});
 	  }else 

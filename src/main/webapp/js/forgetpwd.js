@@ -87,8 +87,9 @@ $(function(){
 					if(data == 0)
 						$(".forgetpwd .uemail_info").html("*该邮箱未注册");
 					else{
-						alert("密码已发送至您的邮箱");
-						location.onload();
+						alert("系统提示", "密码已发送至您的邮箱！", function (){
+							location.reload();
+			            }, {type: 'success', confirmButtonText: '确定'});
 					}
 				}
 			});
