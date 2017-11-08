@@ -7,13 +7,12 @@
     <title>编辑新闻</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="kindeditor/kindeditor-all-min.js"></script>
+    <script type="text/javascript" src="../kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript">
         KindEditor.ready(function(K) {
             K.create('#editor', {
                 width : '660px',
-                uploadJson : '../jsp/upload_json.jsp',
-                fileManagerJson : '../jsp/file_manager_json.jsp',
+                uploadJson : '/Mnnu_community/news/upload.do',
                 allowFileManager : true
             });
         });
