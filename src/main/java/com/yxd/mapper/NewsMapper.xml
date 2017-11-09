@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxd.dao.NewsDao">
+	<!-- 编写新闻 -->
+	<insert id="edit" parameterType="News">
+		insert into tb_news values(null,#{ntitle},#{ntype},#{ncontent},#{ndate})
+	</insert>
+	<!-- 按ID查找单篇新闻 -->
+	<select id="findOne" parameterType="int" resultType="News">
+		select * from tb_news where nid = #{nid}
+	</select>
+</mapper>

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,21 +21,53 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
+import com.yxd.entity.News;
+import com.yxd.service.NewsService;
+import com.yxd.util.HtmlIOUtil;
 
 @Controller
 @RequestMapping("/news")
-public class NewsEditController {
-	
+public class NewsController {
+	@Resource
+	private NewsService newsService;
 	/**
 	 * 编辑新闻 
 	 * */
-	@ResponseBody
 	@RequestMapping("/edit.do")
 	public String edit(HttpServletRequest request,@RequestParam("ntitle")String ntitle,@RequestParam("ntype")String ntype,@RequestParam("ncontent")String ncontent) {
-		System.out.println(ncontent);
-		return "1";
+		News news = new News();
+		news.setNtitle(ntitle);
+		news.setNtype(ntype);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String ndate = sdf.format(new Date());
+		news.setNdate(ndate);
+		//按当天日趋创建文件夹
+		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd");
+		String ymd = sd.format(new Date());
+		String path = request.getSession().getServletContext().getRealPath("/") + "/news/article/"+ntype+"/"+ymd+"/";
+		//按时间戳命名文件
+		String name = System.currentTimeMillis()+".html";
+		HtmlIOUtil.write(ncontent, path, name);
+		
+		news.setNcontent(path+name);
+		newsService.edit(news);
+		request.getSession().setAttribute("news",news);
+		return "redirect:/news.jsp";
 	}
-	
+	/**
+	 * 按ID查找单篇新闻
+	 * */
+	@RequestMapping("/findOne.do")
+	public String findOne(HttpServletRequest request,@RequestParam("nid")int nid) {
+		News news = newsService.findOne(nid);
+		String ncontent = news.getNcontent();
+		int index = ncontent.lastIndexOf("/");
+		String path = ncontent.substring(0, index+1);
+		String name = ncontent.substring(index+1);
+		news.setNcontent(HtmlIOUtil.read(path, name));
+		request.getSession().setAttribute("news",news);
+		return "redirect:/news.jsp";
+	}
 	/**
 	 * 图片上传
 	 * */
