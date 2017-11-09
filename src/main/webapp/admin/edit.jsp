@@ -13,7 +13,17 @@
             K.create('#editor', {
                 width : '660px',
                 uploadJson : '/Mnnu_community/news/upload.do',
-                allowFileManager : true
+                allowFileManager : true,
+                items : [
+            		'source', '|', 'undo', 'redo', '|', 'preview', 'code', 'cut', 'copy', 'paste',
+            		'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+            		'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+            		'superscript', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+            		'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+            		'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+            		'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+            		'anchor', 'link', 'unlink', '|', 'about'
+            	],
             });
         });
     </script>

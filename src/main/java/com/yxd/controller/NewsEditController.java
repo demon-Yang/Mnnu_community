@@ -11,15 +11,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.google.gson.JsonObject;
 
 @Controller
 @RequestMapping("/news")
@@ -40,29 +39,28 @@ public class NewsEditController {
 		extMap.put("image", "gif,jpg,jpeg,png,bmp,svg");
 		//最大文件大小
 		long maxSize = 1000000;
+		
 		//设置返回编码
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		//判断是否有文件上传
 		if(!ServletFileUpload.isMultipartContent(request)){
 			out.println(getError("请选择文件。"));
 			return;
 		}
 		
-		String dirName = request.getParameter("dir");
-		if (dirName == null) {
-			dirName = "image";
-		}
-		if(!extMap.containsKey(dirName)){
-			out.println(getError("目录名不正确。"));
-			return;
-		}
 		//创建目录
 		File uploadDir = new File(savePath);
 		if(!uploadDir.exists()){
 			uploadDir.mkdirs();
 		}
-
+		
+		//默认上传的文件夹目录为image
+		String dirName = request.getParameter("dir");
+		if (dirName == null) {
+			dirName = "image";
+		}
 		//创建文件夹
 		savePath += dirName + "/";
 		saveUrl += dirName + "/";
@@ -70,7 +68,7 @@ public class NewsEditController {
 		if (!saveDirFile.exists()) {
 			saveDirFile.mkdirs();
 		}
-		
+		//按当天日趋创建文件夹
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String ymd = sdf.format(new Date());
 		savePath += ymd + "/";
@@ -79,11 +77,8 @@ public class NewsEditController {
 		if (!dirFile.exists()) {
 			dirFile.mkdirs();
 		}
-
-		FileItemFactory factory = new DiskFileItemFactory();
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		upload.setHeaderEncoding("UTF-8");
 		
+		//上传文件
 		 MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;  
 		 Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -101,8 +96,7 @@ public class NewsEditController {
 					return;
 				}
 
-				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-				String newFileName = df.format(new Date()) + "." + fileExt;
+				String newFileName = System.currentTimeMillis() + "." + fileExt;
 				try{
 					File uploadedFile = new File(savePath, newFileName);
 					item.transferTo(uploadedFile);
@@ -111,17 +105,17 @@ public class NewsEditController {
 					return;
 				}
 
-				JSONObject obj = new JSONObject();
-				obj.put("error", 0);
-				obj.put("url", saveUrl + newFileName);
-				out.println(obj.toJSONString());
+				JsonObject obj = new JsonObject();
+				obj.addProperty("error", 0);
+				obj.addProperty("url", saveUrl + newFileName);
+				out.println(obj.toString());
 			}
 	}
 	
 	private String getError(String message) {
-		JSONObject obj = new JSONObject();
-		obj.put("error", 1);
-		obj.put("message", message);
-		return obj.toJSONString();
+		JsonObject obj = new JsonObject();
+		obj.addProperty("error", 1);
+		obj.addProperty("message", message);
+		return obj.toString();
 	}
 }
