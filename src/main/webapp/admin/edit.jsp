@@ -41,13 +41,13 @@
             <div class="right">
                 <div class="private">
                     <p>>><span class="nav">编辑新闻</span></p>
-                    <form action="">
-                        <p>标题：<input type="text" name=""/></p>
-                        <p>类型：&nbsp;<input type="radio" name="new" checked/>学术报告&nbsp;&nbsp;
-                                       <input type="radio" name="new" />热点聚焦&nbsp;&nbsp;
-                                       <input type="radio" name="new" />闽师新闻&nbsp;&nbsp;
-                                       <input type="radio" name="new" />通知公告&nbsp;&nbsp;</p>
-                        <textarea name="content" id="editor"></textarea>
+                    <form action="/Mnnu_community/news/edit.do" method="post">
+                        <p>标题：<input type="text" name="ntitle"/></p>
+                       	 <p>类型：&nbsp;<input type="radio" name="ntype" value="闽师新闻" checked/>闽师新闻&nbsp;&nbsp;
+                                       <input type="radio" name="ntype" value="热点聚焦"/>热点聚焦&nbsp;&nbsp;
+                                       <input type="radio" name="ntype" value="学术报告"/>学术报告&nbsp;&nbsp;
+                                       <input type="radio" name="ntype" value="通知公告"/>通知公告&nbsp;&nbsp;</p>
+                        <textarea name="ncontent" id="editor"></textarea>
                         <input type="submit" value="提交"/>
                     </form>
                 </div>

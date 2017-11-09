@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,6 +25,19 @@ import com.google.gson.JsonObject;
 @RequestMapping("/news")
 public class NewsEditController {
 	
+	/**
+	 * 编辑新闻 
+	 * */
+	@ResponseBody
+	@RequestMapping("/edit.do")
+	public String edit(HttpServletRequest request,@RequestParam("ntitle")String ntitle,@RequestParam("ntype")String ntype,@RequestParam("ncontent")String ncontent) {
+		System.out.println(ncontent);
+		return "1";
+	}
+	
+	/**
+	 * 图片上传
+	 * */
 	@ResponseBody
 	@RequestMapping("/upload.do")
 	public void upload(HttpServletRequest request,HttpServletResponse response) throws Exception {
