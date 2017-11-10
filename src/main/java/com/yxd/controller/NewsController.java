@@ -33,8 +33,9 @@ public class NewsController {
 	/**
 	 * 编辑新闻 
 	 * */
+	@ResponseBody
 	@RequestMapping("/edit.do")
-	public String edit(HttpServletRequest request,@RequestParam("ntitle")String ntitle,@RequestParam("ntype")String ntype,@RequestParam("ncontent")String ncontent) {
+	public String edit(HttpServletRequest request, @RequestParam("ntitle")String ntitle,@RequestParam("ntype")String ntype,@RequestParam("ncontent")String ncontent) {
 		News news = new News();
 		news.setNtitle(ntitle);
 		news.setNtype(ntype);
@@ -51,8 +52,7 @@ public class NewsController {
 		
 		news.setNcontent(path+name);
 		newsService.edit(news);
-		request.getSession().setAttribute("news",news);
-		return "redirect:/news.jsp";
+		return "1";
 	}
 	/**
 	 * 按ID查找单篇新闻

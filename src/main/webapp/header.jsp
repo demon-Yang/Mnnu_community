@@ -150,34 +150,35 @@
         <div class="img"></div>
         <div class="menu">
             <ul>
-                <li><a href="#">首页</a></li>
+                <li><a href="index.jsp">首页</a></li>
                 <li><a href="#">魅力·闽师</a>
                     <ul class="submenu">
-                        <li><a href="#">闽师简介</a></li>
-                        <li><a href="#">闽师风景</a></li>
-                        <li><a href="#">闽师校徽</a></li>
+                        <li><a href="introduce.jsp">闽师简介</a></li>
+                        <li><a href="view.jsp">闽师风景</a></li>
+                        <li><a href="symbol.jsp">闽师校徽</a></li>
                     </ul>
                 </li>
                 <li><a href="#">新闻·热点</a>
                     <ul class="submenu">
-                        <li><a href="#">闽师热点</a></li>
-                        <li><a href="#">学术报告</a></li>
-                        <li><a href="#">重要通知</a></li>
+                        <li><a href="news.jsp">闽师新闻</a></li>
+                        <li><a href="news.jsp">学术报告</a></li>
+                        <li><a href="news.jsp">热点聚焦</a></li>
+                        <li><a href="news.jsp">通知公告</a></li>
                     </ul>
                 </li>
                 <li><a href="#">技术·论坛</a>
                     <ul class="submenu">
-                        <li><a href="#">学习论坛</a></li>
-                        <li><a href="#">生活贴吧</a></li>
+                        <li><a href="forum.jsp">学习论坛</a></li>
+                        <li><a href="forum.jsp">生活贴吧</a></li>
                     </ul>
                 </li>
                 <li><a href="#">物品·市场</a>
                     <ul class="submenu">
-                        <li><a href="#">共享图书</a></li>
-                        <li><a href="#">二手市场</a></li>
+                        <li><a href="market.jsp">共享图书</a></li>
+                        <li><a href="market.jsp">二手市场</a></li>
                     </ul>
                 </li>
-                <li><a href="#">留言·表白</a></li>
+                <li><a href="notes.jsp">留言·表白</a></li>
                 <c:if test="${user == null}">
 	                <li><a href="#" onclick="registershow()">注册</a></li>
 	                <li><a href="#" onclick="loginshow()">登陆</a></li>

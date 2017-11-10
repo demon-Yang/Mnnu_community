@@ -326,4 +326,6 @@ body{background: url("../images/adminbg.jpg");}
 .edit .container .right p{height: 30px;line-height: 30px;margin-left: 10px;margin-bottom: 15px;}
 .edit .container .right p input[type='text']{width: 350px; height: 25px; line-height: 25px; text-indent: 10px;border-radius: 4px;}
 .edit .container .right textarea{width:660px;height:450px;}
-.edit .container .right input[type='submit']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #a7afba;margin-top: 20px;margin-left: 590px;}
+.edit .container .right input[type='button']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #a7afba;margin-left: 590px;}
+.edit .container .right #ntitle_info{color: red;font-family: cursive;font-size: 15px;}
+.edit .container .right .ncontent_info{color: red;font-family: cursive;font-size: 17px;display: inline-block;margin-left: 290px;}
