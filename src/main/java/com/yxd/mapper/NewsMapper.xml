@@ -11,4 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findOne" parameterType="int" resultType="News">
 		select * from tb_news where nid = #{nid}
 	</select>
+	<!-- 按类型查找新闻 -->
+	<resultMap type="News" id="newslist">
+		<id property="nid" column="nid"/>
+		<result property="ntitle" column="ntitle"/>
+		<result property="ndate" column="ndate"/>
+	</resultMap>
+	<select id="queryByType" parameterType="string" resultMap="newslist">
+		select nid,ntitle,ndate from tb_news where ntype = #{ntype}
+	</select>
 </mapper>

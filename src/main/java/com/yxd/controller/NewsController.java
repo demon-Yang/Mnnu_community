@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.JsonObject;
 import com.yxd.entity.News;
 import com.yxd.service.NewsService;
@@ -69,6 +72,20 @@ public class NewsController {
 			request.getSession().setAttribute("news",news);
 		}
 		return "redirect:/news.jsp";
+	}
+	/**
+	 * 按类型查找新闻
+	 * */
+	@RequestMapping("/queryByType.do")
+	public String queryByType(HttpServletRequest request,@RequestParam("ntype")String ntype,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="10")int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<News> nlist = newsService.queryByType(ntype);
+		PageInfo<News> page = new PageInfo<News>(nlist);
+		request.getSession().setAttribute("nlist", nlist);
+		request.getSession().setAttribute("page", page);
+		return "redirect:/admin/academic.jsp";
 	}
 	/**
 	 * 图片上传

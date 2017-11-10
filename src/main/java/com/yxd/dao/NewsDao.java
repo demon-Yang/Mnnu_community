@@ -1,5 +1,7 @@
 package com.yxd.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,6 @@ public interface NewsDao {
 	public int edit(News news);
 	//按ID查找单篇新闻 
 	public News findOne(@Param("nid")int nid);
+	//按类型查找新闻 
+	public List<News> queryByType(@Param("ntype")String ntype);
 }

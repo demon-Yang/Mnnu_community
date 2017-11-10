@@ -8,4 +8,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="com.yxd.entity"/>
 		<package name="com.yxd.view"/>
 	</typeAliases>
+	<!-- 分页插件 -->
+	 <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
 </configuration>

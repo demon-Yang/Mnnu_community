@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,36 +28,13 @@
                         <hr>
                         <div class="lists">
                             <ul>
+                            	<c:forEach items="${nlist }" var="list">
                                 <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
+                                    <p class="title">${list.ntitle }</p>
+                                    <p class="function" align="right"><span>${list.ndate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/news/findOne.do?nid=${list.nid }">查看</a>&nbsp;&nbsp;<a>删除</a></p>
                                     <hr/>
                                 </li>
-                                <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                    <hr/>
-                                </li>
-                                <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                    <hr/>
-                                </li>
-                                <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                    <hr/>
-                                </li>
-                                <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                    <hr/>
-                                </li>
-                                <li>
-                                    <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                    <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                    <hr/>
-                                </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
