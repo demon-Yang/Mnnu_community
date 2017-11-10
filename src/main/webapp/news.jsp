@@ -15,7 +15,7 @@
             <jsp:include page="header.jsp"></jsp:include>
         </div>
         <div class="container">
-            <div style="padding: 5px 20px; height: 30px;"></div>
+            <div style="padding: 5px 20px; height: 15px;"></div>
             <div class="left">
                 <span>闽师新闻</span>
                 <ul>

@@ -24,6 +24,17 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<!-- 静态资源访问 -->
+	<!-- <mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/css/**" location="/css/" />  
+	<mvc:resources mapping="/js/**" location="/js/" /> 
+	<mvc:resources mapping="/admin/images/**" location="/admin/images/" />
+	<mvc:resources mapping="/admin/css/**" location="/admin/css/" />  
+	<mvc:resources mapping="/admin/js/**" location="/admin/js/" /> 
+	<mvc:resources mapping="/BeAlert/**" location="/BeAlert/" />
+	<mvc:resources mapping="/kindeditor/**" location="/kindeditor/" /> -->
+	
+	
 	<!-- 使用注解的包，包括子集 -->
 	<context:component-scan base-package="com.yxd.controller" />
 	

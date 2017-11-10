@@ -60,12 +60,14 @@ public class NewsController {
 	@RequestMapping("/findOne.do")
 	public String findOne(HttpServletRequest request,@RequestParam("nid")int nid) {
 		News news = newsService.findOne(nid);
-		String ncontent = news.getNcontent();
-		int index = ncontent.lastIndexOf("/");
-		String path = ncontent.substring(0, index+1);
-		String name = ncontent.substring(index+1);
-		news.setNcontent(HtmlIOUtil.read(path, name));
-		request.getSession().setAttribute("news",news);
+		if(news != null) {
+			String ncontent = news.getNcontent();
+			int index = ncontent.lastIndexOf("/");
+			String path = ncontent.substring(0, index+1);
+			String name = ncontent.substring(index+1);
+			news.setNcontent(HtmlIOUtil.read(path, name));
+			request.getSession().setAttribute("news",news);
+		}
 		return "redirect:/news.jsp";
 	}
 	/**
