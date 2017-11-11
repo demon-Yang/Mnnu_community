@@ -28,7 +28,7 @@
                         <hr>
                         <div class="lists">
                             <ul>
-                            	<c:forEach items="${nlist }" var="list">
+                            	<c:forEach items="${acadList }" var="list">
                                 <li>
                                     <p class="title">${list.ntitle }</p>
                                     <p class="function" align="right"><span>${list.ndate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/news/findOne.do?nid=${list.nid }">查看</a>&nbsp;&nbsp;<a>删除</a></p>
@@ -37,6 +37,53 @@
                                 </c:forEach>
                             </ul>
                         </div>
+                        <div class="pagenav">
+                        <p align="right">
+							第${acadPage.pageNum }页/共${acadPage.total }页 
+							<a href="/Mnnu_community/news/findOne.do?nid=1">首页</a>
+							<c:if test="${acadPage.pageNum > 1 }">
+								<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.pageNum-1 }">上一页</a>
+							</c:if>
+							<%-- 计算begin、end --%>
+							<c:choose>
+								<%-- 如果总页数不足5页，那么把所有的页数都显示出来！ --%>
+								<c:when test="${acadPage.pages <= 5 }">
+									<c:set var="begin" value="1" />
+									<c:set var="end" value="${acadPage.total }" />
+								</c:when>
+								<c:otherwise>
+									<%-- 当总页数>5时，通过公式计算出begin和end --%>
+									<c:set var="begin" value="${acadPage.pageNum-2 }" />
+									<c:set var="end" value="${acadPage.pageNum+2 }" />	
+									<%-- 头溢出 --%>
+									<c:if test="${begin < 1 }">
+										<c:set var="begin" value="1" />
+										<c:set var="end" value="5" />
+									</c:if>	
+									<%-- 尾溢出 --%>
+									<c:if test="${end > acadPage.total }">
+										<c:set var="begin" value="${acadPage.total - 4 }" />
+										<c:set var="end" value="${acadPage.total }" />
+									</c:if>	
+								</c:otherwise>
+							</c:choose>
+							<%-- 循环遍历页码列表 --%>
+							<c:forEach var="i" begin="${begin }" end="${end }">
+								<c:choose>
+									<c:when test="${i eq acadPage.pageNum }">
+										[${i }]
+									</c:when>
+									<c:otherwise>
+										<a href="/Mnnu_community/news/findOne.do?nid=${i}">[${i }]</a>	
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>		
+							<c:if test="${acadPage.pageNum < acadPage.total }">
+								<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.pageNum+1}">下一页</a>
+							</c:if>
+							<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.total}">尾页</a>
+							</p>
+						</div>
                     </div>
                 </div>
             </div>

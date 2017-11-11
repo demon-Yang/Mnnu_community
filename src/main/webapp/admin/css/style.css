@@ -91,14 +91,16 @@ body{background: url("../images/adminbg.jpg");}
 .academic .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .academic .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/adminbg.png") no-repeat;}
 .academic .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
-.academic .container .right .private p{font-size: 17px;}
-.academic .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.academic .container .right .private p a{display: inline-block;width: 90px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #979797;margin-right: 10px;font-size: 13px;margin-bottom: 5px;}
+.academic .container .right .private >p{font-size: 17px;}
+.academic .container .right .private >p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.academic .container .right .private >p a{display: inline-block;width: 90px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #979797;margin-right: 10px;font-size: 13px;margin-bottom: 5px;}
+.academic .container .right .private .lists{height: 500px;}
 .academic .container .right .private .lists li{margin: 5px;}
 .academic .container .right .private .lists .title{height: 25px;line-height: 25px;font-size: 15px;}
 .academic .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;}
 .academic .container .right .private .lists .function span{font-size: 13px;}
 .academic .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #979797;}
+.academic .container .right .private .pagenav p{margin-right: 20px;font-size: 16px;}
 
 
 /*mnew.html*/

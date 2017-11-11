@@ -74,7 +74,7 @@
             </div>
             <div class="article">
                     <div class="academic">
-                        <h3><span class="more"><a href="news/findOne.do?nid=26">进入&gt;&gt;</a></span>学术报告</h3>
+                        <h3><span class="more"><a href="news/findOne.do?nid=1">进入&gt;&gt;</a></span>学术报告</h3>
                         <ul>
                             <li><span class="time">10-10</span><a href="#"> 瑞华教授团队破获... </a></li>
                             <li><span class="time">10-10</span><a href="#"> 瑞华教授团队破获... </a></li>

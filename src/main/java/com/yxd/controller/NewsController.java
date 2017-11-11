@@ -79,13 +79,36 @@ public class NewsController {
 	@RequestMapping("/queryByType.do")
 	public String queryByType(HttpServletRequest request,@RequestParam("ntype")String ntype,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="10")int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		List<News> nlist = newsService.queryByType(ntype);
-		PageInfo<News> page = new PageInfo<News>(nlist);
-		request.getSession().setAttribute("nlist", nlist);
-		request.getSession().setAttribute("page", page);
-		return "redirect:/admin/academic.jsp";
+			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
+		if("闽师新闻".equals(ntype)) {
+			PageHelper.startPage(pageNum, pageSize);
+			List<News> mnewList = newsService.queryByType(ntype);
+			PageInfo<News> page = new PageInfo<News>(mnewList);
+			request.getSession().setAttribute("mnewList", mnewList);
+			request.getSession().setAttribute("mnewPage", page);
+			return "redirect:/admin/mnew.jsp";
+		}else if("学术报告".equals(ntype)) {
+			PageHelper.startPage(pageNum, pageSize);
+			List<News> acadList = newsService.queryByType(ntype);
+			PageInfo<News> page = new PageInfo<News>(acadList);
+			request.getSession().setAttribute("acadList", acadList);
+			request.getSession().setAttribute("acadPage", page);
+			return "redirect:/admin/academic.jsp";
+		}else if("热点聚焦".equals(ntype)) {
+			PageHelper.startPage(pageNum, pageSize);
+			List<News> nlist = newsService.queryByType(ntype);
+			PageInfo<News> page = new PageInfo<News>(nlist);
+			request.getSession().setAttribute("nlist", nlist);
+			request.getSession().setAttribute("page", page);
+			return "redirect:/admin/hnew.jsp";
+		}else {
+			PageHelper.startPage(pageNum, pageSize);
+			List<News> nlist = newsService.queryByType(ntype);
+			PageInfo<News> page = new PageInfo<News>(nlist);
+			request.getSession().setAttribute("nlist", nlist);
+			request.getSession().setAttribute("page", page);
+			return "redirect:/admin/notice.jsp";
+		}
 	}
 	/**
 	 * 图片上传
