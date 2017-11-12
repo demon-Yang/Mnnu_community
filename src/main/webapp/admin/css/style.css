@@ -100,7 +100,9 @@ body{background: url("../images/adminbg.jpg");}
 .academic .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;}
 .academic .container .right .private .lists .function span{font-size: 13px;}
 .academic .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #979797;}
-.academic .container .right .private .pagenav p{margin-right: 20px;font-size: 16px;}
+.academic .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.academic .container .right .private .pagenav p a{font-size: 14px;color: #76a72c;}
+.academic .container .right .private .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
 
 
 /*mnew.html*/

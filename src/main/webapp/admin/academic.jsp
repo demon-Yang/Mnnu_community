@@ -39,17 +39,17 @@
                         </div>
                         <div class="pagenav">
                         <p align="right">
-							第${acadPage.pageNum }页/共${acadPage.total }页 
-							<a href="/Mnnu_community/news/findOne.do?nid=1">首页</a>
-							<c:if test="${acadPage.pageNum > 1 }">
-								<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.pageNum-1 }">上一页</a>
+							第${acadPage.pageNum }页/共${acadPage.pages }页 
+							<a href="/Mnnu_community/news/queryByType.do?ntype=学术报告&pageNum=1">首页</a>
+							<c:if test="${acadPage.pageNum > 1 }">	
+								<a href="/Mnnu_community/news/queryByType.do?ntype=学术报告&pageNum=${acadPage.pageNum-1 }">上一页</a>
 							</c:if>
 							<%-- 计算begin、end --%>
 							<c:choose>
 								<%-- 如果总页数不足5页，那么把所有的页数都显示出来！ --%>
 								<c:when test="${acadPage.pages <= 5 }">
 									<c:set var="begin" value="1" />
-									<c:set var="end" value="${acadPage.total }" />
+									<c:set var="end" value="${acadPage.pages }" />
 								</c:when>
 								<c:otherwise>
 									<%-- 当总页数>5时，通过公式计算出begin和end --%>
@@ -61,9 +61,9 @@
 										<c:set var="end" value="5" />
 									</c:if>	
 									<%-- 尾溢出 --%>
-									<c:if test="${end > acadPage.total }">
-										<c:set var="begin" value="${acadPage.total - 4 }" />
-										<c:set var="end" value="${acadPage.total }" />
+									<c:if test="${end > acadPage.pages }">
+										<c:set var="begin" value="${acadPage.pages - 4 }" />
+										<c:set var="end" value="${acadPage.pages }" />
 									</c:if>	
 								</c:otherwise>
 							</c:choose>
@@ -74,14 +74,14 @@
 										[${i }]
 									</c:when>
 									<c:otherwise>
-										<a href="/Mnnu_community/news/findOne.do?nid=${i}">[${i }]</a>	
+										<a href="/Mnnu_community/news/queryByType.do?ntype=学术报告&pageNum=${i}">[${i }]</a>	
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>		
-							<c:if test="${acadPage.pageNum < acadPage.total }">
-								<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.pageNum+1}">下一页</a>
+							<c:if test="${acadPage.pageNum < acadPage.pages }">
+								<a href="/Mnnu_community/news/queryByType.do?ntype=学术报告&pageNum=${acadPage.pageNum+1}">下一页</a>
 							</c:if>
-							<a href="/Mnnu_community/news/findOne.do?nid=${acadPage.total}">尾页</a>
+							<a href="/Mnnu_community/news/queryByType.do?ntype=学术报告&pageNum=${acadPage.pages}">尾页</a>
 							</p>
 						</div>
                     </div>

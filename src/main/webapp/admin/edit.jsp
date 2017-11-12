@@ -31,7 +31,7 @@
        $(function(){
         	$("input[type='button']").click(function(){
         		var ntitle = $(".ntitle").val();
-        		var ntype = $("input[type='radio']").val();
+        		var ntype = $("input[type='radio']:checked").val();
             	var ncontent = $(document.getElementsByTagName("iframe")[0].contentWindow.document.body).html();
             	var result = 0;
             	 if(ntitle == ''){
