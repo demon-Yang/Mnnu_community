@@ -15,4 +15,6 @@ public interface NewsDao {
 	public News findOne(@Param("nid")int nid);
 	//按类型查找新闻 
 	public List<News> queryByType(@Param("ntype")String ntype);
+	//删除新闻
+	public int delete(@Param("nid")int nid);
 }

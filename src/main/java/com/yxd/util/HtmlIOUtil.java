@@ -13,7 +13,7 @@ public class HtmlIOUtil {
 	 * 写文件
 	 * String字符串写到html文件中
 	 * */
-	public static void write(String ncontent,String path,String name){
+	public static String write(String ncontent,String path,String name){
 		
 		File filePath = new File(path);
 		if(!filePath.exists())
@@ -26,6 +26,7 @@ public class HtmlIOUtil {
 			out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
 			out.writeUTF(ncontent);
 			out.close();
+			return "上传成功";
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -36,13 +37,14 @@ public class HtmlIOUtil {
 				e.printStackTrace();
 			}
 		}
+		return "上传失败";
 	}
 	/**
 	 * 读文件
 	 * html文件读成String
 	 * */
-	public static String read(String path,String name) {
-		File file = new File(path,name);
+	public static String read(String path) {
+		File file = new File(path);
 		if(!file.exists()) 
 			return "该文件不存在";
 		DataInputStream in = null;
@@ -61,7 +63,16 @@ public class HtmlIOUtil {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return "读取失败";
 	}
-	
+	/**
+	 * 删除文件
+	 * */
+	public static String delete(String path) {
+		File file = new File(path);
+		if(!file.exists()) 
+			return "该文件不存在";
+		file.delete();
+		return "删除成功";
+	}
 }

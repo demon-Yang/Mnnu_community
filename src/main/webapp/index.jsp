@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,13 @@
     <script type="text/javascript">
         var t1;
         $(function(){
+        	/*请求数据*/
+        	$.ajax({
+        		type:"get",
+        		url:"admin/news/index.do",
+        		async:false,
+        		success:function(data){}
+        	});
             /*头部轮播图*/
             var mySwiper = new Swiper(".swiper-container",{
                 autoplay:5000,/*每隔3秒自动播放*/
@@ -74,39 +82,35 @@
             </div>
             <div class="article">
                     <div class="academic">
-                        <h3><span class="more"><a href="news/findOne.do?nid=25">进入&gt;&gt;</a></span>学术报告</h3>
+                        <h3><span class="more"><a href="admin/news/findOne.do?nid=31">进入&gt;&gt;</a></span>学术报告</h3>
                         <ul>
-                            <li><span class="time">10-10</span><a href="#"> 瑞华教授团队破获... </a></li>
-                            <li><span class="time">10-10</span><a href="#"> 瑞华教授团队破获... </a></li>
-                            <li><span class="time">09-26</span><a href="#">  李永光博士课题组取...  </a></li>
-                            <li><span class="time">09-26</span><a href="#">  李永光博士课题组取...  </a></li>
-                            <li><span class="time">09-26</span><a href="#">  李永光博士课题组取...  </a></li>
-                            <li><span class="time">09-26</span><a href="#">  李永光博士课题组取...  </a></li>
-                            <li><span class="time">09-26</span><a href="#">  李永光博士课题组取...  </a></li>
+                        	<c:forEach items="${indexAcadList }" var="acadList">
+                            	<li><span class="time">${acadList.ndate }</span><a href="#">${acadList.ntitle }</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="mnew">
                         <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>热点聚焦</h3>
                         <ul>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">09-26</span><a href="#">  化学学院李永光博士课题组取得两亲性Pt...  </a></li>
+                           <c:forEach items="${indexHnewList }" var="hnewList">
+                            	<li><span class="time">${hnewList.ndate }</span><a href="#">${hnewList.ntitle }</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="hnew">
                         <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>闽师新闻</h3>
                         <ul>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">09-26</span><a href="#">  化学学院李永光博士课题组取得两亲性Pt...  </a></li>
+                            <c:forEach items="${indexMnewList }" var="mnewList">
+                            	<li><span class="time">${mnewList.ndate }</span><a href="#">${mnewList.ntitle }</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="notice">
                         <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>通知公告</h3>
                         <ul>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">10-10</span><a href="#"> 我校徐瑞华教授团队破获肝癌“身份指纹”... </a></li>
-                            <li><span class="time">09-26</span><a href="#">  化学学院李永光博士课题组取得两亲性Pt...  </a></li>
+                            <c:forEach items="${indexNoticeList }" var="noticeList">
+                            	<li><span class="time">${noticeList.ndate }</span><a href="#">${noticeList.ntitle }</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
             </div>

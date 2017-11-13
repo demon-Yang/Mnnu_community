@@ -25,4 +25,8 @@ public class NewsService {
 	public List<News> queryByType(String ntype) {
 		return newsDao.queryByType(ntype);
 	}
+	//删除新闻
+	public int delete(int nid) {
+		return newsDao.delete(nid);
+	}
 }

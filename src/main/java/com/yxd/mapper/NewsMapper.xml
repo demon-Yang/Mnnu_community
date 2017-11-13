@@ -20,4 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryByType" parameterType="string" resultMap="newslist">
 		select nid,ntitle,ndate from tb_news where ntype = #{ntype}
 	</select>
+	<!-- 删除新闻 -->
+	<delete id="delete" parameterType="int">
+		delete from tb_news where nid = #{nid}
+	</delete>
 </mapper>

@@ -29,10 +29,54 @@ import com.yxd.service.NewsService;
 import com.yxd.util.HtmlIOUtil;
 
 @Controller
-@RequestMapping("/news")
-public class NewsController {
+@RequestMapping("/admin/news")
+public class AdminNewsController {
 	@Resource
 	private NewsService newsService;
+	/**
+	 * 主界面新闻
+	 * */
+	@ResponseBody
+	@RequestMapping("/index.do")
+	public String index(HttpServletRequest request) {
+		/*获取新闻,并裁剪新闻标题*/
+		PageHelper.startPage(1,8);
+		List<News> acadList = newsService.queryByType("学术报告");
+		for (News list:acadList) {
+			if(list.getNtitle().length()>15)
+				list.setNtitle(list.getNtitle().substring(0,15)+"...");
+			list.setNdate(list.getNdate().substring(5,10));
+		}
+		
+		PageHelper.startPage(1,3);
+		List<News> hnewList = newsService.queryByType("热点聚焦");
+		for (News list:hnewList) {
+			if(list.getNtitle().length()>25)
+				list.setNtitle(list.getNtitle().substring(0,25)+"...");
+			list.setNdate(list.getNdate().substring(5,10));
+		}
+		
+		PageHelper.startPage(1,3);
+		List<News> mnewList = newsService.queryByType("闽师新闻");
+		for (News list:mnewList) {
+			if(list.getNtitle().length()>25)
+				list.setNtitle(list.getNtitle().substring(0,25)+"...");
+			list.setNdate(list.getNdate().substring(5,10));
+		}
+		
+		PageHelper.startPage(1,3);
+		List<News> noticeList = newsService.queryByType("通知公告");
+		for (News list:noticeList) {
+			if(list.getNtitle().length()>45)
+				list.setNtitle(list.getNtitle().substring(0,45)+"...");
+			list.setNdate(list.getNdate().substring(5,10));
+		}
+		request.getSession().setAttribute("indexAcadList", acadList);
+		request.getSession().setAttribute("indexHnewList", hnewList);
+		request.getSession().setAttribute("indexMnewList", mnewList);
+		request.getSession().setAttribute("indexNoticeList", noticeList);
+		return "1";
+	}
 	/**
 	 * 编辑新闻 
 	 * */
@@ -51,11 +95,13 @@ public class NewsController {
 		String path = request.getSession().getServletContext().getRealPath("/") + "/news/article/"+ntype+"/"+ymd+"/";
 		//按时间戳命名文件
 		String name = System.currentTimeMillis()+".html";
-		HtmlIOUtil.write(ncontent, path, name);
+		String info = HtmlIOUtil.write(ncontent, path, name);
 		
 		news.setNcontent(path+name);
-		newsService.edit(news);
-		return "1";
+		int result = newsService.edit(news);
+		if(result != 0 && "上传成功".equals(info))
+			return "1";
+		return "0";
 	}
 	/**
 	 * 按ID查找单篇新闻
@@ -64,11 +110,11 @@ public class NewsController {
 	public String findOne(HttpServletRequest request,@RequestParam("nid")int nid) {
 		News news = newsService.findOne(nid);
 		if(news != null) {
-			String ncontent = news.getNcontent();
-			int index = ncontent.lastIndexOf("/");
+			String path = ((News)newsService.findOne(nid)).getNcontent();
+		/*	int index = ncontent.lastIndexOf("/");
 			String path = ncontent.substring(0, index+1);
-			String name = ncontent.substring(index+1);
-			news.setNcontent(HtmlIOUtil.read(path, name));
+			String name = ncontent.substring(index+1);*/
+			news.setNcontent(HtmlIOUtil.read(path));
 			request.getSession().setAttribute("news",news);
 		}
 		return "redirect:/news.jsp";
@@ -83,32 +129,45 @@ public class NewsController {
 		if("闽师新闻".equals(ntype)) {
 			PageHelper.startPage(pageNum, pageSize);
 			List<News> mnewList = newsService.queryByType(ntype);
-			PageInfo<News> page = new PageInfo<News>(mnewList);
+			PageInfo<News> mnewPage = new PageInfo<News>(mnewList);
 			request.getSession().setAttribute("mnewList", mnewList);
-			request.getSession().setAttribute("mnewPage", page);
+			request.getSession().setAttribute("mnewPage", mnewPage);
 			return "redirect:/admin/mnew.jsp";
 		}else if("学术报告".equals(ntype)) {
 			PageHelper.startPage(pageNum, pageSize);
 			List<News> acadList = newsService.queryByType(ntype);
-			PageInfo<News> page = new PageInfo<News>(acadList);
+			PageInfo<News> acadPage = new PageInfo<News>(acadList);
 			request.getSession().setAttribute("acadList", acadList);
-			request.getSession().setAttribute("acadPage", page);
+			request.getSession().setAttribute("acadPage", acadPage);
 			return "redirect:/admin/academic.jsp";
 		}else if("热点聚焦".equals(ntype)) {
 			PageHelper.startPage(pageNum, pageSize);
-			List<News> nlist = newsService.queryByType(ntype);
-			PageInfo<News> page = new PageInfo<News>(nlist);
-			request.getSession().setAttribute("nlist", nlist);
-			request.getSession().setAttribute("page", page);
+			List<News> hnewList = newsService.queryByType(ntype);
+			PageInfo<News> hnewpage = new PageInfo<News>(hnewList);
+			request.getSession().setAttribute("hnewList", hnewList);
+			request.getSession().setAttribute("hnewPage", hnewpage);
 			return "redirect:/admin/hnew.jsp";
 		}else {
 			PageHelper.startPage(pageNum, pageSize);
-			List<News> nlist = newsService.queryByType(ntype);
-			PageInfo<News> page = new PageInfo<News>(nlist);
-			request.getSession().setAttribute("nlist", nlist);
-			request.getSession().setAttribute("page", page);
+			List<News> noticeList = newsService.queryByType(ntype);
+			PageInfo<News> noticePage = new PageInfo<News>(noticeList);
+			request.getSession().setAttribute("noticeList", noticeList);
+			request.getSession().setAttribute("noticePage", noticePage);
 			return "redirect:/admin/notice.jsp";
 		}
+	}
+	/**
+	 * 删除新闻 
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request,@RequestParam("nid")int nid) {
+		String path = ((News)newsService.findOne(nid)).getNcontent();
+		String info = HtmlIOUtil.delete(path);
+		int result = newsService.delete(nid);
+		if(result != 0 && "删除成功".equals(info))
+			return "1";
+		return "0";
 	}
 	/**
 	 * 图片上传
