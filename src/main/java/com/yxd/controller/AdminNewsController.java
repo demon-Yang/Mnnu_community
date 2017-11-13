@@ -111,9 +111,6 @@ public class AdminNewsController {
 		News news = newsService.findOne(nid);
 		if(news != null) {
 			String path = ((News)newsService.findOne(nid)).getNcontent();
-		/*	int index = ncontent.lastIndexOf("/");
-			String path = ncontent.substring(0, index+1);
-			String name = ncontent.substring(index+1);*/
 			news.setNcontent(HtmlIOUtil.read(path));
 			request.getSession().setAttribute("news",news);
 		}
@@ -125,7 +122,7 @@ public class AdminNewsController {
 	@RequestMapping("/queryByType.do")
 	public String queryByType(HttpServletRequest request,@RequestParam("ntype")String ntype,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
 		if("闽师新闻".equals(ntype)) {
 			PageHelper.startPage(pageNum, pageSize);
 			List<News> mnewList = newsService.queryByType(ntype);

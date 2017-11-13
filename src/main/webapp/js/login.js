@@ -62,7 +62,7 @@
 				type:"get",
 				url:"user/loginout.do",
 				success:function(data){
-					location.reload();
+					location.href="index.jsp";
 				}
 			});
         }else {
