@@ -78,6 +78,61 @@ public class AdminNewsController {
 		return "1";
 	}
 	/**
+	 * 新闻列表
+	 * */
+	@ResponseBody
+	@RequestMapping("/newslist.do")
+	public String newslist(HttpServletRequest request) {
+		/*获取新闻,并裁剪新闻标题*/
+		PageHelper.startPage(1,4);
+		List<News> acadList = newsService.queryByType("学术报告");
+		for (News list:acadList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> hnewList = newsService.queryByType("热点聚焦");
+		for (News list:hnewList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> mnewList = newsService.queryByType("闽师新闻");
+		for (News list:mnewList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> noticeList = newsService.queryByType("通知公告");
+		for (News list:noticeList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		request.getSession().setAttribute("newsAcadList", acadList);
+		request.getSession().setAttribute("newsHnewList", hnewList);
+		request.getSession().setAttribute("newsMnewList", mnewList);
+		request.getSession().setAttribute("newsNoticeList", noticeList);
+		return "1";
+	}
+	/**
+	 * 新闻列表按类型查找新闻
+	 * */
+	@RequestMapping("/queryList.do")
+	public String queryList(HttpServletRequest request,@RequestParam("ntype")String ntype,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
+			PageHelper.startPage(pageNum, pageSize);
+			List<News> newsList = newsService.queryByType(ntype);
+			PageInfo<News> page = new PageInfo<News>(newsList);
+			request.getSession().setAttribute("newsList", newsList);
+			request.getSession().setAttribute("nlistType", ntype);
+			request.getSession().setAttribute("page", page);
+			return "redirect:/newslist.jsp";
+	}
+	/**
 	 * 编辑新闻 
 	 * */
 	@ResponseBody

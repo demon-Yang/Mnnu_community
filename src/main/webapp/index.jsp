@@ -82,7 +82,7 @@
             </div>
             <div class="article">
                     <div class="academic">
-                        <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>学术报告</h3>
+                        <h3><span class="more"><a href="admin/news/queryList.do?ntype=学术报告">进入&gt;&gt;</a></span>学术报告</h3>
                         <ul>
                         	<c:forEach items="${indexAcadList }" var="acadList">
                             	<li><span class="time">${acadList.ndate }</span><a href="admin/news/findOne.do?nid=${acadList.nid }">${acadList.ntitle }</a></li>
