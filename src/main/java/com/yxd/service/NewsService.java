@@ -25,6 +25,10 @@ public class NewsService {
 	public List<News> queryByType(String ntype) {
 		return newsDao.queryByType(ntype);
 	}
+	//多条件查找新闻 
+	public List<News> queryByCondition(String ntype,String ntitle,String ndate){
+		return newsDao.queryByCondition(ntype, ntitle, ndate);
+	}
 	//删除新闻
 	public int delete(int nid) {
 		return newsDao.delete(nid);

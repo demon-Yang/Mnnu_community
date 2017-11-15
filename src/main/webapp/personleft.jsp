@@ -9,10 +9,10 @@
 </head>
 <body>
      <ul>
-         <li><a>个人信息</a></li>
-         <li><a>论坛帖子</a></li>
-         <li><a>物品市场</a></li>
-         <li><a>留言表白</a></li>
+         <li><a href="person.jsp">个人信息</a></li>
+         <li><a href="personforum.jsp">论坛帖子</a></li>
+         <li><a href="personmarket.jsp">物品市场</a></li>
+         <li><a href="personnotes.jsp">留言表白</a></li>
      </ul>
 </body>
 </html>

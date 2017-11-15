@@ -61,9 +61,10 @@
             <div class="right">
                 <p class="loca"><a href="#">首页</a>» ${nlistType } </p>
                 <div class="serach" align="right">
-                	<form>
-                		<span>文章标题：</span><input type="text" />&nbsp;&nbsp;
-                		<span>日期：</span><input type="date"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                	<form action="admin/news/queryList.do">
+                		<input type="hidden" name="ntype" value="${nlistType }"/>
+                		<span>文章标题：</span><input type="text" name="ntitle"/>&nbsp;&nbsp;
+                		<span>日期：</span><input type="date" name="ndate"/>&nbsp;&nbsp;&nbsp;&nbsp;
                 		<input type="submit" value="搜索"/>
                 	</form>
                 </div>

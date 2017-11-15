@@ -3,6 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxd.dao.NewsDao">
+
+	<resultMap type="News" id="newslist">
+		<id property="nid" column="nid"/>
+		<result property="ntitle" column="ntitle"/>
+		<result property="ndate" column="ndate"/>
+	</resultMap>
+
 	<!-- 编写新闻 -->
 	<insert id="edit" parameterType="News">
 		insert into tb_news values(null,#{ntitle},#{ntype},#{ncontent},#{ndate})
@@ -12,13 +19,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tb_news where nid = #{nid}
 	</select>
 	<!-- 按类型查找新闻 -->
-	<resultMap type="News" id="newslist">
-		<id property="nid" column="nid"/>
-		<result property="ntitle" column="ntitle"/>
-		<result property="ndate" column="ndate"/>
-	</resultMap>
 	<select id="queryByType" parameterType="string" resultMap="newslist">
 		select nid,ntitle,ndate from tb_news where ntype = #{ntype}
+	</select>
+	<!-- 多条件查找新闻  -->
+	<select id="queryByCondition" resultMap="newslist">
+		select nid,ntitle,ndate from tb_news where ntype = #{ntype}
+		<if test="ntitle != null and ntitle.trim() != '' ">
+			<bind name="ntitle_pattern" value="'%'+ntitle+'%'"/>
+			and ntitle like #{ntitle_pattern}
+		</if>
+		<if test="ndate != null and ndate.trim() != '' ">
+			<bind name="ndate_pattern" value="'%'+ndate+'%'"/>
+			and ndate like #{ndate_pattern}
+		</if>
 	</select>
 	<!-- 删除新闻 -->
 	<delete id="delete" parameterType="int">
