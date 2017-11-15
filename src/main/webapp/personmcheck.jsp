@@ -32,7 +32,7 @@
             </div>
             <div class="right">
                 <div class="private">
-                    <p>>><span class="nav">发表帖子</span></p><br/><br/>
+                    <p>>><span class="nav">商品详情</span></p><br/><br/>
                     <p>商品类型:<span class="type"> 生活用品</span></p>
                     <p>发布时间:<span class="time"> 2017-10-10 09:45</span></p>
                     <hr/>

@@ -22,8 +22,8 @@
                 <div class="private">
                     <p>>><span class="nav">我的帖子</span></p>
                     <p align="right">
-                        <a>我的回帖</a>
-                        <a>我要发帖</a>
+                        <a href="personfdetail.jsp">我的回帖</a>
+                        <a href="personfpost.jsp">我要发帖</a>
                     </p>
                     <hr>
                     <div class="lists">

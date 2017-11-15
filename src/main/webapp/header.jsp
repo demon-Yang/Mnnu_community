@@ -155,7 +155,7 @@
                     <ul class="submenu">
                         <li><a href="introduce.jsp">闽师简介</a></li>
                         <li><a href="view.jsp">闽师风景</a></li>
-                        <li><a href="symbol.jsp">闽师校徽</a></li>
+                        <li><a href="symbol.jsp">闽师校标</a></li>
                     </ul>
                 </li>
                 <li><a href="#">新闻·热点</a>

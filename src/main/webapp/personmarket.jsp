@@ -22,8 +22,8 @@
                 <div class="private">
                     <p>>><span class="nav">个人商品</span></p>
                     <p align="right">
-                        <a>已发商品</a>
-                        <a>发布商品</a>
+                        <a href="personmcheck.jsp">已发商品</a>
+                        <a href="personmedit.jsp">发布商品</a>
                     </p>
                     <hr>
                     <div class="lists">

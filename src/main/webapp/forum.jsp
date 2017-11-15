@@ -30,7 +30,7 @@
             <div class="left">
                 <div class="itab">
                     <ul>
-                        <li><a href="#" >技术论坛</a></li>
+                        <li><a href="#" >学习论坛</a></li>
                         <li><a href="#" class="selected">生活贴吧</a></li>
                     </ul>
                 </div>
