@@ -63,8 +63,8 @@
                 <div class="serach" align="right">
                 	<form action="admin/news/queryList.do">
                 		<input type="hidden" name="ntype" value="${nlistType }"/>
-                		<span>文章标题：</span><input type="text" name="ntitle"/>&nbsp;&nbsp;
-                		<span>日期：</span><input type="date" name="ndate"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                		<span>文章标题：</span><input type="text" name="ntitle" value="${sntitle }"/>&nbsp;&nbsp;
+                		<span>日期：</span><input type="date" name="ndate" value="${sndate }"/>&nbsp;&nbsp;&nbsp;&nbsp;
                 		<input type="submit" value="搜索"/>
                 	</form>
                 </div>
@@ -83,9 +83,9 @@
                       <div class="pagenav">
                       <p align="right">
 					第${page.pageNum }页/共${page.pages }页 
-					<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=1">首页</a>
+					<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=1&ntitle=${sntitle }&ndate=${sndate }">首页</a>
 					<c:if test="${acadPage.pageNum > 1 }">	
-						<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pageNum-1 }">上一页</a>
+						<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pageNum-1 }&ntitle=${sntitle }&ndate=${sndate }">上一页</a>
 					</c:if>
 					<%-- 计算begin、end --%>
 					<c:choose>
@@ -117,14 +117,14 @@
 								[${i }]
 							</c:when>
 							<c:otherwise>
-								<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${i}">[${i }]</a>	
+								<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${i}&ntitle=${sntitle }&ndate=${sndate }">[${i }]</a>	
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>		
 					<c:if test="${page.pageNum < page.pages }">
-						<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pageNum+1}">下一页</a>
+						<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pageNum+1}&ntitle=${sntitle }&ndate=${sndate }">下一页</a>
 					</c:if>
-					<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pages}">尾页</a>
+					<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pages}&ntitle=${sntitle }&ndate=${sndate }">尾页</a>
 					</p>
 				</div>
 			</c:if>

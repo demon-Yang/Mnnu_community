@@ -142,8 +142,10 @@ public class AdminNewsController {
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
 			PageHelper.startPage(pageNum, pageSize);
-			List<News> newsList = newsService.queryByType(ntype);
+			List<News> newsList = newsService.queryByCondition(ntype, ntitle, ndate);
 			PageInfo<News> page = new PageInfo<News>(newsList);
+			request.getSession().setAttribute("sntitle",ntitle);
+			request.getSession().setAttribute("sndate",ndate);
 			request.getSession().setAttribute("newsList", newsList);
 			request.getSession().setAttribute("nlistType", ntype);
 			request.getSession().setAttribute("page", page);
