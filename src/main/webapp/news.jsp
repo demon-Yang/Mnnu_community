@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,17 @@
     <title>新闻热点</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript">
+        $(function(){
+        	/*请求数据*/
+        	$.ajax({
+        		type:"get",
+        		url:"admin/news/newslist.do",
+        		async:false,
+        		success:function(data){}
+        	});
+        })
+     </script>
 </head>
 <body>
 <div class="news">
@@ -17,36 +29,32 @@
         <div class="container">
             <div style="padding: 5px 20px; height: 15px;"></div>
             <div class="left">
-                <span>闽师新闻</span>
+                <span><a href="admin/news/queryList.do?ntype=闽师新闻">闽师新闻</a></span>
                 <ul>
-                    <li><a href="#">我校召开座谈会 深入学习习近平深入...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
+                	<c:forEach items="${newsMnewList }" var="mnewList">
+                    	<li><a href="admin/news/findOne.do?nid=${mnewList.nid }">${mnewList.ntitle }</a></li>
+                    </c:forEach>
                 </ul>
                 <img src="images/newsline1.gif">
-                <span>热点聚焦</span>
+                <span><a href="admin/news/queryList.do?ntype=热点聚焦">热点聚焦</a></span>
                 <ul>
-                    <li><a href="#">我校召开座谈会 深入学习习近平深入...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
+                    <c:forEach items="${newsHnewList }" var="hnewList">
+                    	<li><a href="admin/news/findOne.do?nid=${hnewList.nid }">${hnewList.ntitle }</a></li>
+                    </c:forEach>
                 </ul>
                 <img src="images/newsline2.gif">
-                <span>学术报告</span>
+                <span><a href="admin/news/queryList.do?ntype=学术报告">学术报告</a></span>
                 <ul>
-                    <li><a href="#">我校召开座谈会 深入学习习近平深入...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
+                   <c:forEach items="${newsAcadList }" var="acadList">
+                    	<li><a href="admin/news/findOne.do?nid=${acadList.nid }">${acadList.ntitle }</a></li>
+                    </c:forEach>
                 </ul>
                 <img src="images/newsline1.gif">
-                <span>重要通知</span>
+                <span><a href="admin/news/queryList.do?ntype=通知公告">通知公告</a></span>
                 <ul>
-                    <li><a href="#">我校召开座谈会 深入学习习近平深入...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
-                    <li><a href="#">不忘初心  牢记使命——中大师大师...</a></li>
+                   <c:forEach items="${newsNoticeList }" var="noticeList">
+                    	<li><a href="admin/news/findOne.do?nid=${noticeList.nid }">${noticeList.ntitle }</a></li>
+                    </c:forEach>
                 </ul>
                 <img src="images/newsline3.gif">
             </div>

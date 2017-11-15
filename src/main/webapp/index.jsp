@@ -90,7 +90,7 @@
                         </ul>
                     </div>
                     <div class="mnew">
-                        <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>热点聚焦</h3>
+                        <h3><span class="more"><a href="admin/news/queryList.do?ntype=闽师新闻">进入&gt;&gt;</a></span>闽师新闻</h3>
                         <ul>
                            <c:forEach items="${indexHnewList }" var="hnewList">
                             	<li><span class="time">${hnewList.ndate }</span><a href="admin/news/findOne.do?nid=${hnewList.nid }">${hnewList.ntitle }</a></li>
@@ -98,7 +98,7 @@
                         </ul>
                     </div>
                     <div class="hnew">
-                        <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>闽师新闻</h3>
+                        <h3><span class="more"><a href="admin/news/queryList.do?ntype=热点聚焦">进入&gt;&gt;</a></span>热点聚焦</h3>
                         <ul>
                             <c:forEach items="${indexMnewList }" var="mnewList">
                             	<li><span class="time">${mnewList.ndate }</span><a href="admin/news/findOne.do?nid=${mnewList.nid }">${mnewList.ntitle }</a></li>
@@ -106,7 +106,7 @@
                         </ul>
                     </div>
                     <div class="notice">
-                        <h3><span class="more"><a href="#">进入&gt;&gt;</a></span>通知公告</h3>
+                        <h3><span class="more"><a href="admin/news/queryList.do?ntype=通知公告">进入&gt;&gt;</a></span>通知公告</h3>
                         <ul>
                             <c:forEach items="${indexNoticeList }" var="noticeList">
                             	<li><span class="time">${noticeList.ndate }</span><a href="admin/news/findOne.do?nid=${noticeList.nid }">${noticeList.ntitle }</a></li>

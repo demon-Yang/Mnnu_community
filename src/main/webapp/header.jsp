@@ -160,10 +160,10 @@
                 </li>
                 <li><a href="#">新闻·热点</a>
                     <ul class="submenu">
-                        <li><a href="newslist.jsp">闽师新闻</a></li>
-                        <li><a href="newslist.jsp">学术报告</a></li>
-                        <li><a href="newslist.jsp">热点聚焦</a></li>
-                        <li><a href="newslist.jsp">通知公告</a></li>
+                        <li><a href="admin/news/queryList.do?ntype=闽师新闻">闽师新闻</a></li>
+                        <li><a href="admin/news/queryList.do?ntype=学术报告">学术报告</a></li>
+                        <li><a href="admin/news/queryList.do?ntype=热点聚焦">热点聚焦</a></li>
+                        <li><a href="admin/news/queryList.do?ntype=通知公告">通知公告</a></li>
                     </ul>
                 </li>
                 <li><a href="#">技术·论坛</a>
