@@ -189,11 +189,11 @@ body{background: url("../images/bg.jpg");}
 
 /*论坛*/
 .forum .container{background-color: #666666;position: relative;}
-.forum .container .left{width: 700px;float: left;}
+.forum .container .left{width: 700px;float: left;min-height: 750px;background-color:#e0dede; }
 .forum .container .left .itab{height:37px; border-bottom:solid 1px #727e85;margin-top: 10px;}
 .forum .container .left .itab li{float:left;height:37px; line-height:37px;background-color: #a7afba; border-right:solid 1px #727e85;}
 .forum .container .left .itab ul li a{font-size:14px; color:#000; padding-left:25px; padding-right:25px;}
-.forum .container .left .itab ul li a.selected{ height:37px; display:block; background-color: #dfdfdf; font-weight:bold;border-top: solid 2px #00a4ac;border-left: solid 1px #d0dee5;}
+.forum .container .left .itab ul li a.selected{ height:37px; display:block; background-color: #e0dede; font-weight:bold;border-top: solid 2px #00a4ac;border-left: solid 1px #d0dee5;}
 .forum .container .left .post{display: block; float: left; width: 80px; background-color: #8a8682; line-height: 30px; height: 30px; font-size: 15px; text-align: center; border-radius: 4px; margin-top: 10px;}
 .forum .container .left .seraches{margin-top: 10px;height: 45px;margin-left: 300px;}
 .forum .container .left .seraches input[type='text']{width: 150px; height: 32px; line-height: 32px; text-indent: 10px;border-radius: 4px;}
@@ -207,7 +207,7 @@ body{background: url("../images/bg.jpg");}
 .forum .container .left .list .motto{color: #999999;}
 .forum .container .left .list .notes{padding: 10px;}
 .forum .container .left .list .notes span{font-size: 14px;}
-.forum .container .left .list img{float: left;width: 200px;height: 100px;}
+.forum .container .left .list img{float: left;width: 200px;height: 100px;border-radius:5px;}
 
 .forum .container .right{width: 300px;float: right;}
 .forum .container .right .hot{width: 290px;height: 500px;background: url("../images/forumbg.jpg");margin-top: 10px;margin-left: 10px;border-radius:5px;}
@@ -386,7 +386,9 @@ body{background: url("../images/bg.jpg");}
 .personfpost .container .right p{height: 30px;line-height: 30px;margin-left: 10px;margin-bottom: 15px;}
 .personfpost .container .right p input[type='text']{width: 350px; height: 25px; line-height: 25px; text-indent: 10px;border-radius: 4px;}
 .personfpost .container .right textarea{width:660px;height:450px;}
-.personfpost .container .right input[type='submit']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #a7afba;margin-top: 20px;margin-left: 590px;}
+.personfpost .container .right input[type='button']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #a7afba;margin-top: 20px;margin-left: 590px;}
+.personfpost .container .right #ftitle_info{color: red;font-family: cursive;font-size: 15px;}
+.personfpost .container .right .fcontent_info{color: red;font-family: cursive;font-size: 17px;display: inline-block;margin-left: 290px;}
 
 
 /*personfdetail.html*/
