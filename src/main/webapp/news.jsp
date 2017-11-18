@@ -59,7 +59,7 @@
                 <img src="images/newsline3.gif">
             </div>
             <div class="right">
-                <p class="loca"><a href="http://news2.sysu.edu.cn/index.htm">首页</a>» ${news.ntype } </p>
+                <p class="loca"><a href="#">首页</a>» ${news.ntype } </p>
                 <div class="cont">
                     <h1 align="center">${news.ntitle }</h1>
                     <hr size="1" noshade="noshade">

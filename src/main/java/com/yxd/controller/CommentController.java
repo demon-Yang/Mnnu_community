@@ -9,10 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,83 +22,46 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
-import com.yxd.entity.Forum;
+import com.yxd.entity.Comment;
 import com.yxd.entity.User;
-import com.yxd.service.ForumService;
+import com.yxd.service.CommentService;
 import com.yxd.util.HtmlIOUtil;
-import com.yxd.view.ForumView;
 
 @Controller
-@RequestMapping("/forum")
-public class ForumController {
-	@Resource
-	private ForumService forumService;
+@RequestMapping("/comment")
+public class CommentController {
 	/**
-	 * 论坛首页
+	 * 发表评论 
 	 * */
-	@RequestMapping("/queryList.do")
-	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype) {
-		List<ForumView> lists = forumService.queryList(ftype);
-		for(ForumView list:lists) {
-			//获取文本
-			String path = list.getfList().getFcontent();
-			String fcontent = HtmlIOUtil.read(path);
-			
-			//去掉html格式,并截取前200个字
-			String reg_html="<[^>]+>";
-			if(fcontent.replaceAll(reg_html, "").length()>200)
-				list.getfList().setFcontent(fcontent.replaceAll(reg_html, "").substring(0,200)+"...");
-			else
-				list.getfList().setFcontent(fcontent.replaceAll(reg_html, ""));
-			
-			//获取文本中的第一张图片<img />
-			Pattern pattern = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>");
-			Matcher matcher = pattern.matcher(fcontent);
-			if(matcher.find()) {
-				//获取<img />的src的值
-				String img = matcher.group();
-				Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img);
-				if(m.find())
-					list.getfList().setFimage(m.group());
-			}
-			//日期截取
-			list.getfList().setFdate(list.getfList().getFdate().substring(0,10));
-		}
-		request.getSession().setAttribute("ftype",ftype);
-		request.getSession().setAttribute("forumViewList",lists);
-		return "redirect:/forum.jsp";
-	}
-	/**
-	 * 编辑帖子 
-	 * */
+	private CommentService commentService;
 	@ResponseBody
 	@RequestMapping("/edit.do")
-	public String edit(HttpServletRequest request, @RequestParam("ftitle")String ftitle,@RequestParam("ftype")String ftype,@RequestParam("fcontent")String fcontent) {
-		Forum forum = new Forum();
-		forum.setFtitle(ftitle);
-		forum.setFtype(ftype);
+	public String edit(HttpServletRequest request, @RequestParam("fid")int fid,@RequestParam("ccontent")String ccontent) {
+		Comment comment = new Comment();
+		comment.setFid(fid);
+		comment.setUid(((User)request.getSession().getAttribute("user")).getUid());
+		//创建日期
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String fdate = sdf.format(new Date());
-		forum.setFdate(fdate);
+		String cdate = sdf.format(new Date());
+		comment.setCdate(cdate);
 		//按当天日趋创建文件夹
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd");
 		String ymd = sd.format(new Date());
-		String path = request.getSession().getServletContext().getRealPath("/") + "/forum/article/"+ftype+"/"+ymd+"/";
+		String path = request.getSession().getServletContext().getRealPath("/") + "/comment/article/"+ymd+"/";
 		//上传的所有图片路径
-		String fimage = null;
-		if(request.getSession().getAttribute("fimage") != null)
-			 fimage = request.getSession().getAttribute("fimage").toString();
-		forum.setFimage(fimage);
+		String cimage = null;
+		if(request.getSession().getAttribute("cimage") != null)
+			 cimage = request.getSession().getAttribute("cimage").toString();
+		comment.setCimage(cimage);
 		
 		//按时间戳命名文件
 		String name = System.currentTimeMillis()+".html";
-		String info = HtmlIOUtil.write(fcontent, path, name);
+		String info = HtmlIOUtil.write(ccontent, path, name);
 		
-		forum.setFcontent(path+name);
-		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
-		int result = forumService.edit(forum,uid);
+		comment.setCcontent(path+name);
+		int result = commentService.edit(comment);
 		if(result != 0 && "上传成功".equals(info)){
-			request.getSession().setAttribute("forumImage", null);
+			request.getSession().setAttribute("corumImage", null);
 			return "1";}
 		return "0";
 	}
@@ -113,10 +73,10 @@ public class ForumController {
 	public void upload(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		//文件保存目录路径
-		String savePath = request.getSession().getServletContext().getRealPath("/") + "/forum/";
+		String savePath = request.getSession().getServletContext().getRealPath("/") + "/comment/";
 
 		//文件保存目录URL
-		String saveUrl  = request.getContextPath() + "/forum/";
+		String saveUrl  = request.getContextPath() + "/comment/";
 
 		//定义允许上传的文件扩展名
 		HashMap<String, String> extMap = new HashMap<String, String>();
@@ -184,15 +144,15 @@ public class ForumController {
 				try{
 					File uploadedFile = new File(savePath, newFileName);
 					item.transferTo(uploadedFile);
-					if(request.getSession().getAttribute("fimage") != null) {
+					if(request.getSession().getAttribute("cimage") != null) {
 						@SuppressWarnings("unchecked")
-						List<String> list = (List<String>)request.getSession().getAttribute("fimage"); 
+						List<String> list = (List<String>)request.getSession().getAttribute("cimage"); 
 						list.add(ymd+"/"+newFileName);
-						request.getSession().setAttribute("fimage", list);
+						request.getSession().setAttribute("cimage", list);
 					}else {
 						List<String> list = new ArrayList<>();
 						list.add(ymd+"/"+newFileName);
-						request.getSession().setAttribute("fimage", list);
+						request.getSession().setAttribute("cimage", list);
 					}
 				}catch(Exception e){
 					out.println(getError("上传文件失败。"));

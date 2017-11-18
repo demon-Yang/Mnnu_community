@@ -20,7 +20,7 @@
             },500);
             $.ajax({
         		type:"get",
-        		url:"forum/index.do",
+        		url:"forum/queryList.do",
         		async:false,
         		success:function(data){}
         	});
@@ -37,11 +37,22 @@
             <div class="left">
                 <div class="itab">
                     <ul>
-                        <li><a href="#" >学习论坛</a></li>
-                        <li><a href="#" class="selected">生活贴吧</a></li>
+                    	<c:if test="${ftype == '学习技术类' }">
+                        	<li><a href="forum/queryList.do?ftype=学习技术类" class="selected">学习论坛</a></li>
+                        	<li><a href="forum/queryList.do?ftype=生活兴趣类" >生活贴吧</a></li>
+                        </c:if>
+                        <c:if test="${ftype == '生活兴趣类' }">
+                        	<li><a href="forum/queryList.do?ftype=学习技术类" >学习论坛</a></li>
+                        	<li><a href="forum/queryList.do?ftype=生活兴趣类" class="selected">生活贴吧</a></li>
+                        </c:if>
                     </ul>
                 </div>
-                <a href="personfpost.jsp" class="post">发帖</a>
+                <c:if test="${user == null }">
+                	<a href="#" onclick="loginshow()"  class="post">发帖</a>
+                </c:if>
+                 <c:if test="${user != null }">
+                	<a href="personfpost.jsp" class="post">发帖</a>
+                </c:if>	
                 <div class="seraches">
                     <form>
                         <select>
@@ -54,33 +65,21 @@
                 <hr>
                 <div class="list">
                     <ul>
-                        <li>
-                            <h2><a>大学刚毕业那会去昆明工作</a></h2>
-                            <span class="reply">100</span>&nbsp;
-                            <span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span>
-                            <div class="notes">
-                                <img src="images/forum1.jpg">
-                                <span>
-						                                   大学刚毕业那会去昆明工作，寄住在我一叔叔家（我爸的朋友），
-						                                   他家有两个小孩子，小的那个才刚学会走路，说话咿咿呀呀。
-						                                   萌萌的， 刚来那天晚上我洗完澡想找吹风机没找到，叔叔他
-						                                   们都回房间了，也不好意思问，所以我拿着毛巾一边擦头发一边来到大厅，小屁孩…
-                                </span>
-                            </div>
-                            <div style="clear: both;"></div>
-                            <p align="right">2017-10-28</p>
-                            <hr>
-                        </li>
-                        <c:forEach items="${forumList }" var="list">
+                        <c:forEach items="${forumViewList }" var="list">
 	                        <li>
-	                            <h2><a>${list.ftitle }</a></h2>
+	                            <h2><a href="detail.jsp">${list.fList.ftitle }</a></h2>
 	                            <span class="reply">100</span>&nbsp;
-	                            <span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span>
+	                            <span class="name">${list.uList.uname }：</span> <span class="motto"> ${list.uList.umotto }</span>
 	                            <div class="notes">
-	                               ${list.fcontent }
+	                            	<c:if test="${list.fList.fimage != null}">
+	                                	<img ${list.fList.fimage }>
+	                                </c:if>
+                                <span>
+		                            ${list.fList.fcontent }
+                                </span>
 	                            </div>
 	                            <div style="clear: both;"></div>
-	                            <p align="right">2017-10-28</p>
+	                            <p align="right">${list.fList.fdate }</p>
 	                            <hr>
 	                         </li>
                          </c:forEach>

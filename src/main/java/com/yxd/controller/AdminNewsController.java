@@ -118,22 +118,6 @@ public class AdminNewsController {
 		return "1";
 	}
 	/**
-	 * 多条件查询新闻
-	 * */
-	@RequestMapping("/queryByCondition.do")
-	public String queryByCondition(HttpServletRequest request,@RequestParam("ntype")String ntype,
-			@RequestParam(value="ntitle",required=false)String ntitle,@RequestParam(value="ndate",required=false)String ndate,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
-		PageHelper.startPage(pageNum,pageSize);
-		List<News> newsList = newsService.queryByCondition(ntype, ntitle, ndate);
-		PageInfo<News> page = new PageInfo<News>(newsList);
-		request.getSession().setAttribute("newsList", newsList);
-		request.getSession().setAttribute("nlistType", ntype);
-		request.getSession().setAttribute("page", page);
-		return "redirect:/newslist.jsp";
-	}
-	/**
 	 * 新闻列表按类型查找新闻
 	 * */
 	@RequestMapping("/queryList.do")

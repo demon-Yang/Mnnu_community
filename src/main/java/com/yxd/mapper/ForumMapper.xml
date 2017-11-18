@@ -4,12 +4,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxd.dao.ForumDao">
 
-	<!-- 编写新闻 -->
+	<resultMap type="ForumView" id="forumList">
+		<association property="fList" javaType="com.yxd.entity.Forum">
+			<id property="fid" column="fid"/>
+			<result property="ftitle" column="ftitle"/>
+			<result property="ftype" column="ftype"/>
+			<result property="fcontent" column="fcontent"/>
+			<result property="fdate" column="fdate"/>
+			<result property="fimage" column="fimage"/>
+			<result property="uid" column="uid"/>
+		</association>
+		<association property="uList" javaType="com.yxd.entity.User">
+			<result property="uname" column="uname"/>
+			<result property="umotto" column="umotto"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="ForumView" id="forumHot">
+		<association property="fList" javaType="com.yxd.entity.Forum">
+			<id property="fid" column="fid"/>
+			<result property="ftitle" column="ftitle"/>
+			<result property="uid" column="uid"/>
+		</association>
+		<association property="uList" javaType="com.yxd.entity.User">
+			<result property="uname" column="uname"/>
+			<result property="umotto" column="umotto"/>
+			<result property="uportrait" column="uportrait"/>
+		</association>
+	</resultMap>
+	<!-- 编写帖子 -->
 	<insert id="edit">
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
 	</insert>
-	<!-- 按类型查询 -->
-	<select id="queryByType" parameterType="String" resultType="Forum">
-		select * from tb_forum where ftype = #{ftype}
+	<!-- 查询类型列表的帖子 -->
+	<select id="queryList" parameterType="String" resultMap="forumList">
+		select f.*,u.uname,u.umotto from tb_forum f inner join tb_user u on f.ftype = #{ftype} and f.uid = u.uid
+	</select>
+	<!-- 查询评论最多的帖子 -->
+	<select id="queryHot" resultMap="forumHot">
+		
 	</select>
 </mapper>

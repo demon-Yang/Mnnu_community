@@ -168,8 +168,8 @@
                 </li>
                 <li><a href="#">技术·论坛</a>
                     <ul class="submenu">
-                        <li><a href="forum.jsp">学习论坛</a></li>
-                        <li><a href="forum.jsp">生活贴吧</a></li>
+                        <li><a href="forum/queryList.do?ftype=学习技术类">学习论坛</a></li>
+                        <li><a href="forum/queryList.do?ftype=生活兴趣类">生活贴吧</a></li>
                     </ul>
                 </li>
                 <li><a href="#">物品·市场</a>

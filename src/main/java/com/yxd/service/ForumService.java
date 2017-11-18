@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yxd.dao.ForumDao;
 import com.yxd.entity.Forum;
+import com.yxd.view.ForumView;
 
 @Service
 public class ForumService {
@@ -18,7 +19,7 @@ public class ForumService {
 			return forumDao.edit(forum,uid);
 		}
 	//按类型查询
-		public List<Forum> queryByType(String ftype){
-			return forumDao.queryByType(ftype);
+		public List<ForumView> queryList(String ftype){
+			return forumDao.queryList(ftype);
 		}
 }

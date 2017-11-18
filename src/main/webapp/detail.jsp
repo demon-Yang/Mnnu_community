@@ -9,14 +9,23 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript">
-        KindEditor.ready(function(K) {
-            K.create('#editor', {
-                width : '660px',
-                uploadJson : '../jsp/upload_json.jsp',
-                fileManagerJson : '../jsp/file_manager_json.jsp',
-                allowFileManager : true
-            });
-        });
+	    KindEditor.ready(function(K) {
+	        K.create('#editor', {
+	            width : '660px',
+	            uploadJson : 'comment/upload.do',
+	            allowFileManager : true,
+	            items : [
+	        		'source', '|', 'undo', 'redo', '|', 'preview', 'code', 'cut', 'copy', 'paste',
+	        		'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+	        		'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+	        		'superscript', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+	        		'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+	        		'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+	        		'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+	        		'anchor', 'link', 'unlink', '|', 'about'
+	        	],
+	        });
+	    });
         $(function(){
             setInterval(function(){
                 if( $(window).scrollTop() > 186){
