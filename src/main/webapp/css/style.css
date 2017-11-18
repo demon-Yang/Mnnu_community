@@ -19,7 +19,7 @@ body{background: url("../images/bg.jpg");}
 .header .menu li a{font-size: 15px; }
 .header .menu li:nth-child(7){float: right;}
 .header .menu li:nth-child(8){float: right;}
-.header .menu li:nth-child(8) img{float: right;width: 34px;height:34px;border-radius: 15px;}
+.header .menu li:nth-child(8) img{float: right;width: 34px;height:34px;border-radius: 15px;object-fit: cover;}
 .header .menu li:hover { background-color: #ffffff;}
 .header .menu a {display: block;}
 .header .menu li:hover > a { border-left: 3px solid #C4302B; color: #000000}
@@ -231,12 +231,12 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .landlord .name{font-size: 18px;color: #022303;}
 .detail .container .left .landlord .motto{color: #999999;}
 .detail .container .left .landlord p{margin-right: 20px;}
-.detail .container .left .landlord .gocomment{display: inline-block; background-color: #b1b8bc; width: 95px; border-radius: 4px; height: 30px; font-size: 17px; margin-right: 50px;margin-bottom: 5px;}
+.detail .container .left .landlord .gocomment{display: inline-block; background-color: #8ac0c1; width: 95px; border-radius: 4px; height: 30px; font-size: 17px; margin-right: 50px;margin-bottom: 7px;}
 .detail .container .left .landlord .type{display: inline-block;background-color: #b1b8bc;width: 80px;border-radius: 4px;text-align: center;}
 .detail .container .left .landlord .reply{display: inline-block;background-color: #d4dbdf;width: 50px;border-radius: 4px;text-align: center;}
-.detail .container .left .landlord .title{font-size: 25px;text-align: center;height: 50px;line-height: 50px;}
+.detail .container .left .landlord .title{font-size: 21px;text-align: center;height: 50px;line-height: 50px;}
 .detail .container .left .landlord .img img{width: 80px;height: 80px;object-fit: cover;border-radius: 4px;}
-.detail .container .left .landlord .content{text-indent: 2em;font-size: 14px;}
+.detail .container .left .landlord .content{margin: 10px;overflow: hidden;}
 
 .detail .container .left .comments{margin-top: 10px;clear: both;}
 .detail .container .left .comments .per{margin-bottom: 10px;border-radius: 5px;background: url("../images/forumbg.jpg"); }
@@ -249,17 +249,19 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .reply .answer .message{width: 500px; height: 35px; margin-left: 10px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;}
 .detail .container .left .comments .comment .reply .answer button{margin-bottom:10px;margin-left: 460px; width: 50px; height: 25px; background-color: #72b8ba; border-radius: 3px;}
 .detail .container .left .comments .comment .reply .answer span img{height: 24px;width: 24px;margin-left: 10px;display: block;}
-.detail .container .left .comments .comment .reply .answer .emotions{height: 100px;width: 200px;margin-left: 20px;background-color: #FFFFFF;position:absolute;display: none;}
+.detail .container .left .comments .comment .reply .answer .emotions{height: 120px;width: 365px;margin-left: 10px;background-color: #FFFFFF;position:absolute;display: none;}
 .detail .container .left .comments .comment .reply .answer .emotions li{height: 24px;width: 24px;float: left;margin: 2px;cursor: pointer;}
 .detail .container .left .comments .comment p {height: 20px;line-height: 20px;padding-bottom: 10px;}
 .detail .container .left .comments .comment .retract{background-color: #d4dbdf;height: 20px;text-align: center;width: 80px;display: inline-block;border-radius: 4px;}
 .detail .container .left .comments .comment .reply .face{width: 36px;height: 36px;margin: 8px 5px 0 8px;object-fit: cover;}
 .detail .container .left .comments .comment .reply .total{vertical-align: 15px;}
-.detail .container .left .edit{width:700px;height: 410px;background: url("../images/forumbg.jpg");}
+.detail .container .left .edit{width:700px;height: 420px;background: url("../images/forumbg.jpg");}
 .detail .container .left .edit p{ height: 30px; padding-top: 30px; padding-left: 40px; font-size: 15px; font-weight: 600;}
 .detail .container .left .edit .content{height: 344px;width: 660px;margin-left: 20px;}
 .detail .container .left .edit textarea{height: 300px;width: 660px; margin-left: 20px; font-size: 15px;}
-.detail .container .left .edit input {height: 30px; width: 80px; margin-left: 580px; font-size: 15px;border-radius: 4px;background-color: #909090;margin-top: 5px;}
+.detail .container .left .edit #submit {height: 30px; width: 80px; margin-left: 580px; font-size: 15px;border-radius: 4px;background-color: #909090;}
+.detail .container .left .ccontent_info{color: red;font-family: cursive;font-size: 17px;display: inline-block;margin-left: 290px;}
+
 
 .detail .container .right{width: 300px;float: right;}
 .detail .container .right .hot{width: 290px;height: 500px;background: url("../images/forumbg.jpg");margin-top: 10px;margin-left: 10px;border-radius:5px;}
@@ -325,8 +327,8 @@ body{background: url("../images/bg.jpg");}
 .person .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
 .person .container .right .private p{height: 30px;font-size: 17px;line-height: 30px;}
 .person .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.person .container .right .private .img{background:url("../images/personbg.jpg");width: 116px;height: 116px;margin-top: 50px;margin-left: 90px;border-radius: 4px;float: left;}
-.person .container .right .private img{background:url("../images/personbg.png");width: 110px;height: 110px;margin-left: 3px;margin-top: 3px;border-radius: 4px;}
+.person .container .right .private .img{width: 116px;height: 116px;margin-top: 50px;margin-left: 90px;border-radius: 4px;float: left;}
+.person .container .right .private img{background:url("../images/personbg.png");width: 110px;height: 110px;margin-left: 3px;margin-top: 3px;border-radius: 4px;object-fit: cover;}
 .person .container .right .info{float: left;}
 .person .container .right .info p{margin-left: 50px;font-size: 16px;height: 30px;line-height: 30px;}
 .person .container .right .info p:nth-child(1){margin-top: 50px;}

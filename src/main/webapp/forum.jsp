@@ -67,7 +67,7 @@
                     <ul>
                         <c:forEach items="${forumViewList }" var="list">
 	                        <li>
-	                            <h2><a href="detail.jsp">${list.fList.ftitle }</a></h2>
+	                            <h2><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></h2>
 	                            <span class="reply">100</span>&nbsp;
 	                            <span class="name">${list.uList.uname }：</span> <span class="motto"> ${list.uList.umotto }</span>
 	                            <div class="notes">

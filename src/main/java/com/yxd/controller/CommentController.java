@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,12 +34,14 @@ public class CommentController {
 	/**
 	 * 发表评论 
 	 * */
+	@Resource
 	private CommentService commentService;
 	@ResponseBody
 	@RequestMapping("/edit.do")
 	public String edit(HttpServletRequest request, @RequestParam("fid")int fid,@RequestParam("ccontent")String ccontent) {
 		Comment comment = new Comment();
 		comment.setFid(fid);
+		comment.setCread("no");
 		comment.setUid(((User)request.getSession().getAttribute("user")).getUid());
 		//创建日期
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -47,7 +50,7 @@ public class CommentController {
 		//按当天日趋创建文件夹
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd");
 		String ymd = sd.format(new Date());
-		String path = request.getSession().getServletContext().getRealPath("/") + "/comment/article/"+ymd+"/";
+		String path = request.getSession().getServletContext().getRealPath("/") + "comment/article/"+ymd+"/";
 		//上传的所有图片路径
 		String cimage = null;
 		if(request.getSession().getAttribute("cimage") != null)
@@ -61,7 +64,7 @@ public class CommentController {
 		comment.setCcontent(path+name);
 		int result = commentService.edit(comment);
 		if(result != 0 && "上传成功".equals(info)){
-			request.getSession().setAttribute("corumImage", null);
+			request.getSession().setAttribute("cimage", null);
 			return "1";}
 		return "0";
 	}

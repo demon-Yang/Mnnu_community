@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +61,44 @@
                 var simg=$(this).find("img").clone();
                 $(".message").append(simg);
             });
-
+            
+            //提交评论
+            $("#submit").click(function(){
+				var uid = $(".user_id").val();
+				if(uid == 0){
+					loginshow();
+					return false;
+				}
+            	var fid = $(".forum_id").val();
+            	var ccontent = $(document.getElementsByTagName("iframe")[0].contentWindow.document.body).html();
+            	var result = 0;
+            	 if(ccontent == ''){
+            		 $(".ccontent_info").html("*不能为空");
+            		 result++;
+            	 }else{
+            		 $(".ccontent_info").html("");
+            	 }
+            	 
+            	 if(result == 0){
+            		 $.ajax({
+            			 type:"post",
+            			 url:"comment/edit.do",
+            			 async:false,
+            			 data:{fid:fid,ccontent:ccontent},
+            			 success:function(data){
+            				 if(data == 1)
+            					 alert("系统提示", "评论成功！", function () {
+            						 location.href="forum.jsp";
+            			            }, {type: 'success', confirmButtonText: '确定'});
+            				 else
+            					 alert("系统提示", "评论失败！", function () {
+            						 location.reload();
+            			            }, {type: 'success', confirmButtonText: '确定'});
+            			 }
+            		 });
+            	 }else 
+            		 return false;
+        	});
         })
 
     </script>
@@ -74,20 +112,13 @@
         <div class="container">
             <div class="left">
                 <div class="landlord">
-                    <div class="img"><img src="images/detail1.jpg"/></div>
-                    <div class="info"><p class="name">杨先生</p><p class="motto"> 弹吉他 健身 唱歌 讲故事,弹吉他 健身 唱歌 讲故事</p></div>
-                    <p align="right"><button class="gocomment">我要评论</button><span class="type">生活兴趣类</span>&nbsp;当前评论人数：<span class="reply">100</span></p>
+                    <div class="img"><img src="${forumView.uList.uportrait }"/></div>
+                    <div class="info"><p class="name">${forumView.uList.uname }</p><p class="motto"> ${forumView.uList.umotto }</p></div>
+                    <p align="right"><button class="gocomment">我要评论</button><span class="type">${forumView.fList.ftype }</span>&nbsp;当前评论人数：<span class="reply">100</span></p>
                     <hr/>
-                    <p class="title">从大明王朝看年轻人如何职场从大明王朝看年轻人</p>
+                    <p class="title" align="center">${forumView.fList.ftitle }</p>
                     <hr/>
-                    <p class="content">钻孔是补碗的关键，在碗的裂缝两侧钻上对应的小孔。左手握牵钻，
-                        右手捏拉杆，拉杆左右拉，牵钻正反转，左手腕悬空使劲，控制钻孔的
-                        深度，小孔的深度要合适，两孔之间的距离要精确。这手艺活，很讲究精
-                        巧，钻孔的架势极像拉二胡由于碗的质地又硬又滑，所以钻头常常需用唾液
-                        来降温。再用小铜锤将蚂蝗攀的两个头，紧紧嵌入小孔内。蚂蝗攀的长度略
-                        小于两个小孔，不然蚂蝗攀就钉不紧密，要漏水的。打蚂蝗攀全靠手感，重了
-                        碗要碎，轻了易松动。</p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/detail2.jpg">
+                    <div class="content">${forumView.fList.fcontent }</div>
                  </div>
                 <div class="comments">
                      <ul>
@@ -120,19 +151,7 @@
                                             <div class="message" contentEditable='true'></div>
                                             <span><img src="images/qqface/1.gif" id="emo"></span>
                                             <div class="emotions">
-                                                <ul>
-                                                    <li><img src="images/qqface/1.gif" title="[可爱]"></li>
-                                                    <li><img src="images/qqface/1.gif" title="[可爱]"></li>
-                                                    <li><img src="images/qqface/1.gif" title="[可爱]"></li>
-                                                    <li><img src="images/qqface/1.gif" title="[可爱]"></li>
-                                                    <li><img src="images/qqface/2.gif" title="[可怜]"></li>
-                                                    <li><img src="images/qqface/3.gif" title="[挖鼻屎]"></li>
-                                                    <li><img src="images/qqface/4.gif" title="[吃惊]"></li>
-                                                    <li><img src="images/qqface/5.gif" title="[害羞]"></li>
-                                                    <li><img src="images/qqface/6.gif" title="[挤眼]"></li>
-                                                    <li><img src="images/qqface/7.gif" title="[闭嘴]"></li>
-                                                    <li><img src="images/qqface/7.gif" title="[闭嘴]"></li>
-                                                </ul>
+                                                <jsp:include page="qqFace.jsp"></jsp:include>
                                             </div>
                                             <button class="send">发表</button>
                                         </div>
@@ -146,9 +165,12 @@
                 <div class="edit">
                     <p>发表评论</p>
                     <div class="content">
-                        <form action="">
-                        <textarea name="" id="editor"></textarea>
-                            <input type="submit" value="提交"/>
+                        <form >
+                        	<input type="hidden" class="forum_id" value="${forumView.fList.fid }"/>
+                        	<input type="hidden" class="user_id" value="${user.uid }"/>
+	                        <textarea name="ccontent" id="editor"></textarea>
+	                        <span class="ccontent_info error"></span>
+                            <input type="button" id="submit" value="提交"/>
                         </form>
                     </div>
                 </div>

@@ -72,6 +72,19 @@ public class ForumController {
 		return "redirect:/forum.jsp";
 	}
 	/**
+	 * 按FID查询帖子
+	 * */
+	@RequestMapping("queryById.do")
+	public String queryById(HttpServletRequest request, @RequestParam("fid")int fid) {
+		ForumView forumView = forumService.queryById(fid);
+		if(forumView != null) {
+			String path = forumView.getfList().getFcontent();
+			forumView.getfList().setFcontent(HtmlIOUtil.read(path));
+			request.getSession().setAttribute("forumView",forumView);
+		}
+		return "redirect:/detail.jsp";
+	}
+	/**
 	 * 编辑帖子 
 	 * */
 	@ResponseBody
@@ -101,7 +114,7 @@ public class ForumController {
 		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
 		int result = forumService.edit(forum,uid);
 		if(result != 0 && "上传成功".equals(info)){
-			request.getSession().setAttribute("forumImage", null);
+			request.getSession().setAttribute("fimage", null);
 			return "1";}
 		return "0";
 	}

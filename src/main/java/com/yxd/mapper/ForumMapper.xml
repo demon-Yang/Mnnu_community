@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="uList" javaType="com.yxd.entity.User">
 			<result property="uname" column="uname"/>
 			<result property="umotto" column="umotto"/>
+			<result property="uportrait" column="uportrait"/>
 		</association>
 	</resultMap>
 	
@@ -32,13 +33,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result property="uportrait" column="uportrait"/>
 		</association>
 	</resultMap>
+	
+	<resultMap type="CommentView" id="CommentList">
+		<association property="comment" javaType="com.yxd.entity.Comment">
+			<id property="cid" column="cid"/>
+			<result property="ccontent" column="ccontent"/>
+			<result property="cdate" column="cdate"/>
+		</association>
+		<association property="user" javaType="com.yxd.entity.User">
+			<id property="uid" column="uid"/>
+			<result property="uname" column="uname"/>
+			<result property="uportrait" column="uportrait"/>
+		</association>
+		<collection property="rList" javaType="arrayList" ofType="com.yxd.view.ReplyView">
+			<association property="reply" javaType="com.yxd.entity.Reply">
+				<id property="rid" column="rid"/>
+				<result property="rcontent" column="rcontent"/>
+				<result property="rdate" column="rdate"/>
+			</association>
+			<association property="from" javaType="com.yxd.entity.User">
+				<id property="uid" column="uid"/>
+				<result property="uname" column="uname"/>
+				<result property="uportrait" column="uportrait"/>
+			</association>
+			<association property="to" javaType="com.yxd.entity.User">
+				<id property="uid" column="uid"/>
+				<result property="uname" column="uname"/>
+			</association>
+		</collection>
+	</resultMap>
 	<!-- 编写帖子 -->
 	<insert id="edit">
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
 	</insert>
 	<!-- 查询类型列表的帖子 -->
 	<select id="queryList" parameterType="String" resultMap="forumList">
-		select f.*,u.uname,u.umotto from tb_forum f inner join tb_user u on f.ftype = #{ftype} and f.uid = u.uid
+		select f.*,u.uname,u.umotto,u.uportrait from tb_forum f inner join tb_user u on f.ftype = #{ftype} and f.uid = u.uid
+	</select>
+	<!-- 按FID查询帖子 -->
+	<select id="queryById" resultMap="forumList" parameterType="int">
+		select f.*,u.uname,u.umotto,u.uportrait from tb_forum f inner join tb_user u on f.fid = #{fid} and f.uid = u.uid
+	</select>
+	<!-- 按FID查询帖子对应的评论 -->
+	<select id="queryComment" parameterType="int" resultMap="CommentList">
+		select c.cid,c.ccontent,c.cdate,u.uid,u.uname,u.uportrait,r.rid,r.rcontent,r.rdate,ufrom.uid,ufrom.uname,ufrom.uportrait,uto.uid,uto.uname from tb_comment c
+		left join tb_forum f on f.fid = c.fid 
+		left join tb_user u on c.uid = u.uid
+		inner join tb_reply r on r.cid = c.cid
+		left join tb_user ufrom on ufrom.uid = r.fromid
+		left join tb_user uto on uto.uid = r.toid;
+		where f.fid = 3;
+		
+		select r.rid,r.rcontent,r.rdate,ufrom.uid,ufrom.uname,ufrom.uportrait,uto.uid,uto.uname from tb_comment c
+		inner join tb_reply r on r.cid = c.cid and c.cid = 1 
+		left join tb_user ufrom on ufrom.uid = r.fromid
+		left join tb_user uto on uto.uid = r.toid;
 	</select>
 	<!-- 查询评论最多的帖子 -->
 	<select id="queryHot" resultMap="forumHot">
