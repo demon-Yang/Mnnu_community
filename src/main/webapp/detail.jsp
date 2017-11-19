@@ -46,8 +46,8 @@
           });
 
             //点击小图片，显示表情
-            $("#emo").click(function(e){
-                $(".emotions").slideDown(500);//慢慢向下展开
+            $(".emo").click(function(e){
+                $(this).parent().next().slideDown(500);//慢慢向下展开
                 e.stopPropagation();   //阻止冒泡事件
             });
 
@@ -122,44 +122,41 @@
                  </div>
                 <div class="comments">
                      <ul>
-                        <li class="per">
-                            <div class="inleft">
-                                <img src="images/detail1.jpg"><p class="name" align="center">沈卓盈</p>
-                            </div>
-                            <div class="inright">
-                                <div class="comment">
-                                    <p>终于有人回应了，谢谢关照</p>
-                                    <img src="images/symbol3.png">
-                                    <div class="empty"></div>
-                                    <div><p align="right">2017-09-30 16:59&nbsp;&nbsp;<span class="retract">&nbsp;收起回复&nbsp;&nbsp;</span></p></div>
-                                    <div class="reply">
-                                        <ul>
-                                            <li>
-                                                <img src="images/detail1.jpg" class="face">
-                                                <span class="total"><span class="from">法拉诗韵:</span> 回复  <span class="to">魄岁月 </span>:华仔哈哈哈，你好你好</span>
-                                                <p align="right">2014-9-27 09:34&nbsp;回复&nbsp;&nbsp;</p>
-                                                <hr/>
-                                            </li>
-                                            <li>
-                                                <img src="images/detail1.jpg" class="face">
-                                                <span class="total"><span class="from">法拉诗韵:</span> 回复  <span class="to">魄岁月 </span>:华仔哈哈哈，你好你好</span>
-                                                <p align="right">2014-9-27 09:34&nbsp;回复&nbsp;&nbsp;</p>
-                                                <hr/>
-                                            </li>
-                                        </ul>
-                                        <div class="answer">
-                                            <div class="message" contentEditable='true'></div>
-                                            <span><img src="images/qqface/1.gif" id="emo"></span>
-                                            <div class="emotions">
-                                                <jsp:include page="qqFace.jsp"></jsp:include>
-                                            </div>
-                                            <button class="send">发表</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="clear: both"></div>
-                        </li>
+                     	<c:forEach items="${commentViewList }" var="list">
+	                        <li class="per">
+	                            <div class="inleft">
+	                                <img src="${list.user.uportrait }"><p class="name" align="center">${list.user.uname }</p>
+	                            </div>
+	                            <div class="inright">
+	                                <div class="comment">
+	                                    <div>${list.comment.ccontent }</div>
+	                                    <div class="empty"></div>
+	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract">&nbsp;收起回复&nbsp;&nbsp;</span></p></div>
+	                                    <div class="reply">
+	                                        <ul>
+	                                        	<c:forEach items="${list.rList }" var="rList">
+		                                            <li>
+		                                                <img src="${rList.from.uportrait }" class="face">
+		                                                <span class="total"><span class="from">${rList.from.uname }</span> :回复  <span class="to">${rList.to.uname} </span>:&nbsp;${rList.reply.rcontent }</span>
+		                                                <p align="right">${rList.reply.rdate }&nbsp;回复&nbsp;&nbsp;</p>
+		                                                <hr/>
+		                                            </li>
+	                                            </c:forEach>
+	                                        </ul>
+	                                        <div class="answer">
+	                                            <div class="message" contentEditable='true'></div>
+	                                            <span><img src="images/qqface/1.gif" class="emo"></span>
+	                                            <div class="emotions">
+	                                                <jsp:include page="qqFace.jsp"></jsp:include>
+	                                            </div>
+	                                            <button class="send">发表</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                              </div>
+	                           	  <div style="clear: both"></div>
+	                           </li>
+                           </c:forEach>
                      </ul>
                 </div>
                 <div class="edit">

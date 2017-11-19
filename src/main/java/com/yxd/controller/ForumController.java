@@ -29,6 +29,7 @@ import com.yxd.entity.Forum;
 import com.yxd.entity.User;
 import com.yxd.service.ForumService;
 import com.yxd.util.HtmlIOUtil;
+import com.yxd.view.CommentView;
 import com.yxd.view.ForumView;
 
 @Controller
@@ -77,10 +78,22 @@ public class ForumController {
 	@RequestMapping("queryById.do")
 	public String queryById(HttpServletRequest request, @RequestParam("fid")int fid) {
 		ForumView forumView = forumService.queryById(fid);
-		if(forumView != null) {
+		List<CommentView> commentViewList = forumService.queryComment(fid);
+		
+		if(forumView != null && commentViewList != null) {
+			//获取楼主帖子和个人信息
 			String path = forumView.getfList().getFcontent();
 			forumView.getfList().setFcontent(HtmlIOUtil.read(path));
 			request.getSession().setAttribute("forumView",forumView);
+			//获取帖子对应的评论和回复
+			for(CommentView commentView:commentViewList) {
+				String cpath = commentView.getComment().getCcontent();
+				commentView.getComment().setCcontent(HtmlIOUtil.read(cpath));
+				System.out.println(commentView.getrList().toString());
+				if(commentView.getrList().toString().equals("[null]")) 
+					commentView.setrList(null);
+			}
+			request.getSession().setAttribute("commentViewList",commentViewList);
 		}
 		return "redirect:/detail.jsp";
 	}

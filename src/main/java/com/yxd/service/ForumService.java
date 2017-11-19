@@ -28,7 +28,7 @@ public class ForumService {
 			return forumDao.queryById(fid);
 		}
 		//按FID查询帖子对应的评论
-		public List<CommentView> commentView(int fid) {
+		public List<CommentView> queryComment(int fid) {
 			return forumDao.queryComment(fid);
 		}
 }

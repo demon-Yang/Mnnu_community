@@ -18,5 +18,5 @@ public interface ForumDao {
 	//按FID查询帖子 
 	public ForumView queryById(@Param("fid")int fid);
 	//按FID查询帖子对应的评论
-	public List<CommentView> queryComment(int fid);
+	public List<CommentView> queryComment(@Param("fid")int fid);
 }
