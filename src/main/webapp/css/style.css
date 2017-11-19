@@ -244,8 +244,9 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .inleft img{width: 80px;height: 80px;object-fit: cover;margin: 20px 20px 10px 20px;border-radius: 4px;}
 .detail .container .left .comments .inright{float:right;width:569px;border-left: solid 1px #c1c1c1;}
 .detail .container .left .comments .inright .empty{width: 550px;height: 70px;}
-.detail .container .left .comments .comment{background: url("../images/forumbg.jpg");border-radius: 0 5px 0 0;padding: 20px 20px 0 20px;}
-.detail .container .left .comments .comment .reply{background-color: #d4dbdf;border-radius: 5px;}
+.detail .container .left .comments .comment{background: url("../images/forumbg.jpg");border-radius: 0 5px 0 0;padding: 20px 0 0 20px;overflow: hidden;width: 530px;}
+.detail .container .left .comments .comment .reply{background-color: #d4dbdf;border-radius: 5px;display: none;}
+.detail .container .left .comments .comment .retract{cursor: pointer;}
 .detail .container .left .comments .comment .reply .answer .message{width: 500px; height: 35px; margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;}
 .detail .container .left .comments .comment .reply .answer button{margin-bottom:10px;margin-left: 460px; width: 50px; height: 25px; background-color: #72b8ba; border-radius: 3px;}
 .detail .container .left .comments .comment .reply .answer span img{height: 24px;width: 24px;margin-left: 10px;display: block;}
@@ -256,7 +257,7 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .reply .from{font-size: 14px;color: #f5796b;}
 .detail .container .left .comments .comment .reply .to{font-size: 14px;color: #377d6a;}
 .detail .container .left .comments .comment .reply .total{vertical-align: 15px;font-size: 13px;}
-.detail .container .left .comments .comment .reply .answer{margin-bottom: 10px;}
+.detail .container .left .comments .comment .reply .answer{margin-bottom: 10px;padding-top: 1px;}
 .detail .container .left .edit{width:700px;height: 420px;background: url("../images/forumbg.jpg");}
 .detail .container .left .edit p{ height: 30px; padding-top: 30px; padding-left: 40px; font-size: 15px; font-weight: 600;}
 .detail .container .left .edit .content{height: 344px;width: 660px;margin-left: 20px;}

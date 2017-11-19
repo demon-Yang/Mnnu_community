@@ -38,10 +38,10 @@
             },500);
 
           $(".retract").click(function(){
-              if($(this).text() == "回复")
+              if($(this).text().trim() == "查看回复")
                     $(this).text("收取回复");
               else
-                    $(this).text("回复");
+                    $(this).text("查看回复");
               $(this).parent().parent().next().slideToggle(1000);
           });
 
@@ -131,7 +131,7 @@
 	                                <div class="comment">
 	                                    <div>${list.comment.ccontent }</div>
 	                                    <div class="empty"></div>
-	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract">&nbsp;收起回复&nbsp;&nbsp;</span></p></div>
+	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract">&nbsp;查看回复&nbsp;&nbsp;</span></p></div>
 	                                    <div class="reply">
 	                                        <ul>
 	                                        	<c:forEach items="${list.rList }" var="rList">
