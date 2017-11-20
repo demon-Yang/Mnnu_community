@@ -28,6 +28,7 @@
 	        });
 	    });
         $(function(){
+        	//论坛热搜移动
             setInterval(function(){
                 if( $(window).scrollTop() > 186){
                     var topvalue = $(window).scrollTop()-185;
@@ -36,72 +37,75 @@
                     $(".container .right").css({"position":"static"});
                 }
             },500);
-
+		  //查看回复移动
           $(".retract").click(function(){
               if($(this).text().trim() == "查看回复")
                     $(this).text("收取回复");
               else
                     $(this).text("查看回复");
-              $(this).parent().parent().next().slideToggle(1000);
+              $(this).parent().parent().next().slideToggle(500);
           });
+         //点击小图片，显示表情
+           $(".emo").click(function(e){
+               $(this).parent().next().slideDown(500);//慢慢向下展开
+               e.stopPropagation();   //阻止冒泡事件
+           });
 
-            //点击小图片，显示表情
-            $(".emo").click(function(e){
-                $(this).parent().next().slideDown(500);//慢慢向下展开
-                e.stopPropagation();   //阻止冒泡事件
-            });
+           //在桌面任意地方点击，他是关闭
+           $(document).click(function(){
+               $(".emotions").slideUp(500);//慢慢向上收
+           });
 
-            //在桌面任意地方点击，他是关闭
-            $(document).click(function(){
-                $(".emotions").slideUp(500);//慢慢向上收
-            });
-
-            //点击小图标时，添加功能
-            $(".emotions ul li").click(function(){
-                var simg=$(this).find("img").clone();
-                $(".message").append(simg);
-            });
+           //点击小图标时，添加功能
+           $(".emotions ul li").click(function(){
+               var simg=$(this).find("img").clone();
+               $(".message").append(simg);
+           });
             
-            //提交评论
-            $("#submit").click(function(){
-				var uid = $(".user_id").val();
-				if(uid == 0){
-					loginshow();
-					return false;
-				}
-            	var fid = $(".forum_id").val();
-            	var ccontent = $(document.getElementsByTagName("iframe")[0].contentWindow.document.body).html();
-            	var result = 0;
-            	 if(ccontent == ''){
-            		 $(".ccontent_info").html("*不能为空");
-            		 result++;
-            	 }else{
-            		 $(".ccontent_info").html("");
-            	 }
-            	 
-            	 if(result == 0){
-            		 $.ajax({
-            			 type:"post",
-            			 url:"comment/edit.do",
-            			 async:false,
-            			 data:{fid:fid,ccontent:ccontent},
-            			 success:function(data){
-            				 if(data == 1)
-            					 alert("系统提示", "评论成功！", function () {
-            						 location.href="forum.jsp";
-            			            }, {type: 'success', confirmButtonText: '确定'});
-            				 else
-            					 alert("系统提示", "评论失败！", function () {
-            						 location.reload();
-            			            }, {type: 'success', confirmButtonText: '确定'});
-            			 }
-            		 });
-            	 }else 
-            		 return false;
-        	});
-        })
-
-    </script>
+           //提交评论
+           $("#submit").click(function(){
+			var uid = $(".user_id").val();
+			if(uid == 0){
+				loginshow();
+				return false;
+			}
+           	var fid = $(".forum_id").val();
+           	var ccontent = $(document.getElementsByTagName("iframe")[0].contentWindow.document.body).html();
+           	var result = 0;
+           	 if(ccontent == ''){
+           		 $(".ccontent_info").html("*不能为空");
+           		 result++;
+           	 }else{
+           		 $(".ccontent_info").html("");
+           	 }
+           	 
+           	 if(result == 0){
+           		 $.ajax({
+           			 type:"post",
+           			 url:"comment/edit.do",
+           			 async:false,
+           			 data:{fid:fid,ccontent:ccontent},
+           			 success:function(data){
+           				 if(data == 1)
+           					 alert("系统提示", "评论成功！", function () {
+           						 location.href="forum.jsp";
+           			            }, {type: 'success', confirmButtonText: '确定'});
+           				 else
+           					 alert("系统提示", "评论失败！", function () {
+           						 location.reload();
+           			            }, {type: 'success', confirmButtonText: '确定'});
+           			 }
+           		 });
+           	 }else 
+           		 return false;
+       	});
+     })
+	
+     function reply(reply,toName){
+        	 //点击回复，显示在编辑框
+   			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
+     }
+	</script>
 </head>
 <body>
 <div class="detail">
@@ -138,12 +142,18 @@
 		                                            <li>
 		                                                <img src="${rList.from.uportrait }" class="face">
 		                                                <span class="total"><span class="from">${rList.from.uname }</span> :回复  <span class="to">${rList.to.uname} </span>:&nbsp;${rList.reply.rcontent }</span>
-		                                                <p align="right">${rList.reply.rdate }&nbsp;回复&nbsp;&nbsp;</p>
+		                                                <p align="right">${rList.reply.rdate }&nbsp;<span class="replyOne" onclick="reply(this,'${rList.from.uname }')">回复</span>&nbsp;&nbsp;</p>
 		                                                <hr/>
 		                                            </li>
 	                                            </c:forEach>
 	                                        </ul>
 	                                        <div class="answer">
+	                                        	<div class="bar">
+	                                        		<div class="nav">
+	                                        			首页 上一页 [1] [2] [3] 下一页 尾页
+	                                        		</div>
+	                                        		<div class="say">我也说一句</div>
+	                                        	</div>
 	                                            <div class="message" contentEditable='true'></div>
 	                                            <span><img src="images/qqface/1.gif" class="emo"></span>
 	                                            <div class="emotions">

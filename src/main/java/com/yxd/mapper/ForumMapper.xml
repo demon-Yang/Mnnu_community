@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select c.cid,c.ccontent,c.cdate,u.uid,u.uname,u.uportrait from tb_comment c
 		left join tb_forum f on f.fid = c.fid
 		left join tb_user u on c.uid = u.uid
-		where f.fid = ${fid};
+		where f.fid = #{fid}
 	</select>
 	<!-- 按CID查询评论对应的回复 -->
 	<select id="queryReply" parameterType="int" resultMap="replyList">
@@ -97,7 +97,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join tb_reply r on r.cid = c.cid
 		left join tb_user ufrom on ufrom.uid = r.fromid
 		left join tb_user uto on uto.uid = r.toid
-		where c.cid = #{cid};
+		where c.cid = #{cid}
 	</select>
 	<!-- 查询评论最多的帖子 -->
 	<select id="queryHot" resultMap="forumHot">

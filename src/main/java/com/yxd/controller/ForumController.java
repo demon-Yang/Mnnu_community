@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.github.pagehelper.PageHelper;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Forum;
 import com.yxd.entity.User;
@@ -42,6 +43,7 @@ public class ForumController {
 	 * */
 	@RequestMapping("/queryList.do")
 	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype) {
+		PageHelper.startPage(1,3);
 		List<ForumView> lists = forumService.queryList(ftype);
 		for(ForumView list:lists) {
 			//获取文本
@@ -78,8 +80,8 @@ public class ForumController {
 	@RequestMapping("queryById.do")
 	public String queryById(HttpServletRequest request, @RequestParam("fid")int fid) {
 		ForumView forumView = forumService.queryById(fid);
+		PageHelper.startPage(1,3);
 		List<CommentView> commentViewList = forumService.queryComment(fid);
-		
 		if(forumView != null && commentViewList != null) {
 			//获取楼主帖子和个人信息
 			String path = forumView.getfList().getFcontent();

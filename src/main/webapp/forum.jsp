@@ -122,6 +122,8 @@
                     </ul>
                 </div>
             </div>
+        <div style="clear: both;"></div>
+        <div class="more"><p>点击查看更多</p></div>
         </div>
         <div class="footer">
            <jsp:include page="footer.jsp"></jsp:include>
