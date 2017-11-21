@@ -18,12 +18,28 @@
                     $(".container .right").css({"position":"static"});
                 }
             },500);
+            //加载数据
             $.ajax({
         		type:"get",
         		url:"forum/queryList.do",
         		async:false,
         		success:function(data){}
         	});
+            //点击查看更多，加载数据
+            var count = 2;
+            $(".more").click(function(){
+            	var ftype = '${ftype }';
+            	$.ajax({
+            		type:"get",
+            		url:"forum/queryMore.do",
+            		dataType:"json",
+            		data:{ftype:ftype,pageNum:count,pageSize:5},
+            		success:function(data){
+            			console.log(data);
+            			alert(count++);
+            		}
+            	});
+            });
        })
     </script>
 </head>

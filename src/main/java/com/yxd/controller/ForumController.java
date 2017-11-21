@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.pagehelper.PageHelper;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Forum;
 import com.yxd.entity.User;
@@ -43,7 +44,7 @@ public class ForumController {
 	 * */
 	@RequestMapping("/queryList.do")
 	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype) {
-		PageHelper.startPage(1,3);
+		PageHelper.startPage(1,5);
 		List<ForumView> lists = forumService.queryList(ftype);
 		for(ForumView list:lists) {
 			//获取文本
@@ -98,6 +99,46 @@ public class ForumController {
 			request.getSession().setAttribute("commentViewList",commentViewList);
 		}
 		return "redirect:/detail.jsp";
+	}
+	/**
+	 * 点击查看更多加载数据
+	 * */
+	@ResponseBody
+	@RequestMapping("/queryMore.do")
+	public String queryByType(HttpServletRequest request,@RequestParam("ftype")String ftype,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+		List<ForumView> lists = forumService.queryList(ftype);
+		for(ForumView list:lists) {
+			//获取文本
+			String path = list.getfList().getFcontent();
+			String fcontent = HtmlIOUtil.read(path);
+			
+			//去掉html格式,并截取前200个字
+			String reg_html="<[^>]+>";
+			if(fcontent.replaceAll(reg_html, "").length()>200)
+				list.getfList().setFcontent(fcontent.replaceAll(reg_html, "").substring(0,200)+"...");
+			else
+				list.getfList().setFcontent(fcontent.replaceAll(reg_html, ""));
+			
+			//获取文本中的第一张图片<img />
+			Pattern pattern = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>");
+			Matcher matcher = pattern.matcher(fcontent);
+			if(matcher.find()) {
+				//获取<img />的src的值
+				String img = matcher.group();
+				Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img);
+				if(m.find())
+					list.getfList().setFimage(m.group());
+			}
+			//日期截取
+			list.getfList().setFdate(list.getfList().getFdate().substring(0,10));
+		}
+		Gson gson = new Gson();
+		String data = gson.toJson(lists);
+		System.out.println(data);
+		return data;
 	}
 	/**
 	 * 编辑帖子 
