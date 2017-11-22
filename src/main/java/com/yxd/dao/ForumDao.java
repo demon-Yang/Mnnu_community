@@ -19,4 +19,6 @@ public interface ForumDao {
 	public ForumView queryById(@Param("fid")int fid);
 	//按FID查询帖子对应的评论
 	public List<CommentView> queryComment(@Param("fid")int fid);
+	//查询评论最多的帖子
+	public List<ForumView> queryHot();
 }

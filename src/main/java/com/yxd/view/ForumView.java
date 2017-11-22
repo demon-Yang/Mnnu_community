@@ -12,6 +12,7 @@ public class ForumView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Forum fList;
 	private User uList;
+	private int cTotal;
 	public Forum getfList() {
 		return fList;
 	}
@@ -23,5 +24,11 @@ public class ForumView implements Serializable{
 	}
 	public void setuList(User uList) {
 		this.uList = uList;
+	}
+	public int getcTotal() {
+		return cTotal;
+	}
+	public void setcTotal(int cTotal) {
+		this.cTotal = cTotal;
 	}
 }

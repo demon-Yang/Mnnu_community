@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yxd.dao.ForumDao">
 
 	<resultMap type="ForumView" id="forumList">
+		<result property="cTotal" column="ctotal"/>
 		<association property="fList" javaType="com.yxd.entity.Forum">
 			<id property="fid" column="fid"/>
 			<result property="ftitle" column="ftitle"/>
@@ -25,7 +26,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="fList" javaType="com.yxd.entity.Forum">
 			<id property="fid" column="fid"/>
 			<result property="ftitle" column="ftitle"/>
-			<result property="uid" column="uid"/>
 		</association>
 		<association property="uList" javaType="com.yxd.entity.User">
 			<id property="uid" column="uid"/>
@@ -70,12 +70,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
 	</insert>
 	<!-- 查询类型列表的帖子 -->
-	<select id="queryList" parameterType="String" resultMap="forumList">
-		select f.*,u.uname,u.umotto,u.uportrait from tb_forum f inner join tb_user u on f.ftype = #{ftype} and f.uid = u.uid
+	<select id="queryList" resultMap="forumList">
+		select f.*,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
+		inner join tb_user u on f.uid = u.uid
+		left join tb_comment c on c.fid = f.fid 
+		where f.ftype = #{ftype}
+		<if test="serach != null and serach.trim() != '' ">
+			<bind name="text_pattern" value="'%'+serach+'%'"/>
+			and u.uname like #{text_pattern} 
+		</if>
+		group by f.fid
 	</select>
 	<!-- 按FID查询帖子 -->
 	<select id="queryById" resultMap="forumList" parameterType="int">
-		select f.*,u.uname,u.umotto,u.uportrait from tb_forum f inner join tb_user u on f.fid = #{fid} and f.uid = u.uid
+		select f.*,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f 
+		inner join tb_user u on f.fid = #{fid} and f.uid = u.uid
+		left join tb_comment c on c.fid = #{fid} group by f.fid
 	</select>
 	<!-- 按FID查询帖子对应的评论 -->
 	<select id="queryComment" parameterType="int" resultMap="commentList">
@@ -101,6 +111,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 查询评论最多的帖子 -->
 	<select id="queryHot" resultMap="forumHot">
+		select f.fid,f.ftitle,u.uid,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
+		inner join tb_user u on f.uid = u.uid
+		left join tb_comment c on c.fid = f.fid group by f.fid order by ctotal desc
 		
 	</select>
 </mapper>

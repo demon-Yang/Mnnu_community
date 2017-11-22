@@ -44,7 +44,8 @@ public class ForumController {
 	 * */
 	@RequestMapping("/queryList.do")
 	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype) {
-		PageHelper.startPage(1,5);
+		//论坛列表
+		PageHelper.startPage(1,2);
 		List<ForumView> lists = forumService.queryList(ftype);
 		for(ForumView list:lists) {
 			//获取文本
@@ -71,8 +72,16 @@ public class ForumController {
 			//日期截取
 			list.getfList().setFdate(list.getfList().getFdate().substring(0,10));
 		}
+		//论坛热搜
+		PageHelper.startPage(1,5);
+		List<ForumView> hots = forumService.queryHot();
+		for(ForumView hot:hots) {
+			if(hot.getuList().getUmotto().length()>15)
+				hot.getuList().setUmotto(hot.getuList().getUmotto().substring(0,15)+"...");
+		}
 		request.getSession().setAttribute("ftype",ftype);
 		request.getSession().setAttribute("forumViewList",lists);
+		request.getSession().setAttribute("fhotList",hots);
 		return "redirect:/forum.jsp";
 	}
 	/**
@@ -98,6 +107,14 @@ public class ForumController {
 			}
 			request.getSession().setAttribute("commentViewList",commentViewList);
 		}
+		//论坛热搜
+		PageHelper.startPage(1,5);
+		List<ForumView> hots = forumService.queryHot();
+		for(ForumView hot:hots) {
+			if(hot.getuList().getUmotto().length()>15)
+				hot.getuList().setUmotto(hot.getuList().getUmotto().substring(0,15)+"...");
+		}
+		request.getSession().setAttribute("chotList",hots);
 		return "redirect:/detail.jsp";
 	}
 	/**
@@ -107,7 +124,7 @@ public class ForumController {
 	@RequestMapping("/queryMore.do")
 	public String queryByType(HttpServletRequest request,@RequestParam("ftype")String ftype,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
 		PageHelper.startPage(pageNum,pageSize);
 		List<ForumView> lists = forumService.queryList(ftype);
 		for(ForumView list:lists) {

@@ -118,7 +118,7 @@
                 <div class="landlord">
                     <div class="img"><img src="${forumView.uList.uportrait }"/></div>
                     <div class="info"><p class="name">${forumView.uList.uname }</p><p class="motto"> ${forumView.uList.umotto }</p></div>
-                    <p align="right"><button class="gocomment">我要评论</button><span class="type">${forumView.fList.ftype }</span>&nbsp;当前评论人数：<span class="reply">100</span></p>
+                    <p align="right"><button class="gocomment">我要评论</button><span class="type">${forumView.fList.ftype }</span>&nbsp;当前评论人数：<span class="reply">${forumView.cTotal }</span></p>
                     <hr/>
                     <p class="title" align="center">${forumView.fList.ftitle }</p>
                     <hr/>
@@ -187,34 +187,15 @@
                     <p>论坛·热搜</p>
                     <hr>
                     <ul>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
+                    	<c:forEach items="${chotList }" var="list">
+	                        <li>
+	                            <img src="${list.uList.uportrait }"/>
+	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></span>
+	                            <div style="clear: both;"></div>
+	                            <p style="margin-top:4px;margin-bottom: 3px;"><span style="display: inline-block;width: 10px;"></span><span class="name">${list.uList.uname }：</span> <span class="motto">${list.uList.umotto }</span></p>
+	                            <hr/>
+	                        </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

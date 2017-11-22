@@ -33,14 +33,58 @@
             		type:"get",
             		url:"forum/queryMore.do",
             		dataType:"json",
-            		data:{ftype:ftype,pageNum:count,pageSize:5},
+            		data:{ftype:ftype,pageNum:count,pageSize:2},
             		success:function(data){
-            			console.log(data);
-            			alert(count++);
+            			$.each(data,function(index,list){
+            				if(list.fList.fimage != null){
+	            				$(".list ul").append("<li>"+
+	            									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"'>"+list.fList.ftitle+"</a></h2>"+
+	            								    "<span class='reply'>"+list.cTotal+"</span>&nbsp;<span class='name'>"+list.uList.uname +"：</span>"+
+	            								    "<span class'motto'>"+list.uList.uname +"</span>"+
+	            								    "<div class='notes'>"+
+	            								    "<img "+list.fList.fimage+">"+
+	            								    "<span>"+list.fList.fcontent+"</span>"+
+	            								    "</div>"+
+	            								    "<div style='clear: both;'></div>"+
+	            								    "<p align='right'style='color: #a5a3a3;padding-right: 15px;padding-bottom: 4px;'>"+list.fList.fdate+"</p>"+
+	            								    "<hr>"+
+	            								    "</li>");
+            				}
+            				else{
+            					$(".list ul").append("<li>"+
+    									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"'>"+list.fList.ftitle+"</a></h2>"+
+    								    "<span class='reply'>"+list.cTotal+"</span>&nbsp;<span class='name'>"+list.uList.uname +"：</span>"+
+    								    "<span class'motto'>"+list.uList.uname +"</span>"+
+    								    "<div class='notes'>"+
+    								    "<span>"+list.fList.fcontent+"</span>"+
+    								    "</div>"+
+    								    "<div style='clear: both;'></div>"+
+    								    "<p align='right' style='color: #a5a3a3;  padding-right: 15px;padding-bottom: 4px;'>"+list.fList.fdate+"</p>"+
+    								    "<hr>"+
+    								    "</li>");
+            				}
+            			});
+            			var l = data.length;
+            			if(l<2){
+            				$(".more").css({"display":"none"});
+            				$(".none").css({"display":"block"});
+            			}
+            			count++;
             		}
             	});
             });
        })
+       function seraches(){
+        	var ftype = '${ftype}';
+        	var condition = $(".seraches option:selected").val();
+        	var serach = $(".serach").val();
+        	$.ajax({
+        		type:"get",
+        		url:"forum/queryCondition.do",
+        		data:{ftype:ftype,condition:condition,serach:serach},
+        		success:function(data){}
+        	});
+        }
     </script>
 </head>
 <body>
@@ -72,10 +116,10 @@
                 <div class="seraches">
                     <form>
                         <select>
-                            <option>按用户名查找</option>
-                            <option>按关键字查找</option>
+                            <option value="按用户名查找">按用户名查找</option>
+                            <option value="按关键字查找">按关键字查找</option>
                         </select>
-                        <input type="text" name="" />&nbsp;&nbsp;<input type="submit" value="搜索"/>
+                        <input type="text" name="serach" class="serach"/>&nbsp;&nbsp;<input type="button" onclick="seraches()" value="搜索"/>
                     </form>
                 </div>
                 <hr>
@@ -84,7 +128,7 @@
                         <c:forEach items="${forumViewList }" var="list">
 	                        <li>
 	                            <h2><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></h2>
-	                            <span class="reply">100</span>&nbsp;
+	                            <span class="reply">${list.cTotal }</span>&nbsp;
 	                            <span class="name">${list.uList.uname }：</span> <span class="motto"> ${list.uList.umotto }</span>
 	                            <div class="notes">
 	                            	<c:if test="${list.fList.fimage != null}">
@@ -95,7 +139,7 @@
                                 </span>
 	                            </div>
 	                            <div style="clear: both;"></div>
-	                            <p align="right">${list.fList.fdate }</p>
+	                            <p align="right" style="color: #a5a3a3; padding-right: 15px;padding-bottom: 4px;">${list.fList.fdate }</p>
 	                            <hr>
 	                         </li>
                          </c:forEach>
@@ -107,39 +151,21 @@
                     <p>论坛·热搜</p>
                     <hr>
                     <ul>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
-                        <li>
-                            <img src="images/forum2.jpg"/>
-                            <span><a>从大明王朝看年轻人如何职场从大明王朝看年轻人</a></span>
-                            <div style="clear: both;"></div>
-                            <p align="right"><span class="name">杨先生：</span> <span class="motto"> 弹吉他 健身 唱歌 讲故事</span></p>
-                            <hr/>
-                        </li>
+                    	<c:forEach items="${fhotList }" var="list">
+	                        <li>
+	                            <img src="${list.uList.uportrait }"/>
+	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></span>
+	                            <div style="clear: both;"></div>
+	                            <p style="margin-top:4px;margin-bottom: 3px;"><span style="display: inline-block;width: 10px;"></span><span class="name">${list.uList.uname }：</span> <span class="motto">${list.uList.umotto }</span></p>
+	                            <hr/>
+	                        </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
         <div style="clear: both;"></div>
         <div class="more"><p>点击查看更多</p></div>
+        <div class="none"><p>已无数据...</p></div>
         </div>
         <div class="footer">
            <jsp:include page="footer.jsp"></jsp:include>

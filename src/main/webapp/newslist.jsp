@@ -27,7 +27,7 @@
             <jsp:include page="header.jsp"></jsp:include>
         </div>
         <div class="container">
-            <div style="padding: 5px 20px; height: 15px;"></div>
+            <div style="padding: 5px 20px; height: 5px;"></div>
             <div class="left">
                 <span><a href="admin/news/queryList.do?ntype=闽师新闻">闽师新闻</a></span>
                 <ul>

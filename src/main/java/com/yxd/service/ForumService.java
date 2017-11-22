@@ -31,4 +31,8 @@ public class ForumService {
 		public List<CommentView> queryComment(int fid) {
 			return forumDao.queryComment(fid);
 		}
+		//查询评论最多的帖子
+		public List<ForumView> queryHot(){
+			return forumDao.queryHot();
+		}
 }
