@@ -20,8 +20,12 @@ public class ForumService {
 			return forumDao.edit(forum,uid);
 		}
 		//按类型查询
-		public List<ForumView> queryList(String ftype){
-			return forumDao.queryList(ftype);
+		public List<ForumView> queryList(String ftype,String serach){
+			return forumDao.queryList(ftype,serach);
+		}
+		//按类型查询
+		public List<ForumView> queryKey(String ftype,String serach){
+			return forumDao.queryKey(ftype,serach);
 		}
 		//按FID查询帖子 
 		public ForumView queryById(int fid) {

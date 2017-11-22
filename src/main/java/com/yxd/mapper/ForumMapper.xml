@@ -81,6 +81,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		group by f.fid
 	</select>
+	<!-- 按关键字查询类型列表的帖子 -->
+	<select id="queryKey" resultMap="forumList">
+		select f.*,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
+		inner join tb_user u on f.uid = u.uid
+		left join tb_comment c on c.fid = f.fid 
+		where f.ftype = #{ftype}
+		<if test="serach != null and serach.trim() != '' ">
+			<bind name="text_pattern" value="'%'+serach+'%'"/>
+			and f.ftitle like #{text_pattern} 
+		</if>
+		group by f.fid
+	</select>
 	<!-- 按FID查询帖子 -->
 	<select id="queryById" resultMap="forumList" parameterType="int">
 		select f.*,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f 

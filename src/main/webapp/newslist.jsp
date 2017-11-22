@@ -15,7 +15,8 @@
         		type:"get",
         		url:"admin/news/newslist.do",
         		async:false,
-        		success:function(data){}
+        		success:function(data){
+        		}
         	});
         })
      </script>

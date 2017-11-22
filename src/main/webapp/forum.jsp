@@ -28,12 +28,13 @@
             //点击查看更多，加载数据
             var count = 2;
             $(".more").click(function(){
+            	var serach = '${serachText }';
             	var ftype = '${ftype }';
             	$.ajax({
             		type:"get",
             		url:"forum/queryMore.do",
             		dataType:"json",
-            		data:{ftype:ftype,pageNum:count,pageSize:2},
+            		data:{ftype:ftype,pageNum:count,pageSize:2,serach:serach},
             		success:function(data){
             			$.each(data,function(index,list){
             				if(list.fList.fimage != null){
@@ -78,11 +79,15 @@
         	var ftype = '${ftype}';
         	var condition = $(".seraches option:selected").val();
         	var serach = $(".serach").val();
+        	console.log(serach);
         	$.ajax({
         		type:"get",
-        		url:"forum/queryCondition.do",
+        		url:"forum/queryList.do",
+        		async:false,
         		data:{ftype:ftype,condition:condition,serach:serach},
-        		success:function(data){}
+        		success:function(data){
+        			location.reload();
+        		}
         	});
         }
     </script>
@@ -117,9 +122,14 @@
                     <form>
                         <select>
                             <option value="按用户名查找">按用户名查找</option>
-                            <option value="按关键字查找">按关键字查找</option>
+                            <c:if test="${condition == '按关键字查找' }">
+                            	<option value="按关键字查找" selected="selected">按关键字查找</option>
+                            </c:if>
+                            <c:if test="${condition != '按关键字查找' }">
+                            	<option value="按关键字查找">按关键字查找</option>
+                            </c:if>
                         </select>
-                        <input type="text" name="serach" class="serach"/>&nbsp;&nbsp;<input type="button" onclick="seraches()" value="搜索"/>
+                        <input type="text" name="serach" class="serach" value="${serachText }"/>&nbsp;&nbsp;<input type="button" onclick="seraches()" value="搜索"/>
                     </form>
                 </div>
                 <hr>

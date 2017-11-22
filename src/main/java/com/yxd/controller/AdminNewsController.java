@@ -115,6 +115,12 @@ public class AdminNewsController {
 		request.getSession().setAttribute("newsHnewList", hnewList);
 		request.getSession().setAttribute("newsMnewList", mnewList);
 		request.getSession().setAttribute("newsNoticeList", noticeList);
+		PageHelper.startPage(1,3);
+		List<News> newsList = newsService.queryByCondition("闽师新闻",null,null);
+		PageInfo<News> page = new PageInfo<News>(newsList);
+		request.getSession().setAttribute("newsList", newsList);
+		request.getSession().setAttribute("nlistType", "闽师新闻");
+		request.getSession().setAttribute("page", page);
 		return "1";
 	}
 	/**

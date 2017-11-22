@@ -43,10 +43,16 @@ public class ForumController {
 	 * 论坛首页
 	 * */
 	@RequestMapping("/queryList.do")
-	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype) {
+	public String index(HttpServletRequest request,@RequestParam(value="ftype",required=false,defaultValue="学习技术类")String ftype,
+			@RequestParam(value="serach",required=false)String serach,
+		    @RequestParam(value="condition",required=false)String condition) {
 		//论坛列表
 		PageHelper.startPage(1,2);
-		List<ForumView> lists = forumService.queryList(ftype);
+		List<ForumView> lists = null;
+		if("按关键字查找".equals(condition))
+			 lists = forumService.queryKey(ftype,serach);
+		else
+			lists = forumService.queryList(ftype,serach);
 		for(ForumView list:lists) {
 			//获取文本
 			String path = list.getfList().getFcontent();
@@ -82,6 +88,8 @@ public class ForumController {
 		request.getSession().setAttribute("ftype",ftype);
 		request.getSession().setAttribute("forumViewList",lists);
 		request.getSession().setAttribute("fhotList",hots);
+		request.getSession().setAttribute("serachText",serach);
+		request.getSession().setAttribute("condition",condition);
 		return "redirect:/forum.jsp";
 	}
 	/**
@@ -123,10 +131,16 @@ public class ForumController {
 	@ResponseBody
 	@RequestMapping("/queryMore.do")
 	public String queryByType(HttpServletRequest request,@RequestParam("ftype")String ftype,
+			@RequestParam(value="serach",required=false)String serach,
+			@RequestParam(value="condition",required=false)String condition,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
 		PageHelper.startPage(pageNum,pageSize);
-		List<ForumView> lists = forumService.queryList(ftype);
+		List<ForumView> lists = null;
+		if("按关键字查找".equals(condition))
+			 lists = forumService.queryKey(ftype,serach);
+		else
+			lists = forumService.queryList(ftype,serach);
 		for(ForumView list:lists) {
 			//获取文本
 			String path = list.getfList().getFcontent();
@@ -152,9 +166,10 @@ public class ForumController {
 			//日期截取
 			list.getfList().setFdate(list.getfList().getFdate().substring(0,10));
 		}
+		request.getSession().setAttribute("serachText",serach);
+		request.getSession().setAttribute("condition",condition);
 		Gson gson = new Gson();
 		String data = gson.toJson(lists);
-		System.out.println(data);
 		return data;
 	}
 	/**

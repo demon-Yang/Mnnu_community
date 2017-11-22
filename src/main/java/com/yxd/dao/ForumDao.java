@@ -14,7 +14,9 @@ public interface ForumDao {
 	//编辑新闻
 	public int edit(@Param("forum")Forum forum,@Param("uid")int uid);
 	//查询类型列表
-	public List<ForumView> queryList(@Param("ftype")String ftype);
+	public List<ForumView> queryList(@Param("ftype")String ftype,@Param("serach")String serach);
+	//按关键字查询类型列表
+	public List<ForumView> queryKey(@Param("ftype")String ftype,@Param("serach")String serach);
 	//按FID查询帖子 
 	public ForumView queryById(@Param("fid")int fid);
 	//按FID查询帖子对应的评论
