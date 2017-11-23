@@ -251,7 +251,7 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .inright .empty{width: 550px;height: 70px;}
 .detail .container .left .comments .comment{background: url("../images/forumbg.jpg");border-radius: 0 5px 0 0;padding: 20px 0 0 20px;overflow: hidden;width: 530px;}
 .detail .container .left .comments .comment .reply{background-color: #d4dbdf;border-radius: 5px;display: none;}
-.detail .container .left .comments .comment .reply li{margin-left: 3px;}
+.detail .container .left .comments .comment .reply li{margin-left: 10px;}
 .detail .container .left .comments .comment .retract{cursor: pointer;}
 .detail .container .left .comments .comment .reply .replyOne{    cursor: pointer; color: #000; display: inline-block; background-color: #ffffff; width: 30px; height: 17px; line-height: 17px; text-align: center; border: 1px solid #bfbdbd; margin-bottom: 2px;border-radius: 2px;}
 .detail .container .left .comments .comment .reply .answer .bar{width: 530px; height: 30px;}
@@ -264,11 +264,11 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .reply .answer .emotions{height: 120px;width: 365px;margin-left: 10px;background-color: #FFFFFF;position:absolute;display: none;}
 .detail .container .left .comments .comment .reply .answer .emotions li{height: 24px;width: 24px;float: left;margin: 2px;cursor: pointer;}
 .detail .container .left .comments .comment .retract{background-color: #d4dbdf;height: 20px;text-align: center;width: 80px;display: inline-block;border-radius: 4px;margin-bottom: 10px;}
-.detail .container .left .comments .comment .reply .face{width: 36px;height: 36px;margin: 8px 5px 0 8px;object-fit: cover;}
+.detail .container .left .comments .comment .reply .face{width: 36px;height: 36px;margin: 8px 5px 0 0;object-fit: cover;}
 .detail .container .left .comments .comment .reply .from{font-size: 14px;color: #f5796b;}
 .detail .container .left .comments .comment .reply .to{font-size: 14px;color: #377d6a;}
 .detail .container .left .comments .comment .reply .content{font-size: 12px;}
-.detail .container .left .comments .comment .reply .total{vertical-align: 15px;font-size: 13px;}
+.detail .container .left .comments .comment .reply .total{vertical-align: 5px;font-size: 13px;}
 .detail .container .left .comments .comment .reply .answer{margin-bottom: 10px;padding-top: 1px;}
 .detail .container .left .edit{width:700px;height: 420px;background: url("../images/forumbg.jpg");}
 .detail .container .left .edit p{ height: 30px; padding-top: 30px; padding-left: 40px; font-size: 15px; font-weight: 600;}

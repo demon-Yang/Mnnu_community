@@ -1,7 +1,6 @@
 package com.yxd.view;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.yxd.entity.Comment;
 import com.yxd.entity.User;
@@ -13,7 +12,7 @@ public class CommentView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Comment comment;
 	private User user;
-	private List<ReplyView> rList;
+	private int rtotal;
 	public Comment getComment() {
 		return comment;
 	}
@@ -26,10 +25,10 @@ public class CommentView implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<ReplyView> getrList() {
-		return rList;
+	public int getRtotal() {
+		return rtotal;
 	}
-	public void setrList(List<ReplyView> rList) {
-		this.rList = rList;
+	public void setRtotal(int rtotal) {
+		this.rtotal = rtotal;
 	}
 }

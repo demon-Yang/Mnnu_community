@@ -109,9 +109,6 @@ public class ForumController {
 			for(CommentView commentView:commentViewList) {
 				String cpath = commentView.getComment().getCcontent();
 				commentView.getComment().setCcontent(HtmlIOUtil.read(cpath));
-				System.out.println(commentView.getrList().toString());
-				if(commentView.getrList().toString().equals("[null]")) 
-					commentView.setrList(null);
 			}
 			request.getSession().setAttribute("commentViewList",commentViewList);
 		}

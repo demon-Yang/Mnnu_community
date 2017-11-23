@@ -39,7 +39,7 @@
             			$.each(data,function(index,list){
             				if(list.fList.fimage != null){
 	            				$(".list ul").append("<li>"+
-	            									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"'>"+list.fList.ftitle+"</a></h2>"+
+	            									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"' target='_blank'>"+list.fList.ftitle+"</a></h2>"+
 	            								    "<span class='reply'>"+list.cTotal+"</span>&nbsp;<span class='name'>"+list.uList.uname +"：</span>"+
 	            								    "<span class'motto'>"+list.uList.uname +"</span>"+
 	            								    "<div class='notes'>"+
@@ -53,7 +53,7 @@
             				}
             				else{
             					$(".list ul").append("<li>"+
-    									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"'>"+list.fList.ftitle+"</a></h2>"+
+    									"<h2><a href='forum/queryById.do?fid="+list.fList.fid+"' target='_blank'>"+list.fList.ftitle+"</a></h2>"+
     								    "<span class='reply'>"+list.cTotal+"</span>&nbsp;<span class='name'>"+list.uList.uname +"：</span>"+
     								    "<span class'motto'>"+list.uList.uname +"</span>"+
     								    "<div class='notes'>"+
@@ -137,7 +137,7 @@
                     <ul>
                         <c:forEach items="${forumViewList }" var="list">
 	                        <li>
-	                            <h2><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></h2>
+	                            <h2><a href="forum/queryById.do?fid=${list.fList.fid }" target="_blank">${list.fList.ftitle }</a></h2>
 	                            <span class="reply">${list.cTotal }</span>&nbsp;
 	                            <span class="name">${list.uList.uname }：</span> <span class="motto"> ${list.uList.umotto }</span>
 	                            <div class="notes">
@@ -164,7 +164,7 @@
                     	<c:forEach items="${fhotList }" var="list">
 	                        <li>
 	                            <img src="${list.uList.uportrait }"/>
-	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></span>
+	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }" target="_blank">${list.fList.ftitle }</a></span>
 	                            <div style="clear: both;"></div>
 	                            <p style="margin-top:4px;margin-bottom: 3px;"><span style="display: inline-block;width: 10px;"></span><span class="name">${list.uList.uname }：</span> <span class="motto">${list.uList.umotto }</span></p>
 	                            <hr/>

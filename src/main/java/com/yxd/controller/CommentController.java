@@ -37,7 +37,7 @@ public class CommentController {
 	@Resource
 	private CommentService commentService;
 	/**
-	 * 按FID请求更多帖子
+	 * 点击查看更多加载数据
 	 * */
 	@ResponseBody
 	@RequestMapping("queryMore.do")
@@ -52,9 +52,6 @@ public class CommentController {
 			for(CommentView commentView:commentViewList) {
 				String cpath = commentView.getComment().getCcontent();
 				commentView.getComment().setCcontent(HtmlIOUtil.read(cpath));
-				System.out.println(commentView.getrList().toString());
-				if(commentView.getrList().toString().equals("[null]")) 
-					commentView.setrList(null);
 			}
 		}
 		Gson gson = new Gson();

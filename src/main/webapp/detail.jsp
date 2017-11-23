@@ -37,14 +37,6 @@
                     $(".container .right").css({"position":"static"});
                 }
             },500);
-		  //查看回复移动
-          $(".retract").click(function(){
-              if($(this).text().trim() == "查看回复")
-                    $(this).text("收取回复");
-              else
-                    $(this).text("查看回复");
-              $(this).parent().parent().next().slideToggle(500);
-          });
          //点击小图片，显示表情
            $(".emo").click(function(e){
                $(this).parent().next().slideDown(500);//慢慢向下展开
@@ -122,9 +114,16 @@
            	});
         });
      })
-	
+	  //查看回复移动
+      function slideReply(reply,rtotal){
+              if($(reply).text().trim().substring(0,4) == "查看回复")
+                    $(reply).text("收取回复"+"("+rtotal+")");
+              else
+                    $(reply).text("查看回复"+"("+rtotal+")");
+              $(reply).parent().parent().next().slideToggle(500);
+     }
+      //点击回复，显示在编辑框
      function reply(reply,toName,toid){
-        	 //点击回复，显示在编辑框
    			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
      }
      function replyComment(reply,toName,toid){
@@ -160,17 +159,27 @@
 	                                <div class="comment">
 	                                    <div>${list.comment.ccontent }</div>
 	                                    <div class="empty"></div>
-	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract">&nbsp;查看回复&nbsp;&nbsp;</span></p></div>
+	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract" onclick="slideReply(this,${list.rtotal })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span></p></div>
 	                                    <div class="reply">
 	                                        <ul>
-	                                        	<c:forEach items="${list.rList }" var="rList">
-		                                            <li>
-		                                                <img src="${rList.from.uportrait }" class="face">
-		                                                <span class="total"><span class="from">${rList.from.uname }</span> :回复  <span class="to">${rList.to.uname} </span>:&nbsp;<span class="content">${rList.reply.rcontent }</span></span>
-		                                                <p align="right">${rList.reply.rdate }&nbsp;<span class="replyOne" onclick="reply(this,'${rList.from.uname }','${rList.from.uid }')">回复</span>&nbsp;&nbsp;</p>
-		                                                <hr/>
-		                                            </li>
-	                                            </c:forEach>
+	                                            <li>
+	                                                <img src="images/userdefault.png" class="face">
+	                                                <span class="total">
+	                                                	<span class="from">andy刘德华</span> :回复  <span class="to">沈卓盈</span>:&nbsp;
+	                                                	<span class="content">说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好</span>
+	                                                </span>
+	                                                <p align="right">2017-10-11&nbsp;<span class="replyOne" onclick="reply(this,'andy刘德华','1')">回复</span>&nbsp;&nbsp;</p>
+	                                                <hr/>
+	                                            </li>
+	                                             <li>
+	                                                <img src="images/userdefault.png" class="face">
+	                                                <span class="total">
+	                                                	<span class="from">andy刘德华</span> :回复  <span class="to">沈卓盈</span>:&nbsp;
+	                                                	<span class="content">说的很好说的</span>
+	                                                </span>
+	                                                <p align="right">2017-10-11&nbsp;<span class="replyOne" onclick="reply(this,'andy刘德华','1')">回复</span>&nbsp;&nbsp;</p>
+	                                                <hr/>
+	                                            </li>
 	                                        </ul>
 	                                        <div class="answer">
 	                                        	<div class="bar">
@@ -218,7 +227,7 @@
                     	<c:forEach items="${chotList }" var="list">
 	                        <li>
 	                            <img src="${list.uList.uportrait }"/>
-	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }">${list.fList.ftitle }</a></span>
+	                            <span><a href="forum/queryById.do?fid=${list.fList.fid }" target="_blank">${list.fList.ftitle }</a></span>
 	                            <div style="clear: both;"></div>
 	                            <p style="margin-top:4px;margin-bottom: 3px;"><span style="display: inline-block;width: 10px;"></span><span class="name">${list.uList.uname }：</span> <span class="motto">${list.uList.umotto }</span></p>
 	                            <hr/>
