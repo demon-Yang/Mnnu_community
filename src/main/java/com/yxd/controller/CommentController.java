@@ -22,20 +22,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.github.pagehelper.PageHelper;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Comment;
 import com.yxd.entity.User;
 import com.yxd.service.CommentService;
 import com.yxd.util.HtmlIOUtil;
+import com.yxd.view.CommentView;
 
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
+	@Resource
+	private CommentService commentService;
+	/**
+	 * 按FID请求更多帖子
+	 * */
+	@ResponseBody
+	@RequestMapping("queryMore.do")
+	public String queryMore(HttpServletRequest request, @RequestParam("fid")int fid,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+		
+		PageHelper.startPage(pageNum,pageSize);
+		List<CommentView> commentViewList = commentService.queryComment(fid);
+		if(commentViewList != null) {
+			//获取帖子对应的评论和回复
+			for(CommentView commentView:commentViewList) {
+				String cpath = commentView.getComment().getCcontent();
+				commentView.getComment().setCcontent(HtmlIOUtil.read(cpath));
+				System.out.println(commentView.getrList().toString());
+				if(commentView.getrList().toString().equals("[null]")) 
+					commentView.setrList(null);
+			}
+		}
+		Gson gson = new Gson();
+		String data = gson.toJson(commentViewList);
+		return data;
+	}
 	/**
 	 * 发表评论 
 	 * */
-	@Resource
-	private CommentService commentService;
 	@ResponseBody
 	@RequestMapping("/edit.do")
 	public String edit(HttpServletRequest request, @RequestParam("fid")int fid,@RequestParam("ccontent")String ccontent) {

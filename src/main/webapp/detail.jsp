@@ -98,12 +98,37 @@
            		 });
            	 }else 
            		 return false;
-       	});
+       	  });
+           //点击查看更多，加载数据
+           var count = 2;
+           $(".more").click(function(){
+           	var fid = '${forumView.fList.fid }';
+           	$.ajax({
+           		type:"get",
+           		url:"comment/queryMore.do",
+           		dataType:"json",
+           		data:{fid:fid,pageNum:count,pageSize:2},
+           		success:function(data){
+           			$.each(data,function(index,list){
+           				console.log(list);
+           			});
+           			var l = data.length;
+           			if(l<2){
+           				$(".more").css({"display":"none"});
+           				$(".none").css({"display":"block"});
+           			}
+           			count++;
+           		}
+           	});
+        });
      })
 	
-     function reply(reply,toName){
+     function reply(reply,toName,toid){
         	 //点击回复，显示在编辑框
    			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
+     }
+     function replyComment(reply,toName,toid){
+    	 $(reply).parent().next().text("回复 "+toName+" :");
      }
 	</script>
 </head>
@@ -141,8 +166,8 @@
 	                                        	<c:forEach items="${list.rList }" var="rList">
 		                                            <li>
 		                                                <img src="${rList.from.uportrait }" class="face">
-		                                                <span class="total"><span class="from">${rList.from.uname }</span> :回复  <span class="to">${rList.to.uname} </span>:&nbsp;${rList.reply.rcontent }</span>
-		                                                <p align="right">${rList.reply.rdate }&nbsp;<span class="replyOne" onclick="reply(this,'${rList.from.uname }')">回复</span>&nbsp;&nbsp;</p>
+		                                                <span class="total"><span class="from">${rList.from.uname }</span> :回复  <span class="to">${rList.to.uname} </span>:&nbsp;<span class="content">${rList.reply.rcontent }</span></span>
+		                                                <p align="right">${rList.reply.rdate }&nbsp;<span class="replyOne" onclick="reply(this,'${rList.from.uname }','${rList.from.uid }')">回复</span>&nbsp;&nbsp;</p>
 		                                                <hr/>
 		                                            </li>
 	                                            </c:forEach>
@@ -152,7 +177,7 @@
 	                                        		<div class="nav">
 	                                        			首页 上一页 [1] [2] [3] 下一页 尾页
 	                                        		</div>
-	                                        		<div class="say">我也说一句</div>
+	                                        		<div class="say" onclick="replyComment(this,'${list.user.uname }','${list.user.uid }')">我也说一句</div>
 	                                        	</div>
 	                                            <div class="message" contentEditable='true'></div>
 	                                            <span><img src="images/qqface/1.gif" class="emo"></span>
@@ -169,6 +194,9 @@
                            </c:forEach>
                      </ul>
                 </div>
+                <div style="clear: both;"></div>
+		        <div class="more"><p>点击查看更多</p></div>
+		        <div class="none"><p>已无数据...</p></div>
                 <div class="edit">
                     <p>发表评论</p>
                     <div class="content">

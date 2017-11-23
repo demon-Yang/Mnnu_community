@@ -15,6 +15,8 @@ import com.yxd.view.ForumView;
 public class ForumService {
 	@Resource
 	private ForumDao forumDao;
+	@Resource
+	private CommentService commentService;
 		//编辑新闻
 		public int edit(Forum forum,int uid) {
 			return forumDao.edit(forum,uid);
@@ -33,7 +35,7 @@ public class ForumService {
 		}
 		//按FID查询帖子对应的评论
 		public List<CommentView> queryComment(int fid) {
-			return forumDao.queryComment(fid);
+			return commentService.queryComment(fid);
 		}
 		//查询评论最多的帖子
 		public List<ForumView> queryHot(){

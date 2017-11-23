@@ -35,36 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap>
 	
-	<resultMap type="CommentView" id="commentList">
-		<association property="comment" javaType="com.yxd.entity.Comment">
-			<id property="cid" column="cid"/>
-			<result property="ccontent" column="ccontent"/>
-			<result property="cdate" column="cdate"/>
-		</association>
-		<association property="user" javaType="com.yxd.entity.User">
-			<id property="uid" column="uid"/>
-			<result property="uname" column="uname"/>
-			<result property="uportrait" column="uportrait"/>
-		</association>
-		<collection property="rList" ofType="com.yxd.view.ReplyView" column="cid" select="queryReply" />
-	</resultMap>
-	<resultMap type="com.yxd.view.ReplyView" id="replyList">
-		<id property="" column=""/>
-			<association property="reply" javaType="com.yxd.entity.Reply">
-				<id property="rid" column="rid"/>
-				<result property="rcontent" column="rcontent"/>
-				<result property="rdate" column="rdate"/>
-			</association>
-			<association property="from" javaType="com.yxd.entity.User">
-				<id property="uid" column="fuid"/>
-				<result property="uname" column="funame"/>
-				<result property="uportrait" column="fuportrait"/>
-			</association>
-			<association property="to" javaType="com.yxd.entity.User">
-				<id property="uid" column="tuid"/>
-				<result property="uname" column="tuname"/>
-			</association>
-	</resultMap>
+	
 	<!-- 编写帖子 -->
 	<insert id="edit">
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
@@ -99,28 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		inner join tb_user u on f.fid = #{fid} and f.uid = u.uid
 		left join tb_comment c on c.fid = #{fid} group by f.fid
 	</select>
-	<!-- 按FID查询帖子对应的评论 -->
-	<select id="queryComment" parameterType="int" resultMap="commentList">
-		<!-- select c.cid,c.ccontent,c.cdate,u.uid,u.uname,u.uportrait,r.rid,r.rcontent,r.rdate,ufrom.uid fuid,ufrom.uname funame,ufrom.uportrait fuportrait,uto.uid tuid,uto.uname tuname from tb_comment c
-		left join tb_forum f on f.fid = c.fid
-		left join tb_user u on c.uid = u.uid
-		left join tb_reply r on r.cid = c.cid
-		left join tb_user ufrom on ufrom.uid = r.fromid
-		left join tb_user uto on uto.uid = r.toid
-		where f.fid = ${fid}; -->
-		select c.cid,c.ccontent,c.cdate,u.uid,u.uname,u.uportrait from tb_comment c
-		left join tb_forum f on f.fid = c.fid
-		left join tb_user u on c.uid = u.uid
-		where f.fid = #{fid}
-	</select>
-	<!-- 按CID查询评论对应的回复 -->
-	<select id="queryReply" parameterType="int" resultMap="replyList">
-		select r.rid,r.rcontent,r.rdate,ufrom.uid fuid,ufrom.uname funame,ufrom.uportrait fuportrait,uto.uid tuid,uto.uname tuname from tb_comment c
-		left join tb_reply r on r.cid = c.cid
-		left join tb_user ufrom on ufrom.uid = r.fromid
-		left join tb_user uto on uto.uid = r.toid
-		where c.cid = #{cid}
-	</select>
+	
 	<!-- 查询评论最多的帖子 -->
 	<select id="queryHot" resultMap="forumHot">
 		select f.fid,f.ftitle,u.uid,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
