@@ -255,9 +255,9 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .retract{cursor: pointer;}
 .detail .container .left .comments .comment .reply .replyOne{    cursor: pointer; color: #000; display: inline-block; background-color: #ffffff; width: 30px; height: 17px; line-height: 17px; text-align: center; border: 1px solid #bfbdbd; margin-bottom: 2px;border-radius: 2px;}
 .detail .container .left .comments .comment .reply .answer .bar{width: 530px; height: 30px;}
-.detail .container .left .comments .comment .reply .answer .bar .nav{width: 400px;height: 30px;margin-left: 15px;float: left;line-height: 30px;}
+.detail .container .left .comments .comment .reply .answer .bar .pager{width: 400px;height: 30px;margin-left: 5px;float: left;line-height: 30px;}
 .detail .container .left .comments .comment .reply .answer .bar .say{float: right;width: 70px;height: 20px;background-color: #ffffff;border: 1px solid #bfbdbd;margin: 7px 12px 0 0;border-radius: 2px;text-align: center;cursor: pointer;}
-.detail .container .left .comments .comment .reply .answer .message{width: 500px; height: 35px; margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;padding-left: 10px;}
+.detail .container .left .comments .comment .reply .answer .message{width: 500px; max-height: 150px;margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;padding-left: 10px;}
 .detail .container .left .comments .comment .reply .answer .message img{vertical-align: -5px;}
 .detail .container .left .comments .comment .reply .answer button{margin-bottom:10px;margin-left: 460px; width: 50px; height: 25px; background-color: #72b8ba; border-radius: 3px;}
 .detail .container .left .comments .comment .reply .answer span img{height: 24px;width: 24px;margin-left: 10px;display: block;}

@@ -7,7 +7,9 @@
     <meta charset="UTF-8">
     <title>论坛评论</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/Pager.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pager.js"></script>
     <script type="text/javascript" src="kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript">
 	    KindEditor.ready(function(K) {
@@ -37,6 +39,10 @@
                     $(".container .right").css({"position":"static"});
                 }
             },500);
+        	$(".message").keypress(function(e){
+        		if($(this).text().length > 5 && e.which != 8)
+        			e.preventDefault();
+        	});
          //点击小图片，显示表情
            $(".emo").click(function(e){
                $(this).parent().next().slideDown(500);//慢慢向下展开
@@ -94,32 +100,44 @@
            //点击查看更多，加载数据
            var count = 2;
            $(".more").click(function(){
-           	var fid = '${forumView.fList.fid }';
-           	$.ajax({
-           		type:"get",
-           		url:"comment/queryMore.do",
-           		dataType:"json",
-           		data:{fid:fid,pageNum:count,pageSize:2},
-           		success:function(data){
-           			$.each(data,function(index,list){
-           				console.log(list);
-           			});
-           			var l = data.length;
-           			if(l<2){
-           				$(".more").css({"display":"none"});
-           				$(".none").css({"display":"block"});
-           			}
-           			count++;
-           		}
-           	});
-        });
-     })
-	  //查看回复移动
-      function slideReply(reply,rtotal){
-              if($(reply).text().trim().substring(0,4) == "查看回复")
+	           	var fid = '${forumView.fList.fid }';
+	           	$.ajax({
+	           		type:"get",
+	           		url:"comment/queryMore.do",
+	           		dataType:"json",
+	           		data:{fid:fid,pageNum:count,pageSize:2},
+	           		success:function(data){
+	           			$.each(data,function(index,list){
+	           				console.log(list);
+	           			});
+	           			var l = data.length;
+	           			if(l<2){
+	           				$(".more").css({"display":"none"});
+	           				$(".none").css({"display":"block"});
+	           			}
+	           			count++;
+	           		}
+	           	});
+        	});
+      })
+	  //查看回复滑动
+      function slideReply(reply,rtotal,cid){
+              if($(reply).text().trim().substring(0,4) == "查看回复"){
+            	  $(reply).parent().parent().next().find(".pager").html(renderpager(1,5,PageClick));
+            		/* $.ajax({
+    	           		type:"get",
+    	           		url:"comment/queryReply.do",
+    	           		dataType:"json",
+    	           		async:"false",
+    	           		data:{cid:cid},
+    	           		success:function(data){
+    	           			$pager = renderpager(1,2,PageClick);
+    	           		}
+    	           	}); */
                     $(reply).text("收取回复"+"("+rtotal+")");
-              else
+              }else{
                     $(reply).text("查看回复"+"("+rtotal+")");
+              }
               $(reply).parent().parent().next().slideToggle(500);
      }
       //点击回复，显示在编辑框
@@ -159,7 +177,7 @@
 	                                <div class="comment">
 	                                    <div>${list.comment.ccontent }</div>
 	                                    <div class="empty"></div>
-	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract" onclick="slideReply(this,${list.rtotal })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span></p></div>
+	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract" onclick="slideReply(this,${list.rtotal },${list.comment.cid })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span></p></div>
 	                                    <div class="reply">
 	                                        <ul>
 	                                            <li>
@@ -183,7 +201,7 @@
 	                                        </ul>
 	                                        <div class="answer">
 	                                        	<div class="bar">
-	                                        		<div class="nav">
+	                                        		<div class="pager">
 	                                        			首页 上一页 [1] [2] [3] 下一页 尾页
 	                                        		</div>
 	                                        		<div class="say" onclick="replyComment(this,'${list.user.uname }','${list.user.uid }')">我也说一句</div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.yxd.dao.CommentDao;
 import com.yxd.entity.Comment;
 import com.yxd.view.CommentView;
+import com.yxd.view.ReplyView;
 
 @Service
 public class CommentService {
@@ -21,5 +22,9 @@ public class CommentService {
 		//按FID查询帖子对应的评论
 		public List<CommentView> queryComment(int fid) {
 			return commentDao.queryComment(fid);
+		}
+		//按CID查询评论对应的回复 
+		public List<ReplyView> queryReply(int cid){
+			return commentDao.queryReply(cid);
 		}
 }
