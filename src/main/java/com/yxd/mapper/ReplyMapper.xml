@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxd.dao.ReplyDao">
+	<resultMap type="com.yxd.view.ReplyView" id="replyList">
+			<association property="reply" javaType="com.yxd.entity.Reply">
+				<id property="rid" column="rid"/>
+				<result property="rcontent" column="rcontent"/>
+				<result property="rdate" column="rdate"/>
+			</association>
+			<association property="from" javaType="com.yxd.entity.User">
+				<id property="uid" column="fuid"/>
+				<result property="uname" column="funame"/>
+				<result property="uportrait" column="fuportrait"/>
+			</association>
+			<association property="to" javaType="com.yxd.entity.User">
+				<id property="uid" column="tuid"/>
+				<result property="uname" column="tuname"/>
+			</association>
+	</resultMap>
+	<!-- 按CID查询评论对应的回复 -->
+	<select id="queryReply" parameterType="int" resultMap="replyList">
+		select r.rid,r.rcontent,r.rdate,ufrom.uid fuid,ufrom.uname funame,ufrom.uportrait fuportrait,uto.uid tuid,uto.uname tuname from tb_comment c
+		left join tb_reply r on r.cid = c.cid
+		left join tb_user ufrom on ufrom.uid = r.fromid
+		left join tb_user uto on uto.uid = r.toid
+		where c.cid = #{cid}
+	</select>
+</mapper>

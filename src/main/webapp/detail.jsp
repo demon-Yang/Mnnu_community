@@ -7,9 +7,8 @@
     <meta charset="UTF-8">
     <title>论坛评论</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
-    <link type="text/css" rel="stylesheet" href="css/Pager.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.pager.js"></script>
+    <script type="text/javascript" src="js/detail-pager.js"></script>
     <script type="text/javascript" src="kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript">
 	    KindEditor.ready(function(K) {
@@ -121,26 +120,42 @@
         	});
       })
 	  //查看回复滑动
-      function slideReply(reply,rtotal,cid){
+      function slideReply(reply,rtotal,cid,rtotal){
               if($(reply).text().trim().substring(0,4) == "查看回复"){
-            	  $(reply).parent().parent().next().find(".pager").html(renderpager(1,5));
-            		/* $.ajax({
+            		 $.ajax({
     	           		type:"get",
-    	           		url:"comment/queryReply.do",
+    	           		url:"reply/queryReply.do",
     	           		dataType:"json",
     	           		async:"false",
     	           		data:{cid:cid},
     	           		success:function(data){
-    	           			$pager = renderpager(1,2,PageClick);
+    	           			console.log(data);
+    	           			if(rtotal != 0){
+    	           				$(reply).parent().parent().next().find('.lists').empty();
+    	           				$.each(data.list,function(index,list){
+    	           					$(reply).parent().parent().next().find('.lists').append(
+        	           						"<li class='list'>"+
+    		                                "<img src='"+list.from.uportrait+"' class='face'>"+
+    		                                "<span class='total'>"+
+    		                                	"<span class='from'>"+list.from.uname+"</span> :回复  <span class='to'>"+list.to.uname+"</span>:&nbsp;"+
+    		                                	"<span class='content'>"+list.reply.rcontent+"</span>"+
+    		                                "</span>"+
+    		                                "<p align='right'>"+list.reply.rdate+"&nbsp;<span class='replyOne' onclick='reply(this,'"+list.from.uname+"',"+list.from.uid+")'>回复</span>&nbsp;&nbsp;</p>"+
+    		                                "<hr/>"+
+    		                                "</li>");
+    	           				});
+    	           				$(reply).parent().parent().next().find(".pager").html(renderpager(data.pageNum,data.pages,cid));
+    	           			}
     	           		}
-    	           	}); */
+    	           	}); 
                     $(reply).text("收取回复"+"("+rtotal+")");
               }else{
                     $(reply).text("查看回复"+"("+rtotal+")");
               }
               $(reply).parent().parent().next().slideToggle(500);
      }
-      //点击回复，显示在编辑框
+       
+     //点击回复，显示在编辑框
      function reply(reply,toName,toid){
    			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
      }
@@ -177,14 +192,19 @@
 	                                <div class="comment">
 	                                    <div>${list.comment.ccontent }</div>
 	                                    <div class="empty"></div>
-	                                    <div><p align="right">${list.comment.cdate }&nbsp;&nbsp;<span class="retract" onclick="slideReply(this,${list.rtotal },${list.comment.cid })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span></p></div>
+	                                    <div>
+	                                    	<p align="right">${list.comment.cdate }&nbsp;&nbsp;
+	                                    		<span class="retract" onclick="slideReply(this,${list.rtotal },${list.comment.cid },${list.rtotal })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span>
+	                                    		<input type="hidden" value="0"/>
+	                                    	</p>
+	                                    </div>
 	                                    <div class="reply">
-	                                        <ul>
+	                                        <ul class="lists">
 	                                            <li class="list">
 	                                                <img src="images/userdefault.png" class="face">
 	                                                <span class="total">
 	                                                	<span class="from">andy刘德华</span> :回复  <span class="to">沈卓盈</span>:&nbsp;
-	                                                	<span class="content">说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好说的很好</span>
+	                                                	<span class="content">说的很好说</span>
 	                                                </span>
 	                                                <p align="right">2017-10-11&nbsp;<span class="replyOne" onclick="reply(this,'andy刘德华','1')">回复</span>&nbsp;&nbsp;</p>
 	                                                <hr/>
@@ -193,7 +213,6 @@
 	                                        <div class="answer">
 	                                        	<div class="bar">
 	                                        		<div class="pager">
-	                                        			首页 上一页 [1] [2] [3] 下一页 尾页
 	                                        		</div>
 	                                        		<div class="say" onclick="replyComment(this,'${list.user.uname }','${list.user.uid }')">我也说一句</div>
 	                                        	</div>

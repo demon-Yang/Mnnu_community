@@ -23,16 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Comment;
-import com.yxd.entity.Reply;
 import com.yxd.entity.User;
 import com.yxd.service.CommentService;
 import com.yxd.util.HtmlIOUtil;
 import com.yxd.view.CommentView;
-import com.yxd.view.ReplyView;
 
 @Controller
 @RequestMapping("/comment")
@@ -59,23 +56,6 @@ public class CommentController {
 		}
 		Gson gson = new Gson();
 		String data = gson.toJson(commentViewList);
-		return data;
-	}
-	/**
-	 * 点击查看评论
-	 * */
-	@ResponseBody
-	@RequestMapping("/queryReply.do")
-	public String queryReply(HttpServletRequest request, @RequestParam("cid")int cid,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
-		
-		PageHelper.startPage(pageNum,pageSize);
-		List<ReplyView> replyViewList = commentService.queryReply(cid);
-		PageInfo<ReplyView> page = new PageInfo<ReplyView>(replyViewList);
-		
-		Gson gson = new Gson();
-		String data = gson.toJson(replyViewList);
 		return data;
 	}
 	/**

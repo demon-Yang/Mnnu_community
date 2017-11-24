@@ -256,6 +256,12 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .reply .replyOne{    cursor: pointer; color: #000; display: inline-block; background-color: #ffffff; width: 30px; height: 17px; line-height: 17px; text-align: center; border: 1px solid #bfbdbd; margin-bottom: 2px;border-radius: 2px;}
 .detail .container .left .comments .comment .reply .answer .bar{width: 530px; height: 30px;}
 .detail .container .left .comments .comment .reply .answer .bar .pager{width: 400px;height: 30px;margin-left: 10px;float: left;line-height: 30px;}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages{display: block; border: none; text-transform: uppercase; font-size: 12px; margin-top:7px; padding: 0; font: normal 13px "Microsoft YaHei"; font-family: "Microsoft YaHei","微软雅黑","sans-serif";}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li{float: left; padding: 2px 4px; list-style: none; background-color: #eee; margin-left: 6px; color: #888; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li a{color: #888;}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li:hover{ color: #fff; background-color: #3c4852; }
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgEmpty{/* display: none ;  */}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgCurrent{color: #fff; font-weight: 700; background-color: #29c06d;}
 .detail .container .left .comments .comment .reply .answer .bar .say{float: right;width: 70px;height: 20px;background-color: #ffffff;border: 1px solid #bfbdbd;margin: 7px 12px 0 0;border-radius: 2px;text-align: center;cursor: pointer;}
 .detail .container .left .comments .comment .reply .answer .message{width: 500px; max-height: 150px;margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;padding-left: 10px;}
 .detail .container .left .comments .comment .reply .answer .message img{vertical-align: -5px;}
