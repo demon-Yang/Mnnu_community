@@ -32,34 +32,34 @@
                 <span><a href="admin/news/queryList.do?ntype=闽师新闻">闽师新闻</a></span>
                 <ul>
                 	<c:forEach items="${newsMnewList }" var="mnewList">
-                    	<li><a href="admin/news/findOne.do?nid=${mnewList.nid }">${mnewList.ntitle }</a></li>
+                    	<li><a href="admin/news/findOne.do?nid=${mnewList.nid }" target="_blank">${mnewList.ntitle }</a></li>
                     </c:forEach>
                 </ul>
                 <img src="images/newsline1.gif">
                 <span><a href="admin/news/queryList.do?ntype=热点聚焦">热点聚焦</a></span>
                 <ul>
                     <c:forEach items="${newsHnewList }" var="hnewList">
-                    	<li><a href="admin/news/findOne.do?nid=${hnewList.nid }">${hnewList.ntitle }</a></li>
+                    	<li><a href="admin/news/findOne.do?nid=${hnewList.nid }" target="_blank">${hnewList.ntitle }</a></li>
                     </c:forEach>
                 </ul>
                 <img src="images/newsline2.gif">
                 <span><a href="admin/news/queryList.do?ntype=学术报告">学术报告</a></span>
                 <ul>
                    <c:forEach items="${newsAcadList }" var="acadList">
-                    	<li><a href="admin/news/findOne.do?nid=${acadList.nid }">${acadList.ntitle }</a></li>
+                    	<li><a href="admin/news/findOne.do?nid=${acadList.nid }" target="_blank">${acadList.ntitle }</a></li>
                     </c:forEach>
                 </ul>
                 <img src="images/newsline1.gif">
                 <span><a href="admin/news/queryList.do?ntype=通知公告">通知公告</a></span>
                 <ul>
                    <c:forEach items="${newsNoticeList }" var="noticeList">
-                    	<li><a href="admin/news/findOne.do?nid=${noticeList.nid }">${noticeList.ntitle }</a></li>
+                    	<li><a href="admin/news/findOne.do?nid=${noticeList.nid }" target="_blank">${noticeList.ntitle }</a></li>
                     </c:forEach>
                 </ul>
                 <img src="images/newsline3.gif">
             </div>
             <div class="right">
-                <p class="loca"><a href="#">首页</a>» ${news.ntype } </p>
+                <p class="loca"><a href="newslist.jsp">首页</a>» ${news.ntype } </p>
                 <div class="cont">
                     <h1 align="center">${news.ntitle }</h1>
                     <hr size="1" noshade="noshade">

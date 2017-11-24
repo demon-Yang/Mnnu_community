@@ -85,7 +85,7 @@
                         <h3><span class="more"><a href="admin/news/queryList.do?ntype=学术报告">进入&gt;&gt;</a></span>学术报告</h3>
                         <ul>
                         	<c:forEach items="${indexAcadList }" var="acadList">
-                            	<li><span class="time">${acadList.ndate }</span><a href="admin/news/findOne.do?nid=${acadList.nid }">${acadList.ntitle }</a></li>
+                            	<li><span class="time">${acadList.ndate }</span><a href="admin/news/findOne.do?nid=${acadList.nid }" target="_blank">${acadList.ntitle }</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -93,7 +93,7 @@
                         <h3><span class="more"><a href="admin/news/queryList.do?ntype=闽师新闻">进入&gt;&gt;</a></span>闽师新闻</h3>
                         <ul>
                            <c:forEach items="${indexHnewList }" var="hnewList">
-                            	<li><span class="time">${hnewList.ndate }</span><a href="admin/news/findOne.do?nid=${hnewList.nid }">${hnewList.ntitle }</a></li>
+                            	<li><span class="time">${hnewList.ndate }</span><a href="admin/news/findOne.do?nid=${hnewList.nid }" target="_blank">${hnewList.ntitle }</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -101,7 +101,7 @@
                         <h3><span class="more"><a href="admin/news/queryList.do?ntype=热点聚焦">进入&gt;&gt;</a></span>热点聚焦</h3>
                         <ul>
                             <c:forEach items="${indexMnewList }" var="mnewList">
-                            	<li><span class="time">${mnewList.ndate }</span><a href="admin/news/findOne.do?nid=${mnewList.nid }">${mnewList.ntitle }</a></li>
+                            	<li><span class="time">${mnewList.ndate }</span><a href="admin/news/findOne.do?nid=${mnewList.nid }" target="_blank">${mnewList.ntitle }</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -109,7 +109,7 @@
                         <h3><span class="more"><a href="admin/news/queryList.do?ntype=通知公告">进入&gt;&gt;</a></span>通知公告</h3>
                         <ul>
                             <c:forEach items="${indexNoticeList }" var="noticeList">
-                            	<li><span class="time">${noticeList.ndate }</span><a href="admin/news/findOne.do?nid=${noticeList.nid }">${noticeList.ntitle }</a></li>
+                            	<li><span class="time">${noticeList.ndate }</span><a href="admin/news/findOne.do?nid=${noticeList.nid }" target="_blank">${noticeList.ntitle }</a></li>
                             </c:forEach>
                         </ul>
                     </div>

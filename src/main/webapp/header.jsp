@@ -151,14 +151,14 @@
         <div class="menu">
             <ul>
                 <li><a href="index.jsp">首页</a></li>
-                <li><a href="#">魅力·闽师</a>
+                <li><a href="javascript:void(0)">魅力·闽师</a>
                     <ul class="submenu">
                         <li><a href="introduce.jsp">闽师简介</a></li>
                         <li><a href="view.jsp">闽师风景</a></li>
                         <li><a href="symbol.jsp">闽师校标</a></li>
                     </ul>
                 </li>
-                <li><a href="#">新闻·热点</a>
+                <li><a href="javascript:void(0)">新闻·热点</a>
                     <ul class="submenu">
                         <li><a href="admin/news/queryList.do?ntype=闽师新闻">闽师新闻</a></li>
                         <li><a href="admin/news/queryList.do?ntype=学术报告">学术报告</a></li>
@@ -166,13 +166,13 @@
                         <li><a href="admin/news/queryList.do?ntype=通知公告">通知公告</a></li>
                     </ul>
                 </li>
-                <li><a href="#">技术·论坛</a>
+                <li><a href="javascript:void(0)">技术·论坛</a>
                     <ul class="submenu">
                         <li><a href="forum/queryList.do?ftype=学习技术类">学习论坛</a></li>
                         <li><a href="forum/queryList.do?ftype=生活兴趣类">生活贴吧</a></li>
                     </ul>
                 </li>
-                <li><a href="#">物品·市场</a>
+                <li><a href="javascript:void(0)">物品·市场</a>
                     <ul class="submenu">
                         <li><a href="market.jsp">共享图书</a></li>
                         <li><a href="market.jsp">二手市场</a></li>
