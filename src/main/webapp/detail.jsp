@@ -43,18 +43,19 @@
         			e.preventDefault();
         	});
          //点击小图片，显示表情
-           $(".emo").click(function(e){
-               $(this).parent().next().slideDown(500);//慢慢向下展开
-               e.stopPropagation();   //阻止冒泡事件
-           });
+           $(document).on("click",".emo",(function(e){
+	               $(this).parent().next().slideDown(500);//慢慢向下展开
+	               e.stopPropagation();   //阻止冒泡事件
+           		})
+           );
 
-           //在桌面任意地方点击，他是关闭
+           //在桌面任意地方点击，关闭
            $(document).click(function(){
                $(".emotions").slideUp(500);//慢慢向上收
            });
 
            //点击小图标时，添加功能
-           $(".emotions ul li").click(function(){
+           $(document).on("click",".emotions ul li",function(){
                var simg=$(this).find("img").clone();
                $(".message").append(simg);
            });
@@ -108,6 +109,41 @@
 	           		success:function(data){
 	           			$.each(data,function(index,list){
 	           				console.log(list);
+	           				$(".comments > ul").append(
+	           						"<li class='per'>"+
+		                            "<div class='inleft'>"+
+		                                "<img src='"+list.user.uportrait+"'><p class='name' align='center'>"+list.user.uname+"</p>"+
+		                            "</div>"+
+		                            "<div class='inright'>"+
+		                                "<div class='comment'>"+
+		                                    "<div>"+list.comment.ccontent+"</div>"+
+		                                    "<div class='empty'></div>"+
+		                                    "<div>"+
+		                                    	"<p align='right'>"+list.comment.cdate+"&nbsp;&nbsp;"+
+		                                    		"<span class='retract' onclick='slideReply(this,"+list.rtotal+","+list.comment.cid+","+list.rtotal+")'>&nbsp;查看回复("+list.rtotal+")&nbsp;&nbsp;</span>"+
+		                                    	"</p>"+
+		                                    "</div>"+
+		                                    "<div class='reply'>"+
+		                                        "<ul class='lists'>"+
+		                                        "</ul>"+
+		                                        "<div class='answer'>"+
+		                                        	"<div class='bar'>"+
+		                                        		"<div class='pager'>"+
+		                                        		"</div>"+
+		                                        		"<div class='say' onclick='replyComment(this,\""+list.user.uname+"\","+list.user.uid+")'>我也说一句</div>"+
+		                                        	"</div>"+
+		                                            "<div class='message' contentEditable='true'></div>"+
+		                                            "<span><img src='images/qqface/1.gif' class=\"emo\"></span>"+
+		                                            "<div class='emotions'>"+
+		                                            	"<jsp:include page='qqFace.jsp'></jsp:include>"+
+		                                            "</div>"+
+		                                            "<button class='send'>发表</button>"+
+		                                        "</div>"+
+		                                    "</div>"+
+		                                "</div>"+
+		                              "</div>"+
+		                           	  "<div style='clear: both'></div>"+
+		                           "</li>");
 	           			});
 	           			var l = data.length;
 	           			if(l<2){
@@ -140,7 +176,7 @@
     		                                	"<span class='from'>"+list.from.uname+"</span> :回复  <span class='to'>"+list.to.uname+"</span>:&nbsp;"+
     		                                	"<span class='content'>"+list.reply.rcontent+"</span>"+
     		                                "</span>"+
-    		                                "<p align='right'>"+list.reply.rdate+"&nbsp;<span class='replyOne' onclick='reply(this,'"+list.from.uname+"',"+list.from.uid+")'>回复</span>&nbsp;&nbsp;</p>"+
+    		                                "<p align='right'>"+list.reply.rdate+"&nbsp;<span class='replyOne' onclick='rshow(this,\""+(list.from.uname)+"\","+list.from.uid+")'>回复</span>&nbsp;&nbsp;</p>"+
     		                                "<hr/>"+
     		                                "</li>");
     	           				});
@@ -156,7 +192,7 @@
      }
        
      //点击回复，显示在编辑框
-     function reply(reply,toName,toid){
+     function rshow(reply,toName,toid){
    			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
      }
      function replyComment(reply,toName,toid){
@@ -195,20 +231,19 @@
 	                                    <div>
 	                                    	<p align="right">${list.comment.cdate }&nbsp;&nbsp;
 	                                    		<span class="retract" onclick="slideReply(this,${list.rtotal },${list.comment.cid },${list.rtotal })">&nbsp;查看回复(${list.rtotal })&nbsp;&nbsp;</span>
-	                                    		<input type="hidden" value="0"/>
 	                                    	</p>
 	                                    </div>
 	                                    <div class="reply">
 	                                        <ul class="lists">
-	                                            <li class="list">
+	                                           <!--  <li class="list">
 	                                                <img src="images/userdefault.png" class="face">
 	                                                <span class="total">
 	                                                	<span class="from">andy刘德华</span> :回复  <span class="to">沈卓盈</span>:&nbsp;
 	                                                	<span class="content">说的很好说</span>
 	                                                </span>
-	                                                <p align="right">2017-10-11&nbsp;<span class="replyOne" onclick="reply(this,'andy刘德华','1')">回复</span>&nbsp;&nbsp;</p>
+	                                                <p align="right">2017-10-11&nbsp;<span class="replyOne" onclick="rshow(this,'andy刘德华','1')">回复</span>&nbsp;&nbsp;</p>
 	                                                <hr/>
-	                                            </li>
+	                                            </li> -->
 	                                        </ul>
 	                                        <div class="answer">
 	                                        	<div class="bar">

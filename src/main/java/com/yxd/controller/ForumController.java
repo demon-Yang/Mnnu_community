@@ -98,7 +98,7 @@ public class ForumController {
 	@RequestMapping("queryById.do")
 	public String queryById(HttpServletRequest request, @RequestParam("fid")int fid) {
 		ForumView forumView = forumService.queryById(fid);
-		PageHelper.startPage(1,3);
+		PageHelper.startPage(1,2);
 		List<CommentView> commentViewList = forumService.queryComment(fid);
 		if(forumView != null && commentViewList != null) {
 			//获取楼主帖子和个人信息
