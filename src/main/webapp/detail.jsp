@@ -38,11 +38,11 @@
                     $(".container .right").css({"position":"static"});
                 }
             },500);
-        	$(".message").keypress(function(e){
-        		if($(this).text().length > 5 && e.which != 8)
-        			e.preventDefault();
-        	});
-         //点击小图片，显示表情
+        	$(".message").on("paste",function(){
+        			$(this).siblings(".error").text("温馨提示：不能粘贴！！");
+        			return false;
+        	}); 
+           //点击小图片，显示表情
            $(document).on("click",".emo",(function(e){
 	               $(this).parent().next().slideDown(500);//慢慢向下展开
 	               e.stopPropagation();   //阻止冒泡事件
@@ -86,7 +86,7 @@
            			 success:function(data){
            				 if(data == 1)
            					 alert("系统提示", "评论成功！", function () {
-           						 location.href="forum.jsp";
+           						 location.href="forum/queryById.do?fid="+fid+"";
            			            }, {type: 'success', confirmButtonText: '确定'});
            				 else
            					 alert("系统提示", "评论失败！", function () {
@@ -108,7 +108,6 @@
 	           		data:{fid:fid,pageNum:count,pageSize:2},
 	           		success:function(data){
 	           			$.each(data,function(index,list){
-	           				console.log(list);
 	           				$(".comments > ul").append(
 	           						"<li class='per'>"+
 		                            "<div class='inleft'>"+
@@ -165,7 +164,6 @@
     	           		async:"false",
     	           		data:{cid:cid},
     	           		success:function(data){
-    	           			console.log(data);
     	           			if(rtotal != 0){
     	           				$(reply).parent().parent().next().find('.lists').empty();
     	           				$.each(data.list,function(index,list){
@@ -192,11 +190,75 @@
      }
        
      //点击回复，显示在编辑框
-     function rshow(reply,toName,toid){
-   			$(reply).parent().parent().parent().next().children(".message").text("回复 "+toName+" :");
+     function rshow(reply,toname,toid){
+   			$(reply).parents(".lists").next().find(".message").text("回复 "+toname+" :");
+   			$(reply).parents(".lists").next().find(".toname").val(toname);
+   			$(reply).parents(".lists").next().find(".toid").val(toid);
      }
-     function replyComment(reply,toName,toid){
-    	 $(reply).parent().next().text("回复 "+toName+" :");
+     function replyComment(reply,toname,toid){
+    	 $(reply).parent().next().text("");
+    	 $(reply).parents(".answer").find(".toname").val(toname);
+    	 $(reply).parents(".answer").find(".toid").val(toid);
+     }
+     //点击发表，提交数据
+     function send(send,cid,cuid,cuname){
+    	 var uid = '${user.uid}';
+		 if(uid == 0){
+			 loginshow();
+			 return false;
+		 } 
+		 var length = ((String)($(send).siblings(".message").text())).trim().length;
+		 var rcontent = (String)($(send).siblings(".message").html());
+		 //判断是否有表情
+		 var img = rcontent.match(/<img.*?(?:>|\/>)/gi);
+		 //有表情长度增加
+		 if(img != null)
+		 	length = length + img.length;
+		 if(length == 0){
+			 $(send).prev().text("温馨提示：回复不能为空哟！！");
+			 return false;
+		 }
+		 if(rcontent.length > 200){
+			 $(send).prev().text("温馨提示：一个表情算30个字，输入的文字不能超过150个哟！！");
+			 return false;
+		 }
+		 //设置要回复的ID
+    	 var toid = $(send).parent().find(".toid").val();
+  	  	 var toname = $(send).parent().find(".toname").val();
+  	  	 if(toid == "") {
+  	  		 toid = cuid;
+  	  		 toname = cuname;
+  	  	 }
+  	  	 var l = ("回复 "+""+toname+""+" :").length;
+  	  	 var t = rcontent.substring(0,l);
+  	  	 if(("回复 "+""+toname+""+" :") == t){
+  	  		 rcontent = rcontent.substring(l);
+  	  		 var arr = rcontent.match(/($nbsp;)*/gi);
+  	  		 if(rcontent.length == 0){
+		  	  		 $(send).prev().text("温馨提示：回复不能为空哟！！");
+					 return false;
+  	  		 }else{
+  	  			//清除$nbsp;格式的空格
+  	  			if(rcontent.replace(/[ ]|[&nbsp;]/g, '').length == 0){
+	  	  		 $(send).prev().text("温馨提示：回复不能为空哟！！");
+				 return false;
+  	  			}
+  	  		 }
+  	  	 }else{
+  	  		 toid = cuid;
+  	  	 }
+  	  	 $.ajax({
+  	  	 	type:"post",
+			 url:"reply/add.do",
+			 data:{rcontent:rcontent,cid:cid,fromid:uid,toid:toid},
+			 success:function(data){
+				 alert("系统提示", "回复成功！", function () {
+					 	$(send).siblings(".message").text("");
+					 	$(send).siblings(".error").text("");
+					 	queryReply(send,cid,1);
+		            }, {type: 'success', confirmButtonText: '确定'});
+			 }
+  	  	 });
      }
 	</script>
 </head>
@@ -251,12 +313,15 @@
 	                                        		</div>
 	                                        		<div class="say" onclick="replyComment(this,'${list.user.uname }','${list.user.uid }')">我也说一句</div>
 	                                        	</div>
-	                                            <div class="message" contentEditable='true'></div>
+	                                            <div class="message" contentEditable='true' ></div>
 	                                            <span><img src="images/qqface/1.gif" class="emo"></span>
 	                                            <div class="emotions">
 	                                                <jsp:include page="qqFace.jsp"></jsp:include>
 	                                            </div>
-	                                            <button class="send">发表</button>
+	                                            <input type="hidden" value="" class="toname"/>
+	                                            <input type="hidden" value="" class="toid"/>
+	                                            <span class="error"></span>
+	                                            <button class="send" onclick="send(this,${list.comment.cid },${list.user.uid },'${list.user.uname }')">发表</button>
 	                                        </div>
 	                                    </div>
 	                                </div>

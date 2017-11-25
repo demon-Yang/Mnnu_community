@@ -53,7 +53,6 @@ function queryReply(reply,cid,pagenumber){
    		async:"false",
    		data:{cid:cid,pageNum:pagenumber},
    		success:function(data){
-   			console.log(data);
    			$(reply).parents(".answer").prev('.lists').empty();
    				$.each(data.list,function(index,list){
    					$(reply).parents(".answer").prev('.lists').append(
@@ -63,11 +62,11 @@ function queryReply(reply,cid,pagenumber){
                             	"<span class='from'>"+list.from.uname+"</span> :回复  <span class='to'>"+list.to.uname+"</span>:&nbsp;"+
                             	"<span class='content'>"+list.reply.rcontent+"</span>"+
                             "</span>"+
-                            "<p align='right'>"+list.reply.rdate+"&nbsp;<span class='replyOne' onclick='reply(this,'"+list.from.uname+"',"+list.from.uid+")'>回复</span>&nbsp;&nbsp;</p>"+
+                            "<p align='right'>"+list.reply.rdate+"&nbsp;<span class='replyOne' onclick='rshow(this,\""+list.from.uname+"\","+list.from.uid+")'>回复</span>&nbsp;&nbsp;</p>"+
                             "<hr/>"+
                             "</li>");
    				});
-   				$(reply).parents(".pager").html(renderpager(data.pageNum,data.pages,cid));
+   				$(reply).parents(".answer").find(".pager").html(renderpager(data.pageNum,data.pages,cid));
    		}
    	}); 
 }

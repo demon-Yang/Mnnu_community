@@ -1,5 +1,7 @@
 package com.yxd.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.yxd.entity.Reply;
 import com.yxd.service.ReplyService;
 import com.yxd.view.ReplyView;
 
@@ -21,6 +24,25 @@ import com.yxd.view.ReplyView;
 public class ReplyController {
 	@Resource
 	private ReplyService replyService;
+	/**
+	 * 添加评论
+	 * */
+	@ResponseBody
+	@RequestMapping("/add.do")
+	public String add(HttpServletRequest request,@RequestParam("rcontent")String rcontent,@RequestParam("cid")int cid,
+			@RequestParam("fromid")int fromid,@RequestParam("toid")int toid) {
+		Reply reply = new Reply();
+		reply.setCid(cid);
+		reply.setRcontent(rcontent);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String rdate = sdf.format(new Date());
+		reply.setRdate(rdate);
+		reply.setRread("no");
+		reply.setFromid(fromid);
+		reply.setToid(toid);
+		replyService.add(reply);
+		return "1";
+	}
 	/**
 	 * 点击查看评论
 	 * */

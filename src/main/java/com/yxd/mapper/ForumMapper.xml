@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yxd.dao.ForumDao">
 
 	<resultMap type="ForumView" id="forumList">
+		<id property="" column=""/>
 		<result property="cTotal" column="ctotal"/>
 		<association property="fList" javaType="com.yxd.entity.Forum">
 			<id property="fid" column="fid"/>
@@ -23,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<resultMap type="ForumView" id="forumHot">
+		<id property="" column=""/>
 		<association property="fList" javaType="com.yxd.entity.Forum">
 			<id property="fid" column="fid"/>
 			<result property="ftitle" column="ftitle"/>

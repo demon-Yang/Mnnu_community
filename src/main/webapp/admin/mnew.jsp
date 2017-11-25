@@ -49,14 +49,12 @@
                         <p align="right">
                             <a>发表闽师新闻</a>
                         </p>
-                        <hr>
                         <div class="lists">
                             <ul>
                                <c:forEach items="${mnewList }" var="list">
                                 <li>
                                     <p class="title">${list.ntitle }</p>
                                     <p class="function" align="right"><span>${list.ndate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/admin/news/findOne.do?nid=${list.nid }">查看</a>&nbsp;&nbsp;<a href="#" onclick="return deleteOne(${list.nid})">删除</a></p>
-                                    <hr/>
                                 </li>
                                 </c:forEach>
                             </ul>

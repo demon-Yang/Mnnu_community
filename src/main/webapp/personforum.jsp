@@ -22,43 +22,42 @@
                 <div class="private">
                     <p>>><span class="nav">我的帖子</span></p>
                     <p align="right">
-                        <a href="personfdetail.jsp">我的回帖</a>
+                    	<a href="personfdetail.jsp">我的回复</a>
+                    	<a href="personfdetail.jsp">回复我的</a>
+                    	<a href="personfdetail.jsp">我的评论</a>
+                        <a href="personfdetail.jsp">评论我的</a>
                         <a href="personfpost.jsp">我要发帖</a>
                     </p>
-                    <hr>
                     <div class="lists">
                         <ul>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
+                                <p class="function" align="right"><span>生活兴趣类</span>&nbsp;&nbsp;<span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a><a>删除</a></p>
                             </li>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
                                 <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
                             </li>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
                                 <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
                             </li>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
                                 <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
                             </li>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
                                 <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
                             </li>
                             <li>
                                 <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
                                 <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                                <hr/>
                             </li>
-
+							<li>
+                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
+                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
+                            </li>
                         </ul>
                     </div>
                 </div>

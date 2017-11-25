@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxd.dao.CommentDao">
 	<resultMap type="CommentView" id="commentList">
+		<id property="" column=""/>
 		<result property="rtotal" column="rtotal"/>
 		<association property="comment" javaType="com.yxd.entity.Comment">
 			<id property="cid" column="cid"/>
@@ -19,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<resultMap type="com.yxd.view.ReplyView" id="replyList">
+			<id property="" column=""/>
 			<association property="reply" javaType="com.yxd.entity.Reply">
 				<id property="rid" column="rid"/>
 				<result property="rcontent" column="rcontent"/>

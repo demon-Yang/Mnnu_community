@@ -258,13 +258,14 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .comments .comment .reply .answer .bar .pager{width: 400px;height: 30px;margin-left: 10px;float: left;line-height: 30px;}
 .detail .container .left .comments .comment .reply .answer .bar .pager ul.pages{display: block; border: none; text-transform: uppercase; font-size: 12px; margin-top:7px; padding: 0; font: normal 13px "Microsoft YaHei"; font-family: "Microsoft YaHei","微软雅黑","sans-serif";}
 .detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li{float: left; padding: 2px 4px; list-style: none; background-color: #eee; margin-left: 6px; color: #888; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
-.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li a{color: #888;}
+.detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li a{color: #888;display: inline-block;}
 .detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li:hover{ color: #fff; background-color: #3c4852; }
 .detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgEmpty{/* display: none ;  */}
 .detail .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgCurrent{color: #fff; font-weight: 700; background-color: #29c06d;}
 .detail .container .left .comments .comment .reply .answer .bar .say{float: right;width: 70px;height: 20px;background-color: #ffffff;border: 1px solid #bfbdbd;margin: 7px 12px 0 0;border-radius: 2px;text-align: center;cursor: pointer;}
 .detail .container .left .comments .comment .reply .answer .message{width: 500px; max-height: 150px;margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;padding-left: 10px;}
 .detail .container .left .comments .comment .reply .answer .message img{vertical-align: -5px;}
+.detail .container .left .comments .comment .reply .answer .error{margin-left: 110px;color: red;}
 .detail .container .left .comments .comment .reply .answer button{margin-bottom:10px;margin-left: 460px; width: 50px; height: 25px; background-color: #72b8ba; border-radius: 3px;}
 .detail .container .left .comments .comment .reply .answer span img{height: 24px;width: 24px;margin-left: 10px;display: block;}
 .detail .container .left .comments .comment .reply .answer .emotions{height: 120px;width: 365px;margin-left: 10px;background-color: #FFFFFF;position:absolute;display: none;}
@@ -388,12 +389,18 @@ body{background: url("../images/bg.jpg");}
 .personforum .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
 .personforum .container .right .private p{font-size: 17px;}
 .personforum .container .right .private p span{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.personforum .container .right .private p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #979797;margin-right: 10px;font-size: 13px;margin-bottom: 5px;}
-.personforum .container .right .private .lists li{margin: 5px;}
-.personforum .container .right .private .lists .title{height: 25px;line-height: 25px;font-size: 15px;}
+.personforum .container .right .private p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;border: 1px solid #d4d2d2;margin-right: 10px;font-size: 13px;margin-bottom: 5px;color: #443f3f;}
+.personforum .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;}
+.personforum .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personforum .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personforum .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personforum .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personforum .container .right .private .lists li:nth-child(6){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personforum .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+.personforum .container .right .private .lists .title{height: 25px;line-height: 25px;font-size: 15px;padding: 5px 0 0 10px;}
 .personforum .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;}
 .personforum .container .right .private .lists .function span{font-size: 13px;}
-.personforum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #979797;}
+.personforum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
 
 
 /*personfpost.html*/
