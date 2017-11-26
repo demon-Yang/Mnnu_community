@@ -179,11 +179,13 @@ body{background: url("../images/bg.jpg");}
 .newslist .container .right .cont li:nth-child(1){margin-top: 20px;}
 .newslist .container .right .cont .title { font-size: 15px;padding: 10px 0px 10px 5px;margin-left: 30px;}
 .newslist .container .right .cont .title a{font-size: 15px;}
-.newslist .container .right .cont .title span{display: inline-block;background-color: #ca623a;height: 20px;width: 33px;text-align: center;font-size: 14px;border-radius: 4px;vertical-align: -3px;margin-right: 8px;}
+.newslist .container .right .cont .title span{display: inline-block;background-color: #ca623a;height: 25px;width: 33px;text-align: center;font-size: 14px;border-radius: 4px;vertical-align: -3px;margin-right: 8px;}
 .newslist .container .right .cont .time{color: #999999; }
 .newslist .container .right .pagenav p{margin-right: 20px;font-size: 17px;}
-.newslist .container .right .pagenav p a{font-size: 14px;color: #76a72c;}
-.newslist .container .right .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
+.newslist .container .right .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;}
+.newslist .container .right .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.newslist .container .right .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.newslist .container .right .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 /*forum.html*/
 
@@ -191,14 +193,14 @@ body{background: url("../images/bg.jpg");}
 .forum .container{position: relative;}
 .forum .container .left{width: 700px;float: left;min-height: 750px;background: url("../images/forumbg.jpg");margin-top: 10px;border-radius: 5px; }
 .forum .container .left .itab{height:37px; border-bottom:solid 1px #727e85;margin-top: 10px;}
-.forum .container .left .itab li{float:left;height:37px; line-height:37px;background-color: #d3d8de; border-right:solid 1px #727e85;}
+.forum .container .left .itab li{float:left;height:37px; line-height:37px;background-color: #c9cbce; border-right:solid 1px #727e85;}
 .forum .container .left .itab ul li a{font-size:14px; color:#000; padding-left:25px; padding-right:25px;}
 .forum .container .left .itab ul li a.selected{ height:37px; display:block; background: url("../images/forumbg.jpg"); font-weight:bold;border-top: solid 2px #00a4ac;border-left: solid 1px #d0dee5;}
-.forum .container .left .post{display: block; float: left; width: 80px; background-color: #8a8682; line-height: 30px; height: 30px; font-size: 16px; text-align: center; border-radius: 4px; margin-top: 10px;letter-spacing: 5px;margin-left: 10px;}
+.forum .container .left .post{display: block; float: left; width: 70px; background-color: #729054; line-height: 30px; height: 30px; font-size: 16px; text-align: center; border-radius: 4px; margin-top: 10px;letter-spacing: 5px;margin-left: 10px;border: 1px solid #d4dbdf;}
 .forum .container .left .seraches{margin-top: 10px;height: 45px;margin-left: 300px;}
 .forum .container .left .seraches input[type='text']{width: 150px; height: 32px; line-height: 32px; text-indent: 10px;border-radius: 4px;}
 .forum .container .left .seraches select{width: 130px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center; }
-.forum .container .left .seraches input[type='button']{width: 80px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center;background-color: #a7afba;}
+.forum .container .left .seraches input[type='button']{width: 80px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center;background-color: #c5b1a0;}
 .forum .container .left .list li{margin-top: 10px;margin-left: 5px;}
 .forum .container .left .list h2{height: 25px;}
 .forum .container .left .list h2 a{font-size: 14px;}
@@ -236,7 +238,7 @@ body{background: url("../images/bg.jpg");}
 .detail .container .left .landlord .name{font-size: 18px;color: #6cb56e;}
 .detail .container .left .landlord .motto{color: #999999;}
 .detail .container .left .landlord p{margin-right: 20px;}
-.detail .container .left .landlord .gocomment{display: inline-block; background-color: #8ac0c1; width: 95px; border-radius: 4px; height: 30px; font-size: 17px; margin-right: 50px;margin-bottom: 7px;}
+.detail .container .left .landlord .gocomment{display: inline-block; background-color: #84ad7c; width: 92px; border-radius: 5px; height: 30px; font-size: 16px; margin-right: 50px;margin-bottom: 7px;}
 .detail .container .left .landlord .type{display: inline-block;background-color: #b1b8bc;width: 80px;border-radius: 4px;text-align: center;}
 .detail .container .left .landlord .reply{display: inline-block;background-color: #d4dbdf;width: 50px;border-radius: 4px;text-align: center;}
 .detail .container .left .landlord .title{font-size: 21px;text-align: center;height: 50px;line-height: 50px;}
@@ -348,6 +350,7 @@ body{background: url("../images/bg.jpg");}
 .person .container .left ul li:nth-child(2){background-color: #6cacae;}
 .person .container .left ul li:nth-child(3){background-color: #60ab78;}
 .person .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.person .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .person .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .person .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .person .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
@@ -384,12 +387,14 @@ body{background: url("../images/bg.jpg");}
 .personforum .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personforum .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personforum .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personforum .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personforum .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personforum .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personforum .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
-.personforum .container .right .private p{font-size: 17px;}
-.personforum .container .right .private p span{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.personforum .container .right .private p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;border: 1px solid #d4d2d2;margin-right: 10px;font-size: 13px;margin-bottom: 5px;color: #443f3f;}
+.personforum .container .right .private >p{font-size: 17px;}
+.personforum .container .right .private >p span{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.personforum .container .right .private >p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;border: 1px solid #d4d2d2;margin-right: 10px;font-size: 13px;margin-bottom: 5px;color: #443f3f;}
+.personforum .container .right .private .lists{height: 500px;}
 .personforum .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;}
 .personforum .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
 .personforum .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
@@ -399,8 +404,14 @@ body{background: url("../images/bg.jpg");}
 .personforum .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
 .personforum .container .right .private .lists .title{height: 25px;line-height: 25px;font-size: 15px;padding: 5px 0 0 10px;}
 .personforum .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;}
-.personforum .container .right .private .lists .function span{font-size: 13px;}
-.personforum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
+.personforum .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
+.personforum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
+.personforum .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.personforum .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.personforum .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.personforum .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.personforum .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 
 /*personfpost.html*/
@@ -413,6 +424,7 @@ body{background: url("../images/bg.jpg");}
 .personfpost .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personfpost .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personfpost .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personfpost .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personfpost .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personfpost .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personfpost .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
@@ -428,7 +440,7 @@ body{background: url("../images/bg.jpg");}
 
 /*personfdetail.html*/
  
-/*个人回复*/
+/*个人评论*/
 .personfdetail .container{margin-top: 10px;}
 .personfdetail .container .left{width: 200px;background-color: #ffffff;height: 200px;float: left;}
 .personfdetail .container .left ul li{font-size: 30px;text-align: center;height: 50px;line-height: 50px;border-bottom: solid 1px #787878;border-radius: 5px;}
@@ -436,19 +448,143 @@ body{background: url("../images/bg.jpg");}
 .personfdetail .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personfdetail .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personfdetail .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personfdetail .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personfdetail .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personfdetail .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personfdetail .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
 .personfdetail .container .right .private p{height: 30px;font-size: 17px;line-height: 30px;}
 .personfdetail .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.personfdetail .container .right .private .lists li{margin: 5px;}
-.personfdetail .container .right .private .lists .title {height: 30px;line-height: 30px;font-size: 15px;}
-.personfdetail .container .right .private .lists .title .to{color: #666666;}
-.personfdetail .container .right .private .lists .title span{height: 30px;line-height: 30px;font-size: 17px;}
-.personfdetail .container .right .private .lists .source {height: 30px;line-height: 30px;font-size: 15px;}
-.personfdetail .container .right .private .lists .source span{height: 30px;line-height: 30px;font-size: 18px;}
+.personfdetail .container .right .private .lists{height: 520px;}
+.personfdetail .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
+.personfdetail .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfdetail .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfdetail .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personfdetail .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfdetail .container .right .private .lists li:nth-child(6){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfdetail .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+
+.personfdetail .container .right .private .lists .title {height: 30px;line-height: 30px;font-size: 15px;padding: 5px 0 0 10px;}
+.personfdetail .container .right .private .lists .title .to{color: #7cb720;}
+.personfdetail .container .right .private .lists .title span{height: 30px;line-height: 30px;font-size: 16px;}
+.personfdetail .container .right .private .lists .source {height: 30px;line-height: 30px;font-size: 15px;padding: 0 0 0 10px;}
+.personfdetail .container .right .private .lists .source span{height: 30px;line-height: 30px;font-size: 16px;}
+.personfdetail .container .right .private .lists .source .ftitle{color: #7599dc;font-size: 15px;}
 .personfdetail .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom:5px;}
-.personfdetail .container .right .private .lists .function a{display:inline-block;height: 24px;font-size: 10px;width:40px;text-align: center;border-radius: 4px; line-height: 24px;background-color: #979797;}
+.personfdetail .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
+.personfdetail .container .right .private .lists .function a{display:inline-block;height: 24px;font-size: 10px;width:40px;text-align: center;border-radius: 4px; line-height: 24px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
+.personfdetail .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.personfdetail .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.personfdetail .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.personfdetail .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.personfdetail .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
+
+
+/*personfreply.html*/
+ 
+/*个人回复*/
+.personfreply .container{margin-top: 10px;}
+.personfreply .container .left{width: 200px;background-color: #ffffff;height: 200px;float: left;}
+.personfreply .container .left ul li{font-size: 30px;text-align: center;height: 50px;line-height: 50px;border-bottom: solid 1px #787878;border-radius: 5px;}
+.personfreply .container .left ul li:nth-child(1){background-color: #a0a684;}
+.personfreply .container .left ul li:nth-child(2){background-color: #6cacae;}
+.personfreply .container .left ul li:nth-child(3){background-color: #60ab78;}
+.personfreply .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personfreply .container .left ul li:nth-child(5){background-color: #e3ab60;}
+.personfreply .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
+.personfreply .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
+.personfreply .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
+.personfreply .container .right .private p{height: 30px;font-size: 17px;line-height: 30px;}
+.personfreply .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.personfreply .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
+.personfreply .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfreply .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfreply .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personfreply .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfreply .container .right .private .lists li:nth-child(6){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfreply .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+
+.personfreply .container .right .private .lists .title {height: 30px;line-height: 30px;font-size: 15px;padding: 5px 0 0 10px;}
+.personfreply .container .right .private .lists .title .to{color: #666666;}
+.personfreply .container .right .private .lists .title span{height: 30px;line-height: 30px;font-size: 17px;}
+.personfreply .container .right .private .lists .source {height: 30px;line-height: 30px;font-size: 15px;padding: 0 0 0 10px;}
+.personfreply .container .right .private .lists .source span{height: 30px;line-height: 30px;font-size: 18px;}
+.personfreply .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom:5px;}
+.personfreply .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
+.personfreply .container .right .private .lists .function a{display:inline-block;height: 24px;font-size: 10px;width:40px;text-align: center;border-radius: 4px; line-height: 24px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
+
+
+/*personfmsg.html*/
+
+/*评论我的*/
+.personfmsg .container{margin-top: 10px;}
+.personfmsg .container .left{width: 200px;background-color: #ffffff;height: 200px;float: left;}
+.personfmsg .container .left ul li{font-size: 30px;text-align: center;height: 50px;line-height: 50px;border-bottom: solid 1px #787878;border-radius: 5px;}
+.personfmsg .container .left ul li:nth-child(1){background-color: #a0a684;}
+.personfmsg .container .left ul li:nth-child(2){background-color: #6cacae;}
+.personfmsg .container .left ul li:nth-child(3){background-color: #60ab78;}
+.personfmsg .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personfmsg .container .left ul li:nth-child(5){background-color: #e3ab60;}
+.personfmsg .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
+.personfmsg .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
+.personfmsg .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
+.personfmsg .container .right .private p{height: 30px;font-size: 17px;line-height: 30px;}
+.personfmsg .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.personfmsg .container .right .private p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;border: 1px solid #d4d2d2;margin-right: 10px;font-size: 13px;margin-bottom: 5px;color: #443f3f;}
+.personfmsg .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
+.personfmsg .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfmsg .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfmsg .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personfmsg .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personfmsg .container .right .private .lists li:nth-child(6){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personfmsg .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+
+.personfmsg .container .right .private .lists .title {height: 30px;line-height: 30px;font-size: 15px;padding: 5px 0 0 10px;}
+.personfmsg .container .right .private .lists .title .to{color: #666666;}
+.personfmsg .container .right .private .lists .title span{height: 30px;line-height: 30px;font-size: 17px;}
+.personfmsg .container .right .private .lists .source {height: 30px;line-height: 30px;font-size: 15px;padding: 0 0 0 10px;}
+.personfmsg .container .right .private .lists .source span{height: 30px;line-height: 30px;font-size: 18px;}
+.personfmsg .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom:5px;}
+.personfmsg .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
+.personfmsg .container .right .private .lists .function a{display:inline-block;height: 24px;font-size: 10px;width:40px;text-align: center;border-radius: 4px; line-height: 24px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
+
+
+/*personrmsg.html*/
+
+/*回复我的*/
+.personrmsg .container{margin-top: 10px;}
+.personrmsg .container .left{width: 200px;background-color: #ffffff;height: 200px;float: left;}
+.personrmsg .container .left ul li{font-size: 30px;text-align: center;height: 50px;line-height: 50px;border-bottom: solid 1px #787878;border-radius: 5px;}
+.personrmsg .container .left ul li:nth-child(1){background-color: #a0a684;}
+.personrmsg .container .left ul li:nth-child(2){background-color: #6cacae;}
+.personrmsg .container .left ul li:nth-child(3){background-color: #60ab78;}
+.personrmsg .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personrmsg .container .left ul li:nth-child(5){background-color: #e3ab60;}
+.personrmsg .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
+.personrmsg .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
+.personrmsg .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
+.personrmsg .container .right .private p{height: 30px;font-size: 17px;line-height: 30px;}
+.personrmsg .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.personrmsg .container .right .private p a{display: inline-block;width:70px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;border: 1px solid #d4d2d2;margin-right: 10px;font-size: 13px;margin-bottom: 5px;color: #443f3f;}
+.personrmsg .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
+.personrmsg .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personrmsg .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personrmsg .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personrmsg .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personrmsg .container .right .private .lists li:nth-child(6){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personrmsg .container .right .private .lists li:nth-child(7){background-color: #dff0d8;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+
+.personrmsg .container .right .private .lists .title {height: 30px;line-height: 30px;font-size: 15px;padding: 5px 0 0 10px;}
+.personrmsg .container .right .private .lists .title .to{color: #666666;}
+.personrmsg .container .right .private .lists .title span{height: 30px;line-height: 30px;font-size: 17px;}
+.personrmsg .container .right .private .lists .source {height: 30px;line-height: 30px;font-size: 15px;padding: 0 0 0 10px;}
+.personrmsg .container .right .private .lists .source span{height: 30px;line-height: 30px;font-size: 18px;}
+.personrmsg .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom:5px;}
+.personrmsg .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
+.personrmsg .container .right .private .lists .function a{display:inline-block;height: 24px;font-size: 10px;width:40px;text-align: center;border-radius: 4px; line-height: 24px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
 
 
 /*personmarket.html*/
@@ -461,6 +597,7 @@ body{background: url("../images/bg.jpg");}
 .personmarket .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personmarket .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personmarket .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personmarket .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personmarket .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personmarket .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personmarket .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
@@ -484,6 +621,7 @@ body{background: url("../images/bg.jpg");}
 .personmcheck .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personmcheck .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personmcheck .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personmcheck .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personmcheck .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personmcheck .container > .right{width: 800px;height: 700px;float: right;background: url("../images/personbg.png") no-repeat;}
 .personmcheck .container > .right .private{margin:40px 60px;height: 630px;width: 680px;}
@@ -511,6 +649,7 @@ body{background: url("../images/bg.jpg");}
 .personmedit .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personmedit .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personmedit .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personmedit .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personmedit .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personmedit .container > .right{width: 800px;height: 700px;float: right;background: url("../images/personbg.png") no-repeat;}
 .personmedit .container > .right .private{margin:40px 60px;height: 630px;width: 680px;}
@@ -547,6 +686,7 @@ body{background: url("../images/bg.jpg");}
 .personnotes .container .left ul li:nth-child(2){background-color: #6cacae;}
 .personnotes .container .left ul li:nth-child(3){background-color: #60ab78;}
 .personnotes .container .left ul li:nth-child(4){background-color: #c0c0c0;}
+.personnotes .container .left ul li:nth-child(5){background-color: #e3ab60;}
 .personnotes .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personnotes .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personnotes .container .right .private{margin:40px 60px;height: 630px;width: 680px;}

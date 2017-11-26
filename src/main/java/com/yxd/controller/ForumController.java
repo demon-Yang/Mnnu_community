@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Forum;
@@ -91,6 +92,20 @@ public class ForumController {
 		request.getSession().setAttribute("serachText",serach);
 		request.getSession().setAttribute("condition",condition);
 		return "redirect:/forum.jsp";
+	}
+	/**
+	 * 按UID查询帖子
+	 * */
+	@RequestMapping("queryByUid.do")
+	public String queryByUid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+		PageHelper.startPage(pageNum,pageSize);
+		List<Forum> list = forumService.queryByUid(uid);
+		PageInfo<Forum> pfpage = new PageInfo<>(list);
+		request.getSession().setAttribute("pfpage", pfpage);
+		return "redirect:/personforum.jsp";
 	}
 	/**
 	 * 按FID查询帖子

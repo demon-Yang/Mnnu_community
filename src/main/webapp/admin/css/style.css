@@ -108,8 +108,10 @@ body{background: url("../images/adminbg.jpg");}
 .academic .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .academic .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
 .academic .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
-.academic .container .right .private .pagenav p a{font-size: 14px;color: #76a72c;}
-.academic .container .right .private .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
+.academic .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.academic .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.academic .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.academic .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 
 /*mnew.html*/
@@ -147,8 +149,10 @@ body{background: url("../images/adminbg.jpg");}
 .mnew .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .mnew .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
 .mnew .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
-.mnew .container .right .private .pagenav p a{font-size: 14px;color: #76a72c;}
-.mnew .container .right .private .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
+.mnew .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;}
+.mnew .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.mnew .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.mnew .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 /*hnew.html*/
 
@@ -185,8 +189,10 @@ body{background: url("../images/adminbg.jpg");}
 .hnew .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .hnew .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
 .hnew .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
-.hnew .container .right .private .pagenav p a{font-size: 14px;color: #76a72c;}
-.hnew .container .right .private .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
+.hnew .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.hnew .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.hnew .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.hnew .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 /*notice.html*/
 
@@ -223,8 +229,11 @@ body{background: url("../images/adminbg.jpg");}
 .notice .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .notice .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
 .notice .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
-.notice .container .right .private .pagenav p a{font-size: 14px;color: #76a72c;}
-.notice .container .right .private .pagenav p a:hover{background-color: #ffae88;border-radius: 1px;}
+.notice .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.notice .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.notice .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.notice .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
+
 
 
 /*forum.html*/
@@ -388,6 +397,6 @@ body{background: url("../images/adminbg.jpg");}
 .edit .container .right p{height: 30px;line-height: 30px;margin-left: 10px;margin-bottom: 15px;}
 .edit .container .right p input[type='text']{width: 350px; height: 25px; line-height: 25px; text-indent: 10px;border-radius: 4px;}
 .edit .container .right textarea{width:660px;height:450px;}
-.edit .container .right input[type='button']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #a7afba;margin-left: 590px;}
+.edit .container .right input[type='button']{width: 70px; height: 30px; line-height: 25px;border-radius: 4px;background-color: #b1968d;margin-left: 590px;}
 .edit .container .right #ntitle_info{color: red;font-family: cursive;font-size: 15px;}
 .edit .container .right .ncontent_info{color: red;font-family: cursive;font-size: 17px;display: inline-block;margin-left: 290px;}

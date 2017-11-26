@@ -36,6 +36,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<result property="uname" column="tuname"/>
 			</association>
 	</resultMap>
+	<resultMap type="com.yxd.view.PCommentView" id="pcommentList">
+		<id property="" column=""/>
+		<result property="uname" column="uname"/>
+		<result property="ftitle" column="ftitle"/>
+		<association property="comment" javaType="com.yxd.entity.Comment">
+			<id property="cid" column="cid"/>
+			<result property="ccontent" column="ccontent"/>
+			<result property="cdate" column="cdate"/>
+			<result property="fid" column="fid"/>
+		</association>
+	</resultMap>
 	<!-- 发表评论 -->
 	<insert id="edit" parameterType="Comment">
 		insert into tb_comment values(null,#{ccontent},#{cdate},#{cimage},#{cread},#{fid},#{uid})
@@ -47,5 +58,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join tb_user u on c.uid = u.uid
 		left join tb_reply r on r.cid = c.cid
 		where f.fid = #{fid} group by c.cid
+		order by c.cid desc
+	</select>
+	<!-- 根据用户ID查询对应的评论 -->
+	<select id="queryByUid" parameterType="int" resultMap="pcommentList">
+		select c.cid,c.ccontent,c.cdate,f.fid,u.uname,f.ftitle from tb_comment c
+		left join tb_user u on u.uid = (select uid from tb_forum where fid = c.fid)
+		left join tb_forum f on f.fid = c.fid 
+		where c.uid = #{uid}
+		order by c.cid desc
 	</select>
 </mapper>

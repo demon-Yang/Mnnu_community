@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 按类型查找新闻 -->
 	<select id="queryByType" parameterType="string" resultMap="newslist">
-		select nid,ntitle,ndate from tb_news where ntype = #{ntype}
+		select nid,ntitle,ndate from tb_news where ntype = #{ntype} order by nid desc 
 	</select>
 	<!-- 多条件查找新闻  -->
 	<select id="queryByCondition" resultMap="newslist">
@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<bind name="ndate_pattern" value="'%'+ndate+'%'"/>
 			and ndate like #{ndate_pattern}
 		</if>
+		order by nid desc
 	</select>
 	<!-- 删除新闻 -->
 	<delete id="delete" parameterType="int">

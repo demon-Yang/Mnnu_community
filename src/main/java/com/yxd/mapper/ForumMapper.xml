@@ -42,6 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="edit">
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
 	</insert>
+	<!--按用户查找对应的帖子-->	
+	<select id="queryByUid" parameterType="int" resultType="Forum">
+		select * from tb_forum where uid = #{uid} order by fid desc 
+	</select>
 	<!-- 查询类型列表的帖子 -->
 	<select id="queryList" resultMap="forumList">
 		select f.*,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
@@ -53,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and u.uname like #{text_pattern} 
 		</if>
 		group by f.fid
+		order by fid desc
 	</select>
 	<!-- 按关键字查询类型列表的帖子 -->
 	<select id="queryKey" resultMap="forumList">
@@ -65,6 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and f.ftitle like #{text_pattern} 
 		</if>
 		group by f.fid
+		order by fid desc
 	</select>
 	<!-- 按FID查询帖子 -->
 	<select id="queryById" resultMap="forumList" parameterType="int">

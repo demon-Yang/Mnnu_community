@@ -54,7 +54,7 @@
                             	<c:forEach items="${acadList }" var="list">
                                 <li>
                                     <p class="title">${list.ntitle }</p>
-                                    <p class="function" align="right"><span>${list.ndate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/admin/news/findOne.do?nid=${list.nid }">查看</a>&nbsp;&nbsp;<a href="#" onclick="return deleteOne(${list.nid})">删除</a></p>
+                                    <p class="function" align="right"><span>${list.ndate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/admin/news/findOne.do?nid=${list.nid }" target="_blank">查看</a>&nbsp;&nbsp;<a href="#" onclick="return deleteOne(${list.nid})">删除</a></p>
                                 </li>
                                 </c:forEach>
                             </ul>
@@ -62,7 +62,7 @@
                         <c:if test="${acadPage != null}">
 	                        <div class="pagenav">
 	                        <p align="right">
-								第${acadPage.pageNum }页/共${acadPage.pages }页 
+								<span class="pgTotal">第${acadPage.pageNum }页/共${acadPage.pages }页 </span>
 								<a href="/Mnnu_community/admin/news/queryByType.do?ntype=学术报告&pageNum=1">首页</a>
 								<c:if test="${acadPage.pageNum > 1 }">	
 									<a href="/Mnnu_community/admin/news/queryByType.do?ntype=学术报告&pageNum=${acadPage.pageNum-1 }">上一页</a>
@@ -94,10 +94,10 @@
 								<c:forEach var="i" begin="${begin }" end="${end }">
 									<c:choose>
 										<c:when test="${i eq acadPage.pageNum }">
-											[${i }]
+											<span class="pgCurrent">${i }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="/Mnnu_community/admin/news/queryByType.do?ntype=学术报告&pageNum=${i}">[${i }]</a>	
+											<a href="/Mnnu_community/admin/news/queryByType.do?ntype=学术报告&pageNum=${i}">${i }</a>	
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>		

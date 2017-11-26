@@ -83,9 +83,9 @@
                 <c:if test="${page != null}">
                       <div class="pagenav">
                       <p align="right">
-					第${page.pageNum }页/共${page.pages }页 
+					<span class="pgTotal">第${page.pageNum }页/共${page.pages }页</span> 
 					<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=1&ntitle=${sntitle }&ndate=${sndate }">首页</a>
-					<c:if test="${acadPage.pageNum > 1 }">	
+					<c:if test="${page.pageNum > 1 }">	
 						<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${page.pageNum-1 }&ntitle=${sntitle }&ndate=${sndate }">上一页</a>
 					</c:if>
 					<%-- 计算begin、end --%>
@@ -115,10 +115,10 @@
 					<c:forEach var="i" begin="${begin }" end="${end }">
 						<c:choose>
 							<c:when test="${i eq page.pageNum }">
-								[${i }]
+								      <span class="pgCurrent">${i }</span>
 							</c:when>
 							<c:otherwise>
-								<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${i}&ntitle=${sntitle }&ndate=${sndate }">[${i }]</a>	
+								<a href="/Mnnu_community/admin/news/queryList.do?ntype=${nlistType }&pageNum=${i}&ntitle=${sntitle }&ndate=${sndate }">${i }</a>	
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>		

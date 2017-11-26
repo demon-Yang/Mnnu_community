@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,44 +23,67 @@
                 <div class="private">
                     <p>>><span class="nav">我的帖子</span></p>
                     <p align="right">
-                    	<a href="personfdetail.jsp">我的回复</a>
-                    	<a href="personfdetail.jsp">回复我的</a>
-                    	<a href="personfdetail.jsp">我的评论</a>
-                        <a href="personfdetail.jsp">评论我的</a>
+                    	<a href="personfreply.jsp">我的回复</a>
+                    	<a href="comment/queryByUid.do">我的评论</a>
                         <a href="personfpost.jsp">我要发帖</a>
                     </p>
                     <div class="lists">
                         <ul>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>生活兴趣类</span>&nbsp;&nbsp;<span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a><a>删除</a></p>
-                            </li>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
-							<li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;<a>查看</a>&nbsp;&nbsp;<a>删除</a></p>
-                            </li>
+                        	<c:forEach items="${pfpage.list }" var="list">
+	                            <li>
+	                                <p class="title">${list.ftitle }</p>
+	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a target="_blank">查看</a><a>删除</a></p>
+	                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
+                     <div class="pagenav">
+                       <p align="right">
+						<span class="pgTotal">第${pfpage.pageNum }页/共${pfpage.pages }页 </span>
+						<a href="forum/queryByUid.do?pageNum=1">首页</a>
+						<c:if test="${pfpage.pageNum > 1 }">	
+							<a href="forum/queryByUid.do?pageNum=${pfpage.pageNum-1 }">上一页</a>
+						</c:if>
+						<%-- 计算begin、end --%>
+						<c:choose>
+							<%-- 如果总页数不足5页，那么把所有的页数都显示出来！ --%>
+							<c:when test="${pfpage.pages <= 5 }">
+								<c:set var="begin" value="1" />
+								<c:set var="end" value="${pfpage.pages }" />
+							</c:when>
+							<c:otherwise>
+								<%-- 当总页数>5时，通过公式计算出begin和end --%>
+								<c:set var="begin" value="${pfpage.pageNum-2 }" />
+								<c:set var="end" value="${pfpage.pageNum+2 }" />	
+								<%-- 头溢出 --%>
+								<c:if test="${begin < 1 }">
+									<c:set var="begin" value="1" />
+									<c:set var="end" value="5" />
+								</c:if>	
+								<%-- 尾溢出 --%>
+								<c:if test="${end > pfpage.pages }">
+									<c:set var="begin" value="${pfpage.pages - 4 }" />
+									<c:set var="end" value="${pfpage.pages }" />
+								</c:if>	
+							</c:otherwise>
+						</c:choose>
+						<%-- 循环遍历页码列表 --%>
+						<c:forEach var="i" begin="${begin }" end="${end }">
+							<c:choose>
+								<c:when test="${i eq pfpage.pageNum }">
+									<span class="pgCurrent">${i }</span>
+								</c:when>
+								<c:otherwise>
+									<a href="forum/queryByUid.do?pageNum=${i}">${i }</a>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>		
+						<c:if test="${pfpage.pageNum < pfpage.pages }">
+							<a href="forum/queryByUid.do?pageNum=${pfpage.pageNum+1}">下一页</a>
+						</c:if>
+						<a href="forum/queryByUid.do?pageNum=${pfpage.pages}">尾页</a>
+						</p>
+					</div>
                 </div>
             </div>
         </div>

@@ -12,6 +12,8 @@ import com.yxd.view.ForumView;
 public interface ForumDao {
 	//编辑新闻
 	public int edit(@Param("forum")Forum forum,@Param("uid")int uid);
+	//按用户查找对应的帖子
+	public List<Forum> queryByUid(@Param("uid")int uid);
 	//查询类型列表
 	public List<ForumView> queryList(@Param("ftype")String ftype,@Param("serach")String serach);
 	//按关键字查询类型列表

@@ -60,7 +60,7 @@
             			 success:function(data){
             				 if(data == 1)
             					 alert("系统提示", "发帖成功！", function () {
-            						 location.href="forum.jsp";
+            						 location.href="forum/queryByUid.do";
             			            }, {type: 'success', confirmButtonText: '确定'});
             				 else
             					 alert("系统提示", "发帖失败！", function () {

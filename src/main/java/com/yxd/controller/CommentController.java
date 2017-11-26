@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.yxd.entity.Comment;
@@ -30,6 +31,7 @@ import com.yxd.entity.User;
 import com.yxd.service.CommentService;
 import com.yxd.util.HtmlIOUtil;
 import com.yxd.view.CommentView;
+import com.yxd.view.PCommentView;
 
 @Controller
 @RequestMapping("/comment")
@@ -57,6 +59,29 @@ public class CommentController {
 		Gson gson = new Gson();
 		String data = gson.toJson(commentViewList);
 		return data;
+	}
+	/**
+	 * 点击查看更多加载数据
+	 * */
+	@RequestMapping("/queryByUid.do")
+	public String queryByUid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+			PageHelper.startPage(pageNum,pageSize);
+			List<PCommentView> lists = commentService.queryByUid(uid);
+			for(PCommentView list:lists) {
+				String path = list.getComment().getCcontent();
+				String ccontent = HtmlIOUtil.read(path);
+				String reg_html="<[^>]+>";
+				if(ccontent.replaceAll(reg_html, "").length()>30)
+					list.getComment().setCcontent(ccontent.replaceAll(reg_html,"").substring(0,30)+"...");
+				else
+					list.getComment().setCcontent(ccontent.replaceAll(reg_html,""));
+			}
+			PageInfo<PCommentView> pfdpage = new PageInfo<>(lists);
+			request.getSession().setAttribute("pfdpage", pfdpage);
+		return "redirect:/personfdetail.jsp";
 	}
 	/**
 	 * 发表评论 
