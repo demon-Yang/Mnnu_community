@@ -186,7 +186,7 @@ public class AdminNewsController {
 	@RequestMapping("/queryByType.do")
 	public String queryByType(HttpServletRequest request,@RequestParam("ntype")String ntype,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
 		if("闽师新闻".equals(ntype)) {
 			PageHelper.startPage(pageNum, pageSize);
 			List<News> mnewList = newsService.queryByType(ntype);

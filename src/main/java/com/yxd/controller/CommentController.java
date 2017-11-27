@@ -45,7 +45,7 @@ public class CommentController {
 	@RequestMapping("/queryMore.do")
 	public String queryMore(HttpServletRequest request, @RequestParam("fid")int fid,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
 		
 		PageHelper.startPage(pageNum,pageSize);
 		List<CommentView> commentViewList = commentService.queryComment(fid);
@@ -61,12 +61,12 @@ public class CommentController {
 		return data;
 	}
 	/**
-	 * 点击查看更多加载数据
+	 * 根据用户ID查询对应的评论
 	 * */
 	@RequestMapping("/queryByUid.do")
 	public String queryByUid(HttpServletRequest request,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
 			int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
 			PageHelper.startPage(pageNum,pageSize);
 			List<PCommentView> lists = commentService.queryByUid(uid);
@@ -82,6 +82,29 @@ public class CommentController {
 			PageInfo<PCommentView> pfdpage = new PageInfo<>(lists);
 			request.getSession().setAttribute("pfdpage", pfdpage);
 		return "redirect:/personfdetail.jsp";
+	}
+	/**
+	 * 根据用户ID查询个人帖子对应的评论
+	 * */
+	@RequestMapping("/queryByPuid.do")
+	public String queryByPuid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+			int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+			PageHelper.startPage(pageNum,pageSize);
+			List<PCommentView> lists = commentService.queryByPuid(uid);
+			for(PCommentView list:lists) {
+				String path = list.getComment().getCcontent();
+				String ccontent = HtmlIOUtil.read(path);
+				String reg_html="<[^>]+>";
+				if(ccontent.replaceAll(reg_html, "").length()>30)
+					list.getComment().setCcontent(ccontent.replaceAll(reg_html,"").substring(0,30)+"...");
+				else
+					list.getComment().setCcontent(ccontent.replaceAll(reg_html,""));
+			}
+			PageInfo<PCommentView> pfmpage = new PageInfo<>(lists);
+			request.getSession().setAttribute("pfmpage", pfmpage);
+		return "redirect:/personfmsg.jsp";
 	}
 	/**
 	 * 发表评论 

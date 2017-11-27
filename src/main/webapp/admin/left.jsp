@@ -14,7 +14,7 @@
           <li><a href="/Mnnu_community/admin/news/queryByType.do?ntype=热点聚焦">热点聚焦</a></li>
           <li><a href="/Mnnu_community/admin/news/queryByType.do?ntype=闽师新闻">闽师新闻</a></li>
           <li><a href="/Mnnu_community/admin/news/queryByType.do?ntype=通知公告">通知公告</a></li>
-          <li><a href="forum.jsp">技术论坛</a></li>
+          <li><a href="/Mnnu_community/forum/queryAll.do">技术论坛</a></li>
           <li><a href="market.jsp">物品市场</a></li>
           <li><a href="notes.jsp">留言表白</a></li>
       </ul>

@@ -42,6 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="edit">
 		insert into tb_forum values(null,#{forum.ftitle},#{forum.ftype},#{forum.fcontent},#{forum.fdate},#{forum.fimage},#{uid})
 	</insert>
+	<!--按查找所有帖子-->	
+	<select id="queryAll" resultType="Forum">
+		select * from tb_forum order by fid desc 
+	</select>
 	<!--按用户查找对应的帖子-->	
 	<select id="queryByUid" parameterType="int" resultType="Forum">
 		select * from tb_forum where uid = #{uid} order by fid desc 

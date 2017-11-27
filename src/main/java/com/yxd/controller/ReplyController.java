@@ -16,7 +16,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.yxd.entity.Reply;
+import com.yxd.entity.User;
 import com.yxd.service.ReplyService;
+import com.yxd.view.PReplyView;
 import com.yxd.view.ReplyView;
 
 @Controller
@@ -34,7 +36,7 @@ public class ReplyController {
 		Reply reply = new Reply();
 		reply.setCid(cid);
 		reply.setRcontent(rcontent);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String rdate = sdf.format(new Date());
 		reply.setRdate(rdate);
 		reply.setRread("no");
@@ -44,13 +46,53 @@ public class ReplyController {
 		return "1";
 	}
 	/**
+	 * 按用户ID查看回复
+	 * */
+	@RequestMapping("/queryByUid.do")
+	public String queryByUid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+		PageHelper.startPage(pageNum,pageSize);
+		List<PReplyView> lists = replyService.queryByUid(uid);
+		for(PReplyView list:lists) {
+			String reg_html="<[^>]+>";
+			String rcontent = list.getReply().getRcontent().replaceAll(reg_html, "");
+			if(rcontent.length()>30)
+				list.getReply().setRcontent(rcontent.substring(0,30)+"...");
+		}
+		PageInfo<PReplyView> pfrpage = new PageInfo<>(lists);
+		request.getSession().setAttribute("pfrpage", pfrpage);
+		return "redirect:/personfreply.jsp";
+	}
+	/**
+	 * 根据用户ID查询个人评论对应的回复 
+	 * */
+	@RequestMapping("/queryByPuid.do")
+	public String queryByPuid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+		PageHelper.startPage(pageNum,pageSize);
+		List<PReplyView> lists = replyService.queryByPuid(uid);
+		for(PReplyView list:lists) {
+			String reg_html="<[^>]+>";
+			String rcontent = list.getReply().getRcontent().replaceAll(reg_html, "");
+			if(rcontent.length()>30)
+				list.getReply().setRcontent(rcontent.substring(0,30)+"...");
+		}
+		PageInfo<PReplyView> prmpage = new PageInfo<>(lists);
+		request.getSession().setAttribute("prmpage", prmpage);
+		return "redirect:/personrmsg.jsp";
+	}
+	/**
 	 * 点击查看评论
 	 * */
 	@ResponseBody
 	@RequestMapping("/queryReply.do")
 	public String queryReply(HttpServletRequest request, @RequestParam("cid")int cid,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
 		
 		PageHelper.startPage(pageNum,pageSize);
 		List<ReplyView> replyViewList = replyService.queryReply(cid);

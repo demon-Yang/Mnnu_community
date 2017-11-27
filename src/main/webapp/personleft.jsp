@@ -11,7 +11,7 @@
      <ul>
          <li><a href="person.jsp">个人信息</a></li>
          <li><a href="forum/queryByUid.do">论坛帖子</a></li>
-         <li><a href="personfmsg.jsp">消息提醒</a></li>
+         <li><a href="comment/queryByPuid.do">消息提醒</a></li>
          <li><a href="personmarket.jsp">物品市场</a></li>
          <li><a href="personnotes.jsp">留言表白</a></li>
      </ul>

@@ -107,7 +107,7 @@ body{background: url("../images/adminbg.jpg");}
 .academic .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;padding-right: 8px;}
 .academic .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .academic .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
-.academic .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.academic .container .right .private .pagenav p{font-size: 17px;}
 .academic .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
 .academic .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
 .academic .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
@@ -148,7 +148,7 @@ body{background: url("../images/adminbg.jpg");}
 .mnew .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;padding-right: 8px;}
 .mnew .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .mnew .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
-.mnew .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.mnew .container .right .private .pagenav p{font-size: 17px;}
 .mnew .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;}
 .mnew .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
 .mnew .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
@@ -188,7 +188,7 @@ body{background: url("../images/adminbg.jpg");}
 .hnew .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;padding-right: 8px;}
 .hnew .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .hnew .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
-.hnew .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.hnew .container .right .private .pagenav p{font-size: 17px;}
 .hnew .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
 .hnew .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
 .hnew .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
@@ -228,7 +228,7 @@ body{background: url("../images/adminbg.jpg");}
 .notice .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;padding-right: 8px;}
 .notice .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
 .notice .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
-.notice .container .right .private .pagenav p{margin-right: 20px;font-size: 17px;}
+.notice .container .right .private .pagenav p{font-size: 17px;}
 .notice .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
 .notice .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
 .notice .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
@@ -254,9 +254,10 @@ body{background: url("../images/adminbg.jpg");}
 .forum .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .forum .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/adminbg.png") no-repeat;}
 .forum .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
-.forum .container .right .private p{font-size: 17px;}
-.forum .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.forum .container .right .private p a{display: inline-block;width: 90px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;margin-right: 10px;font-size: 13px;margin-bottom: 5px;border: 1px solid #d4d2d2;color: #443f3f;}
+.forum .container .right .private >p{font-size: 17px;}
+.forum .container .right .private >p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.forum .container .right .private >p a{display: inline-block;width: 90px; height: 30px; line-height: 30px;border-radius: 4px;text-align: center;background-color: #b1968d;margin-right: 10px;font-size: 13px;margin-bottom: 5px;border: 1px solid #d4d2d2;color: #443f3f;}
+.forum .container .right .private .lists{height: 500px;}
 .forum .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
 .forum .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
 .forum .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
@@ -268,8 +269,13 @@ body{background: url("../images/adminbg.jpg");}
 .forum .container .right .private .lists .title{height: 25px;line-height: 25px;font-size: 15px;padding: 5px 0 0 10px;}
 .forum .container .right .private .lists .function{height: 25px;line-height: 25px;margin-bottom: 8px;padding-right: 6px;}
 .forum .container .right .private .lists .function span{font-size: 13px;color: #a5a3a3;}
-.forum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;}
+.forum .container .right .private .lists .function a{display:inline-block;height: 24px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 5px;}
 
+.forum .container .right .private .pagenav p{font-size: 17px;}
+.forum .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.forum .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.forum .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.forum .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 
 /*market.html*/

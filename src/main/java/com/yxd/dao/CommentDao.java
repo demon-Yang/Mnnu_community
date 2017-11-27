@@ -17,4 +17,6 @@ public interface CommentDao {
 	public List<CommentView> queryComment(@Param("fid")int fid);
 	//根据用户ID查询对应的评论
 	public List<PCommentView> queryByUid(@Param("uid")int uid);
+	//根据用户ID查询个人帖子对应的评论
+	public List<PCommentView> queryByPuid(@Param("uid")int uid);
 }

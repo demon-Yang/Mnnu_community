@@ -68,4 +68,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where c.uid = #{uid}
 		order by c.cid desc
 	</select>
+	<!--根据用户ID查询个人帖子对应的评论  -->
+	<select id="queryByPuid" parameterType="int" resultMap="pcommentList">
+		select c.cid,c.ccontent,c.cdate,c.fid,u.uname,f.ftitle from tb_comment c
+		left join tb_user u on u.uid = c.uid 
+		left join tb_forum f on f.fid = c.fid
+		where c.fid in (select f.fid from tb_forum f 
+									  left join tb_user u on u.uid = f.uid
+										where u.uid = 1)
+		order by c.cid desc	
+	</select>
 </mapper>

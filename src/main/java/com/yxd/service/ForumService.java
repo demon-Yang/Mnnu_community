@@ -21,6 +21,10 @@ public class ForumService {
 		public int edit(Forum forum,int uid) {
 			return forumDao.edit(forum,uid);
 		}
+		//按查找所有帖子
+		public List<Forum> queryAll(){
+			return forumDao.queryAll();
+		}
 		//按用户查找对应的帖子
 		public List<Forum> queryByUid(int uid){
 			return forumDao.queryByUid(uid);

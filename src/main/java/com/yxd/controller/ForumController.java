@@ -94,12 +94,25 @@ public class ForumController {
 		return "redirect:/forum.jsp";
 	}
 	/**
+	 * 查询所有帖子
+	 * */
+	@RequestMapping("queryAll.do")
+	public String queryAll(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+		List<Forum> list = forumService.queryAll();
+		PageInfo<Forum> forumpage = new PageInfo<>(list);
+		request.getSession().setAttribute("forumpage", forumpage);
+		return "redirect:/admin/forum.jsp";
+	}
+	/**
 	 * 按UID查询帖子
 	 * */
 	@RequestMapping("queryByUid.do")
 	public String queryByUid(HttpServletRequest request,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
 		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
 		PageHelper.startPage(pageNum,pageSize);
 		List<Forum> list = forumService.queryByUid(uid);
@@ -146,7 +159,7 @@ public class ForumController {
 			@RequestParam(value="serach",required=false)String serach,
 			@RequestParam(value="condition",required=false)String condition,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
 		PageHelper.startPage(pageNum,pageSize);
 		List<ForumView> lists = null;
 		if("按关键字查找".equals(condition))

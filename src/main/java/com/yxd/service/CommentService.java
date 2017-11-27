@@ -27,4 +27,8 @@ public class CommentService {
 		public List<PCommentView> queryByUid(int uid){
 			return commentDao.queryByUid(uid);
 		}
+		//根据用户ID查询个人帖子对应的评论
+		public List<PCommentView> queryByPuid(int uid){
+			return commentDao.queryByPuid(uid);
+		}
 }

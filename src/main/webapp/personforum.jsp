@@ -23,7 +23,7 @@
                 <div class="private">
                     <p>>><span class="nav">我的帖子</span></p>
                     <p align="right">
-                    	<a href="personfreply.jsp">我的回复</a>
+                    	<a href="reply/queryByUid.do">我的回复</a>
                     	<a href="comment/queryByUid.do">我的评论</a>
                         <a href="personfpost.jsp">我要发帖</a>
                     </p>
