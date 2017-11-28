@@ -36,7 +36,6 @@ public class AdminNewsController {
 	/**
 	 * 主界面新闻
 	 * */
-	@ResponseBody
 	@RequestMapping("/index.do")
 	public String index(HttpServletRequest request) {
 		/*获取新闻,并裁剪新闻标题*/
@@ -75,14 +74,16 @@ public class AdminNewsController {
 		request.getSession().setAttribute("indexHnewList", hnewList);
 		request.getSession().setAttribute("indexMnewList", mnewList);
 		request.getSession().setAttribute("indexNoticeList", noticeList);
-		return "1";
+		return "redirect:/index.jsp";
 	}
 	/**
-	 * 新闻列表
+	 * 新闻列表按类型查找新闻
 	 * */
-	@ResponseBody
-	@RequestMapping("/newslist.do")
-	public String newslist(HttpServletRequest request) {
+	@RequestMapping("/queryList.do")
+	public String queryList(HttpServletRequest request,@RequestParam("ntype")String ntype,
+			@RequestParam(value="ntitle",required=false)String ntitle,@RequestParam(value="ndate",required=false)String ndate,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
 		/*获取新闻,并裁剪新闻标题*/
 		PageHelper.startPage(1,4);
 		List<News> acadList = newsService.queryByType("学术报告");
@@ -115,22 +116,7 @@ public class AdminNewsController {
 		request.getSession().setAttribute("newsHnewList", hnewList);
 		request.getSession().setAttribute("newsMnewList", mnewList);
 		request.getSession().setAttribute("newsNoticeList", noticeList);
-		PageHelper.startPage(1,3);
-		List<News> newsList = newsService.queryByCondition("闽师新闻",null,null);
-		PageInfo<News> page = new PageInfo<News>(newsList);
-		request.getSession().setAttribute("newsList", newsList);
-		request.getSession().setAttribute("nlistType", "闽师新闻");
-		request.getSession().setAttribute("page", page);
-		return "1";
-	}
-	/**
-	 * 新闻列表按类型查找新闻
-	 * */
-	@RequestMapping("/queryList.do")
-	public String queryList(HttpServletRequest request,@RequestParam("ntype")String ntype,
-			@RequestParam(value="ntitle",required=false)String ntitle,@RequestParam(value="ndate",required=false)String ndate,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
+		
 			PageHelper.startPage(pageNum, pageSize);
 			List<News> newsList = newsService.queryByCondition(ntype, ntitle, ndate);
 			PageInfo<News> page = new PageInfo<News>(newsList);

@@ -11,6 +11,10 @@ import com.yxd.entity.User;
 public class UserService {
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private CommentService commentService;
+	@Resource
+	private ReplyService replyService;
 	//用户登录
 	public User login(String uemail,String upwd) {
 		return userDao.login(uemail, upwd);
@@ -34,5 +38,11 @@ public class UserService {
 	//更新用户信息
 	public int updateBase(String uname,String umotto,String uportrait,String uemail) {
 		return userDao.updateBase(uname, umotto, uportrait,uemail);
+	}
+	//根据用户ID查询未读的评论
+	public int queryRead(int uid) {
+		int cread = commentService.queryCread(uid);
+		int rread = replyService.queryRread(uid);
+		return cread+rread;
 	}
 }

@@ -15,6 +15,8 @@ import com.yxd.view.ReplyView;
 public class ReplyService {
 	@Resource
 	private ReplyDao replyDao;
+	@Resource
+	private CommentService commentService;
 		//添加回复
 		public int add(Reply reply) {
 			return replyDao.add(reply);
@@ -30,5 +32,21 @@ public class ReplyService {
 		//根据用户ID查询个人评论对应的回复 
 		public List<PReplyView> queryByPuid(int uid){
 			return replyDao.queryByPuid(uid);
+		}
+		//根据用户ID查询未读的回复 
+		public int queryRread(int uid) {
+			if(replyDao.queryRread(uid) == null)
+				return 0;
+			return Integer.parseInt(replyDao.queryRread(uid));
+		}
+		//根据RID改变是否未读状态
+		public int changeRead(int rid) {
+			return replyDao.changeRead(rid);
+		}
+		//查询未读的总评论和回复
+		public int queryRead(int uid) {
+			int rread = queryRread(uid);
+			int cread = commentService.queryCread(uid);
+			return rread+cread;
 		}
 }

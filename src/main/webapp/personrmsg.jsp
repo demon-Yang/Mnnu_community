@@ -32,7 +32,15 @@
                             <li>
                                 <p class="title"><span><span class="to">${list.uname }</span>&nbsp;回&nbsp;复&nbsp;我&nbsp;:&nbsp;</span>${list.reply.rcontent }</p>
                                 <p class="source"><span>来&nbsp;自&nbsp;:&nbsp;</span><span class="ftitle">${list.ftitle }</span></p>
-                                <p class="function" align="right"><span>${list.reply.rdate }</span>&nbsp;&nbsp;<a>查看</a><a>未读</a></p>
+                                <p class="function" align="right"><span>${list.reply.rdate }</span>&nbsp;&nbsp;
+	                                <a href="forum/queryOne.do?fid=${list.fid }&cid=${list.reply.cid}&rid=${list.reply.rid+''}" target="_blank">查看</a>
+	                                <c:if test="${list.reply.rread == 'no'}">
+	                                	<a style="background-color: #dc4141;" href="reply/changeRead.do?rid=${list.reply.rid }">未读</a>
+	                                </c:if>
+	                                <c:if test="${list.reply.rread != 'no' }">
+	                                	<a>已读</a>
+	                                </c:if>
+                                </p>
                             </li>
                         </c:forEach>
                         </ul>

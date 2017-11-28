@@ -32,7 +32,7 @@
                         	<c:forEach items="${pfpage.list }" var="list">
 	                            <li>
 	                                <p class="title">${list.ftitle }</p>
-	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a target="_blank">查看</a><a>删除</a></p>
+	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a href="forum/queryById.do?fid=${list.fid }" target="_blank">查看</a><a>删除</a></p>
 	                            </li>
                             </c:forEach>
                         </ul>

@@ -23,15 +23,15 @@
                 <div class="private">
                     <p>>><span class="nav">论坛帖子</span></p>
                     <p align="right">
-                        <a>学习技术类</a>
-                        <a>生活兴趣类</a>
+                        <a href="/Mnnu_community/forum/queryAll.do?ftype=学习技术类">学习技术类</a>
+                        <a href="/Mnnu_community/forum/queryAll.do?ftype=生活兴趣类">生活兴趣类</a>
                     </p>
                     <div class="lists">
                         <ul>
                            <c:forEach items="${forumpage.list }" var="list">
 	                            <li>
 	                                <p class="title">${list.ftitle }</p>
-	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a target="_blank">查看</a><a>删除</a></p>
+	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a href="/Mnnu_community/forum/queryById.do?fid=${list.fid }" target="_blank">查看</a><a>删除</a></p>
 	                            </li>
                             </c:forEach>
                         </ul>
@@ -39,9 +39,9 @@
                      <div class="pagenav">
                        <p align="right">
 						<span class="pgTotal">第${forumpage.pageNum }页/共${forumpage.pages }页 </span>
-						<a href="/Mnnu_community/forum/queryAll.do?pageNum=1">首页</a>
+						<a href="/Mnnu_community/forum/queryAll.do?pageNum=1&ftype=${ftype }">首页</a>
 						<c:if test="${forumpage.pageNum > 1 }">	
-							<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pageNum-1 }">上一页</a>
+							<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pageNum-1 }&ftype=${ftype }">上一页</a>
 						</c:if>
 						<%-- 计算begin、end --%>
 						<c:choose>
@@ -73,14 +73,14 @@
 									<span class="pgCurrent">${i }</span>
 								</c:when>
 								<c:otherwise>
-									<a href="/Mnnu_community/forum/queryAll.do?pageNum=${i}">${i }</a>	
+									<a href="/Mnnu_community/forum/queryAll.do?pageNum=${i}&ftype=${ftype }">${i }</a>	
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>		
 						<c:if test="${forumpage.pageNum < forumpage.pages }">
-							<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pageNum+1}">下一页</a>
+							<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pageNum+1}&ftype=${ftype }">下一页</a>
 						</c:if>
-						<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pages}">尾页</a>
+						<a href="/Mnnu_community/forum/queryAll.do?pageNum=${forumpage.pages}&ftype=${ftype }">尾页</a>
 						</p>
 					</div>
                 </div>

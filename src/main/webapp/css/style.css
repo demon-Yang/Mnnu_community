@@ -20,6 +20,9 @@ body{background: url("../images/bg.jpg");}
 .header .menu li:nth-child(7){float: right;}
 .header .menu li:nth-child(8){float: right;}
 .header .menu li:nth-child(8) img{float: right;width: 34px;height:34px;border-radius: 15px;object-fit: cover;}
+.header .menu li:nth-child(9){float: right;width: 23px;height: 20px;margin: 0px 5px;}
+.header .menu li:nth-child(9) a{font-size: 12px;line-height: 20px;background-color: #da0606;border-radius: 4px;margin-top: 1px;}
+.header .menu li:nth-child(9) a:hover{background-color: #da0606;}
 .header .menu li:hover { background-color: #ffffff;}
 .header .menu a {display: block;}
 .header .menu li:hover > a { border-left: 3px solid #C4302B; color: #000000}
@@ -607,6 +610,81 @@ body{background: url("../images/bg.jpg");}
 .personrmsg .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
 .personrmsg .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
 .personrmsg .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
+
+
+/*personfcheck.html*/
+
+/*论坛评论*/
+.personfcheck .container{position: relative;}
+.personfcheck .container .left{overflow: hidden;}
+.personfcheck .container .left{float: left;width: 700px;}
+.personfcheck .container .left .landlord{margin-top: 10px;background: url("../images/forumbg.jpg");border-radius: 5px;}
+.personfcheck .container .left .landlord .img{width: 80px;display: inline-block;margin: 20px 10px 0 20px;}
+.personfcheck .container .left .landlord .info{display: inline-block;width: 580px;vertical-align: 20px;}
+.personfcheck .container .left .landlord .name{font-size: 18px;color: #6cb56e;}
+.personfcheck .container .left .landlord .motto{color: #999999;}
+.personfcheck .container .left .landlord p{margin-right: 20px;}
+.personfcheck .container .left .landlord .gocomment{display: inline-block; background-color: #84ad7c; width: 92px; border-radius: 5px; height: 30px; font-size: 16px; margin-right: 50px;margin-bottom: 7px;}
+.personfcheck .container .left .landlord .type{display: inline-block;background-color: #b1b8bc;width: 80px;border-radius: 4px;text-align: center;}
+.personfcheck .container .left .landlord .reply{display: inline-block;background-color: #d4dbdf;width: 50px;border-radius: 4px;text-align: center;}
+.personfcheck .container .left .landlord .title{font-size: 21px;text-align: center;height: 50px;line-height: 50px;}
+.personfcheck .container .left .landlord .img img{width: 80px;height: 80px;object-fit: cover;border-radius: 4px;}
+.personfcheck .container .left .landlord .content{margin: 20px;overflow: hidden;padding-bottom: 20px;}
+
+.personfcheck .container .left .comments{margin-top: 10px;clear: both;}
+.personfcheck .container .left .comments .per{margin-bottom: 10px;border-radius: 5px;background: url("../images/forumbg.jpg"); }
+.personfcheck .container .left .comments .inleft{width: 130px;float: left; }
+.personfcheck .container .left .comments .inleft img{width: 80px;height: 80px;object-fit: cover;margin: 20px 20px 10px 20px;border-radius: 4px;}
+.personfcheck .container .left .comments .inright{float:right;width:569px;border-left: solid 1px #c1c1c1;}
+.personfcheck .container .left .comments .inright .empty{width: 550px;height: 70px;}
+.personfcheck .container .left .comments .comment{background: url("../images/forumbg.jpg");border-radius: 0 5px 0 0;padding: 20px 0 0 20px;overflow: hidden;width: 530px;}
+.personfcheck .container .left .comments .comment .reply{background-color: #d4dbdf;border-radius: 5px;display: none;}
+.personfcheck .container .left .comments .comment .reply .list{margin-left: 10px;}
+.personfcheck .container .left .comments .comment .retract{cursor: pointer;}
+.personfcheck .container .left .comments .comment .reply .replyOne{    cursor: pointer; color: #000; display: inline-block; background-color: #ffffff; width: 30px; height: 17px; line-height: 17px; text-align: center; border: 1px solid #bfbdbd; margin-bottom: 2px;border-radius: 2px;}
+.personfcheck .container .left .comments .comment .reply .answer .bar{width: 530px; height: 30px;}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager{width: 400px;height: 30px;margin-left: 10px;float: left;line-height: 30px;}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages{display: block; border: none; text-transform: uppercase; font-size: 12px; margin-top:7px; padding: 0; font: normal 13px "Microsoft YaHei"; font-family: "Microsoft YaHei","微软雅黑","sans-serif";}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages li{float: left; padding: 2px 4px; list-style: none; background-color: #eee; margin-left: 6px; color: #888; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages li a{color: #888;display: inline-block;}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages li:hover{ color: #fff; background-color: #3c4852; }
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgEmpty{/* display: none ;  */}
+.personfcheck .container .left .comments .comment .reply .answer .bar .pager ul.pages li.pgCurrent{color: #fff; font-weight: 700; background-color: #29c06d;}
+.personfcheck .container .left .comments .comment .reply .answer .bar .say{float: right;width: 70px;height: 20px;background-color: #ffffff;border: 1px solid #bfbdbd;margin: 7px 12px 0 0;border-radius: 2px;text-align: center;cursor: pointer;}
+.personfcheck .container .left .comments .comment .reply .answer .message{width: 500px; max-height: 150px;margin-left: 14px;border-radius: 4px; font-size: 15px; margin-top: 10px;background-color: #FFFFFF;overflow: hidden;line-height: 30px;padding-left: 10px;}
+.personfcheck .container .left .comments .comment .reply .answer .message img{vertical-align: -5px;}
+.personfcheck .container .left .comments .comment .reply .answer .error{margin-left: 110px;color: red;}
+.personfcheck .container .left .comments .comment .reply .answer button{margin-bottom:10px;margin-left: 460px; width: 50px; height: 25px; background-color: #72b8ba; border-radius: 3px;}
+.personfcheck .container .left .comments .comment .reply .answer span img{height: 24px;width: 24px;margin-left: 10px;display: block;}
+.personfcheck .container .left .comments .comment .reply .answer .emotions{height: 120px;width: 365px;margin-left: 10px;background-color: #FFFFFF;position:absolute;display: none;}
+.personfcheck .container .left .comments .comment .reply .answer .emotions li{height: 24px;width: 24px;float: left;margin: 2px;cursor: pointer;}
+.personfcheck .container .left .comments .comment .retract{background-color: #d4dbdf;height: 20px;text-align: center;width: 80px;display: inline-block;border-radius: 4px;margin-bottom: 10px;}
+.personfcheck .container .left .comments .comment .reply .face{width: 36px;height: 36px;margin: 8px 5px 0 0;object-fit: cover;}
+.personfcheck .container .left .comments .comment .reply .from{font-size: 14px;color: #f5796b;}
+.personfcheck .container .left .comments .comment .reply .to{font-size: 14px;color: #377d6a;}
+.personfcheck .container .left .comments .comment .reply .content{font-size: 12px;}
+.personfcheck .container .left .comments .comment .reply .total{vertical-align: 5px;font-size: 13px;}
+.personfcheck .container .left .comments .comment .reply .answer{margin-bottom: 10px;padding-top: 1px;}
+.personfcheck .container .left .edit{width:700px;height: 420px;background: url("../images/forumbg.jpg");}
+.personfcheck .container .left .edit p{ height: 30px; padding-top: 30px; padding-left: 40px; font-size: 15px; font-weight: 600;}
+.personfcheck .container .left .edit .content{height: 344px;width: 660px;margin-left: 20px;}
+.personfcheck .container .left .edit textarea{height: 300px;width: 660px; margin-left: 20px; font-size: 15px;}
+.personfcheck .container .left .edit #submit {height: 30px; width: 80px; margin-left: 580px; font-size: 15px;border-radius: 4px;background-color: #909090;}
+.personfcheck .container .left .ccontent_info{color: red;font-family: cursive;font-size: 17px;display: inline-block;margin-left: 290px;}
+
+.personfcheck .container .left .more{height: 40px; width: 700px; background-color: #b9b4b4; margin: -5px 0 5px 0; border-radius: 5px; text-align: center; color: #ffffff; line-height: 40px; letter-spacing: 10px;cursor: pointer;}
+.personfcheck .container .left .more p{ font-size: 18px;font-family: cursive;}
+.personfcheck .container .left .none{height: 40px; width: 700px; background-color: #bfbfbf; margin: 5px 0 5px 0; border-radius: 5px; text-align: center; color: #ffffff; line-height: 40px; letter-spacing: 10px;cursor: pointer;display: none;}
+.personfcheck .container .left .none p{ font-size: 18px;font-family: cursive;}
+
+.personfcheck .container .right{width: 300px;float: right;}
+.personfcheck .container .right .hot{width: 290px;height: 570px;background: url("../images/forumbg.jpg");margin-top: 10px;margin-left: 10px;border-radius:5px;}
+.personfcheck .container .right .hot> p{height: 60px; line-height: 60px; font-size: 17px; font-weight: 600; text-indent: 2em;}
+.personfcheck .container .right .hot li{margin: 10px;}
+.personfcheck .container .right .hot span{font-size: 14px;}
+.personfcheck .container .right .hot img{float: left;width: 80px;height: 64px; border-radius: 3px;object-fit: cover;margin-right: 5px;}
+.personfcheck .container .right .hot .name{color: #28bd5f;font-size: 10px;}
+.personfcheck .container .right .hot .motto{color: #999999;font-size: 10px;}
 
 
 /*personmarket.html*/

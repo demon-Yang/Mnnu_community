@@ -32,6 +32,8 @@ public class UserController {
 			return "0";
 		else {
 			request.getSession().setAttribute("user",user);
+			int read = userService.queryRead(user.getUid());
+			request.getSession().setAttribute("read",read);
 			return "1";
 		}
 	}

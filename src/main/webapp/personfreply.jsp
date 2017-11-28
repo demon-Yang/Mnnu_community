@@ -29,7 +29,7 @@
 	                            <li>
 	                                <p class="title"><span>我&nbsp;回复&nbsp;&nbsp;<span class="to">${list.uname }</span>&nbsp;:&nbsp;</span>${list.reply.rcontent }</p>
 	                                <p class="source"><span>来&nbsp;自&nbsp;:&nbsp;</span><span class="ftitle">${list.ftitle }</span></p>
-	                                <p class="function" align="right"><span>${list.reply.rdate }</span>&nbsp;&nbsp;<a>查看</a><a>删除</a></p>
+	                                <p class="function" align="right"><span>${list.reply.rdate }</span>&nbsp;&nbsp;<a href="forum/queryOne.do?fid=${list.fid }&cid=${list.reply.cid}" target="_blank">查看</a><a>删除</a></p>
 	                            </li>
                             </c:forEach>
                         </ul>

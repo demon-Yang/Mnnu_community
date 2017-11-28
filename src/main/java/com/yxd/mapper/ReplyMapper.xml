@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<id property="rid" column="rid"/>
 			<result property="rcontent" column="rcontent"/>
 			<result property="rdate" column="rdate"/>
+			<result property="rread" column="rread"/>
 			<result property="cid" column="cid"/>
 		</association>
 	</resultMap>
@@ -42,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 根据用户ID查询对应的回复 -->
 	<select id="queryByUid" parameterType="int" resultMap="preplyList">
-		select r.rid,r.rcontent,r.rdate,r.cid,f.ftitle,u.uname,f.fid from tb_reply r 
+		select r.rid,r.rcontent,r.rdate,r.rread,r.cid,f.ftitle,u.uname,f.fid from tb_reply r 
 		left join tb_user u on r.toid = u.uid
 		left join tb_comment c on c.cid = r.cid
 		left join tb_forum f on f.fid = c.fid
@@ -51,15 +52,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!--根据用户ID查询个人评论对应的回复  -->
 	<select id="queryByPuid" parameterType="int" resultMap="preplyList">
-		select r.rid,r.rcontent,r.rdate,r.cid,f.fid,f.ftitle,u.uname from tb_reply r
+		select r.rid,r.rcontent,r.rdate,r.rread,r.cid,f.fid,f.ftitle,u.uname from tb_reply r
 		left join tb_comment c on c.cid = r.cid 
 		left join tb_forum f on c.fid = f.fid
 		left join tb_user u on r.fromid = u.uid
 		where r.toid = #{uid}
 		order by r.rid desc
 	</select>
+	<!-- 根据用户ID查询未读的回复 -->
+	<select id="queryRread" parameterType="int" resultType="String">
+		select count(r.rread) rtotal from tb_reply r
+		where r.toid = #{uid} and r.rread = 'no'
+		group by r.rread
+	</select>
 	<!-- 添加回复 -->
 	<insert id="add" parameterType="Reply">
 		insert into tb_reply values(null,#{rcontent},#{rdate},#{rread},#{cid},#{fromid},#{toid})
 	</insert>
+	<!-- 根据RID改变是否未读状态 -->
+	<update id="changeRead" parameterType="int">
+		update tb_reply set rread = 'yes' where rid = #{rid}
+	</update>
 </mapper>

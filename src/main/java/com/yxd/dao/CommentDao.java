@@ -15,8 +15,14 @@ public interface CommentDao {
 	public int edit(Comment comment);
 	//按FID查询帖子对应的评论
 	public List<CommentView> queryComment(@Param("fid")int fid);
+	//按CID查询对应的评论
+	public List<CommentView> queryOne(@Param("cid")int cid);
 	//根据用户ID查询对应的评论
 	public List<PCommentView> queryByUid(@Param("uid")int uid);
 	//根据用户ID查询个人帖子对应的评论
 	public List<PCommentView> queryByPuid(@Param("uid")int uid);
+	//根据CID改变是否未读状态
+	public int changeRead(@Param("cid")int cid);
+	//根据用户ID查询未读的评论
+	public String queryCread(@Param("uid")int uid);
 }

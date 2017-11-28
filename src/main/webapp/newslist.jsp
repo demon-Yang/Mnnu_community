@@ -13,7 +13,7 @@
         	/*请求数据*/
         	$.ajax({
         		type:"get",
-        		url:"admin/news/newslist.do",
+        		url:"admin/news/queryList.do?ntype=闽师新闻",
         		async:false,
         		success:function(data){
         		}

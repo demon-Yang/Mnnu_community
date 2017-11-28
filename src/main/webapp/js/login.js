@@ -62,7 +62,7 @@
 				type:"get",
 				url:"user/loginout.do",
 				success:function(data){
-					location.href="index.jsp";
+					location.href="admin/news/index.do";
 				}
 			});
         }else {

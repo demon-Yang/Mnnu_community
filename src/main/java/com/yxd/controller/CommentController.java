@@ -107,6 +107,17 @@ public class CommentController {
 		return "redirect:/personfmsg.jsp";
 	}
 	/**
+	 * 根据CID改变是否未读状态
+	 * */
+	@RequestMapping("/changeRead.do")
+	public String changeRead(HttpServletRequest request, @RequestParam("cid")int cid) {
+		commentService.changeRead(cid);
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid(); 
+		int read = commentService.queryRead(uid);
+		request.getSession().setAttribute("read",read);
+		return "forward:queryByPuid.do";
+	}
+	/**
 	 * 发表评论 
 	 * */
 	@ResponseBody

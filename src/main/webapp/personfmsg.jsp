@@ -32,7 +32,15 @@
 	                           <li>
 	                                <p class="title"><span><span class="to">${list.uname }</span>&nbsp;回复&nbsp;我&nbsp;:&nbsp;</span>${list.comment.ccontent }</p>
 	                                <p class="source"><span>来&nbsp;自&nbsp;:&nbsp;</span><span class="ftitle">${list.ftitle }</span></p>
-	                                <p class="function" align="right"><span>${list.comment.cdate }</span>&nbsp;&nbsp;<a>查看</a><a>未读</a></p>
+	                                <p class="function" align="right"><span>${list.comment.cdate }</span>&nbsp;&nbsp;
+	                                	<a href="forum/queryOne.do?fid=${list.comment.fid }&cid=${list.comment.cid}" target="_blank">查看</a>
+	                                	<c:if test="${list.comment.cread == 'no' }">
+	                                		<a style="background-color: #dc4141;" href="comment/changeRead.do?cid=${list.comment.cid }">未读</a>
+	                                	</c:if>
+	                                	<c:if test="${list.comment.cread != 'no' }">
+	                                		<a>已读</a>
+	                                	</c:if>
+	                                </p>
 	                            </li>
                             </c:forEach>
                         </ul>

@@ -98,12 +98,14 @@ public class ForumController {
 	 * */
 	@RequestMapping("queryAll.do")
 	public String queryAll(HttpServletRequest request,
+			@RequestParam(value="ftype",required = false)String ftype,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
-		PageHelper.startPage(pageNum,pageSize);
-		List<Forum> list = forumService.queryAll();
+		PageHelper.startPage(pageNum, pageSize);
+		List<Forum> list = forumService.queryAll(ftype);
 		PageInfo<Forum> forumpage = new PageInfo<>(list);
 		request.getSession().setAttribute("forumpage", forumpage);
+		request.getSession().setAttribute("ftype", ftype);
 		return "redirect:/admin/forum.jsp";
 	}
 	/**
@@ -149,6 +151,44 @@ public class ForumController {
 		}
 		request.getSession().setAttribute("chotList",hots);
 		return "redirect:/detail.jsp";
+	}
+	/**
+	 * 按FID,CID查询帖子
+	 * */
+	@RequestMapping("queryOne.do")
+	public String queryOne(HttpServletRequest request, @RequestParam("fid")int fid, @RequestParam("cid")int cid,@RequestParam(value="rid",required=false)String rid) {
+		ForumView pforumView = forumService.queryById(fid);
+		List<CommentView> pcommentViewList = forumService.queryOne(cid);
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid(); 
+		if(pforumView != null && pcommentViewList != null) {
+			//获取楼主帖子和个人信息
+			String path = pforumView.getfList().getFcontent();
+			pforumView.getfList().setFcontent(HtmlIOUtil.read(path));
+			request.getSession().setAttribute("pforumView",pforumView);
+			//获取帖子对应的评论和回复
+			for(CommentView commentView:pcommentViewList) {
+				String cpath = commentView.getComment().getCcontent();
+				commentView.getComment().setCcontent(HtmlIOUtil.read(cpath));
+			}
+			request.getSession().setAttribute("pcommentViewList",pcommentViewList);
+			//修改该评论或回复状态
+			if(rid != null) {
+				forumService.changeRread(Integer.parseInt(rid));
+				request.getSession().setAttribute("read",forumService.queryRead(uid));
+			}else {
+				forumService.changeCread(cid);
+				request.getSession().setAttribute("read",forumService.queryRead(uid));
+			}
+		}
+		//论坛热搜
+		PageHelper.startPage(1,5);
+		List<ForumView> hots = forumService.queryHot();
+		for(ForumView hot:hots) {
+			if(hot.getuList().getUmotto().length()>15)
+				hot.getuList().setUmotto(hot.getuList().getUmotto().substring(0,15)+"...");
+		}
+		request.getSession().setAttribute("chotList",hots);
+		return "redirect:/personfcheck.jsp";
 	}
 	/**
 	 * 点击查看更多加载数据

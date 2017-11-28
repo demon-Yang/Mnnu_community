@@ -44,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<id property="cid" column="cid"/>
 			<result property="ccontent" column="ccontent"/>
 			<result property="cdate" column="cdate"/>
+			<result property="cread" column="cread"/>
 			<result property="fid" column="fid"/>
 		</association>
 	</resultMap>
@@ -60,9 +61,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where f.fid = #{fid} group by c.cid
 		order by c.cid desc
 	</select>
+	<!-- 按CID查询对应的评论 -->
+	<select id="queryOne" parameterType="int" resultMap="commentList">
+		select c.cid,c.ccontent,c.cdate,u.uid,u.uname,u.uportrait,count(r.cid) rtotal from tb_comment c
+		left join tb_forum f on f.fid = c.fid
+		left join tb_user u on c.uid = u.uid
+		left join tb_reply r on r.cid = c.cid
+		where c.cid = #{cid}
+		order by c.cid desc
+	</select>
 	<!-- 根据用户ID查询对应的评论 -->
 	<select id="queryByUid" parameterType="int" resultMap="pcommentList">
-		select c.cid,c.ccontent,c.cdate,f.fid,u.uname,f.ftitle from tb_comment c
+		select c.cid,c.ccontent,c.cdate,c.cread,f.fid,u.uname,f.ftitle from tb_comment c
 		left join tb_user u on u.uid = (select uid from tb_forum where fid = c.fid)
 		left join tb_forum f on f.fid = c.fid 
 		where c.uid = #{uid}
@@ -70,12 +80,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!--根据用户ID查询个人帖子对应的评论  -->
 	<select id="queryByPuid" parameterType="int" resultMap="pcommentList">
-		select c.cid,c.ccontent,c.cdate,c.fid,u.uname,f.ftitle from tb_comment c
+		select c.cid,c.ccontent,c.cdate,c.fid,c.cread,u.uname,f.ftitle from tb_comment c
 		left join tb_user u on u.uid = c.uid 
 		left join tb_forum f on f.fid = c.fid
 		where c.fid in (select f.fid from tb_forum f 
 									  left join tb_user u on u.uid = f.uid
-										where u.uid = 1)
+										where u.uid = #{uid})
 		order by c.cid desc	
 	</select>
+	<!-- 根据用户ID查询未读的评论 -->
+	<select id="queryCread" parameterType="int" resultType="String">
+		select count(c.cread) as ctotal from tb_comment c
+		left join tb_forum f on f.fid = c.fid
+		where c.fid in (select f.fid from tb_forum f 
+									  left join tb_user u on u.uid = f.uid
+										where u.uid = #{uid})
+		and c.cread = 'no' group by c.cread
+	</select>
+	<!-- 根据CID改变是否未读状态 -->
+	<update id="changeRead" parameterType="int">
+		update tb_comment set cread = 'yes' where cid = #{cid}
+	</update>
 </mapper>

@@ -150,7 +150,7 @@
         <div class="img"></div>
         <div class="menu">
             <ul>
-                <li><a href="index.jsp">首页</a></li>
+                <li><a href="admin/news/index.do">首页</a></li>
                 <li><a href="javascript:void(0)">魅力·闽师</a>
                     <ul class="submenu">
                         <li><a href="introduce.jsp">闽师简介</a></li>
@@ -180,12 +180,15 @@
                 </li>
                 <li><a href="notes.jsp">留言·表白</a></li>
                 <c:if test="${user == null}">
-	                <li><a href="#" onclick="registershow()">注册</a></li>
-	                <li><a href="#" onclick="loginshow()">登陆</a></li>
+	                <li><a href="javascript:void(0)" onclick="registershow()">注册</a></li>
+	                <li><a href="javascript:void(0)" onclick="loginshow()">登陆</a></li>
 	            </c:if>
 	            <c:if test="${user != null}">
-	                <li><a href="#" onclick="loginout()">退出登录</a></li>
+	                <li><a href="javascript:void(0)" onclick="loginout()">退出登录</a></li>
 	                <li style="width:34px;"><a href="person.jsp" ><img src="${user.uportrait }"></a></li>
+	                <c:if test="${read != 0 }">
+	                	<li><a href="comment/queryByPuid.do" >${read }</a></li>
+	                </c:if>
 	            </c:if>
             </ul>
         </div>
