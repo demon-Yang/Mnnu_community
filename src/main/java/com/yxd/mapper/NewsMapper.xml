@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 编写新闻 -->
 	<insert id="edit" parameterType="News">
-		insert into tb_news values(null,#{ntitle},#{ntype},#{ncontent},#{ndate})
+		insert into tb_news values(null,#{ntitle},#{ntype},#{ncontent},#{ndate},#{nimage})
 	</insert>
 	<!-- 按ID查找单篇新闻 -->
 	<select id="findOne" parameterType="int" resultType="News">

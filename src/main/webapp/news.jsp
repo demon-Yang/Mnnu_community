@@ -8,17 +8,6 @@
     <title>新闻热点</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript">
-        $(function(){
-        	/*请求数据*/
-        	$.ajax({
-        		type:"get",
-        		url:"admin/news/newslist.do",
-        		async:false,
-        		success:function(data){}
-        	});
-        })
-     </script>
 </head>
 <body>
 <div class="news">

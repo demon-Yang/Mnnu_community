@@ -3,6 +3,7 @@ package com.yxd.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -139,6 +140,11 @@ public class AdminNewsController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ndate = sdf.format(new Date());
 		news.setNdate(ndate);
+		//上传的所有图片路径
+		String nimage = null;
+		if(request.getSession().getAttribute("nimage") != null)
+			 nimage = request.getSession().getAttribute("nimage").toString();
+		news.setNimage(nimage);
 		//按当天日趋创建文件夹
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd");
 		String ymd = sd.format(new Date());
@@ -149,8 +155,10 @@ public class AdminNewsController {
 		
 		news.setNcontent(path+name);
 		int result = newsService.edit(news);
-		if(result != 0 && "上传成功".equals(info))
+		if(result != 0 && "上传成功".equals(info)) {
+			request.getSession().setAttribute("nimage", null);
 			return "1";
+		}
 		return "0";
 	}
 	/**
@@ -158,6 +166,39 @@ public class AdminNewsController {
 	 * */
 	@RequestMapping("/findOne.do")
 	public String findOne(HttpServletRequest request,@RequestParam("nid")int nid) {
+		/*获取新闻,并裁剪新闻标题*/
+		PageHelper.startPage(1,4);
+		List<News> acadList = newsService.queryByType("学术报告");
+		for (News list:acadList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> hnewList = newsService.queryByType("热点聚焦");
+		for (News list:hnewList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> mnewList = newsService.queryByType("闽师新闻");
+		for (News list:mnewList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		
+		PageHelper.startPage(1,4);
+		List<News> noticeList = newsService.queryByType("通知公告");
+		for (News list:noticeList) {
+			if(list.getNtitle().length()>16)
+				list.setNtitle(list.getNtitle().substring(0,16)+"...");
+		}
+		request.getSession().setAttribute("newsAcadList", acadList);
+		request.getSession().setAttribute("newsHnewList", hnewList);
+		request.getSession().setAttribute("newsMnewList", mnewList);
+		request.getSession().setAttribute("newsNoticeList", noticeList);
+		
 		News news = newsService.findOne(nid);
 		if(news != null) {
 			String path = ((News)newsService.findOne(nid)).getNcontent();
@@ -210,9 +251,18 @@ public class AdminNewsController {
 	@RequestMapping("/delete.do")
 	public String delete(HttpServletRequest request,@RequestParam("nid")int nid) {
 		String path = ((News)newsService.findOne(nid)).getNcontent();
-		String info = HtmlIOUtil.delete(path);
+		String nimages = ((News)newsService.findOne(nid)).getNimage();
+		if(nimages != null) {
+			nimages = nimages.substring(1,nimages.length()-1);
+			String []images = nimages.split(",");
+			for (String image : images) {
+				String savePath = request.getSession().getServletContext().getRealPath("/") + "/news/image/";
+				HtmlIOUtil.delete(savePath+image.trim());
+			}
+		}
+		HtmlIOUtil.delete(path);
 		int result = newsService.delete(nid);
-		if(result != 0 && "删除成功".equals(info))
+		if(result != 0 )
 			return "1";
 		return "0";
 	}
@@ -295,6 +345,16 @@ public class AdminNewsController {
 				try{
 					File uploadedFile = new File(savePath, newFileName);
 					item.transferTo(uploadedFile);
+					if(request.getSession().getAttribute("nimage") != null) {
+						@SuppressWarnings("unchecked")
+						List<String> list = (List<String>)request.getSession().getAttribute("nimage"); 
+						list.add(ymd+"/"+newFileName);
+						request.getSession().setAttribute("nimage", list);
+					}else {
+						List<String> list = new ArrayList<>();
+						list.add(ymd+"/"+newFileName);
+						request.getSession().setAttribute("nimage", list);
+					}
 				}catch(Exception e){
 					out.println(getError("上传文件失败。"));
 					return;

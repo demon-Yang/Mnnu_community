@@ -13,6 +13,7 @@ public class News implements Serializable{
 	private String ntype;
 	private String ncontent;
 	private String ndate;
+	private String nimage;
 	public int getNid() {
 		return nid;
 	}
@@ -42,5 +43,11 @@ public class News implements Serializable{
 	}
 	public void setNdate(String ndate) {
 		this.ndate = ndate;
+	}
+	public String getNimage() {
+		return nimage;
+	}
+	public void setNimage(String nimage) {
+		this.nimage = nimage;
 	}
 }

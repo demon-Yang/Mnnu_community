@@ -47,7 +47,7 @@
                     <div class="private">
                         <p>>><span class="nav">闽师新闻</span></p>
                         <p align="right">
-                            <a>发表闽师新闻</a>
+                            <a href="edit.jsp">发表闽师新闻</a>
                         </p>
                         <div class="lists">
                             <ul>
