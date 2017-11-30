@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxd.dao.NotesDao">
+	<!-- 查询所有留言 -->
+	<select id="queryAll" resultType="Notes">
+		select * from tb_notes
+	</select>
+	<!-- 按UID查询个人留言 -->
+	<select id="queryOne" parameterType="int" resultType="Notes">
+		select * from tb_notes where uid = #{uid}
+	</select>
+	<!-- 发表留言-->
+	<insert id="insert" parameterType="Notes">
+		insert into tb_notes values(null,#{ncontent},#{ndate},#{uid})
+	</insert>
+
+</mapper>

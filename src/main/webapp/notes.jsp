@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,72 +23,19 @@
         </div>
         <div class="container">
             <ul id="wish">
-                <li><div class="text">发顺丰的萨福克</div></li>
-                <li><div class="text">法撒旦法师法萨芬</div></li>
-                <li><div class="text">法师打发斯蒂芬</div></li>
-                <li><div class="text">发生日访问</div></li>
-                <li><div class="text">VR额污染而温柔</div></li>
+            	<%-- <c:forEach items="${notes }" var="note"> --%>
+	                <li><div class="text">${notes.ncontent }</div></li>
+               <%--  </c:forEach> --%>
             </ul>
             <div class="edit">
                 <div class="gowish">
                     <div class="message" contenteditable="true"></div>
                     <span><img src="images/qqface/1.gif" id="emo"></span>
                     <div class="emotions">
-                        <ul>
-                            <li><img src="images/qqface/1.gif" ></li>
-                            <li><img src="images/qqface/2.gif" ></li>
-                            <li><img src="images/qqface/3.gif" ></li>
-                            <li><img src="images/qqface/4.gif" ></li>
-                            <li><img src="images/qqface/5.gif" ></li>
-                            <li><img src="images/qqface/6.gif" ></li>
-                            <li><img src="images/qqface/7.gif" ></li>
-                            <li><img src="images/qqface/8.gif" ></li>
-                            <li><img src="images/qqface/9.gif" ></li>
-                            <li><img src="images/qqface/10.gif" ></li>
-                            <li><img src="images/qqface/11.gif" ></li>
-                            <li><img src="images/qqface/12.gif" ></li>
-                            <li><img src="images/qqface/13.gif" ></li>
-                            <li><img src="images/qqface/14.gif" ></li>
-                            <li><img src="images/qqface/15.gif" ></li>
-                            <li><img src="images/qqface/16.gif" ></li>
-                            <li><img src="images/qqface/17.gif" ></li>
-                            <li><img src="images/qqface/18.gif" ></li>
-                            <li><img src="images/qqface/19.gif" ></li>
-                            <li><img src="images/qqface/20.gif" ></li>
-                            <li><img src="images/qqface/21.gif" ></li>
-                            <li><img src="images/qqface/22.gif" ></li>
-                            <li><img src="images/qqface/23.gif" ></li>
-                            <li><img src="images/qqface/24.gif" ></li>
-                            <li><img src="images/qqface/25.gif" ></li>
-                            <li><img src="images/qqface/26.gif" ></li>
-                            <li><img src="images/qqface/27.gif" ></li>
-                            <li><img src="images/qqface/28.gif" ></li>
-                            <li><img src="images/qqface/29.gif" ></li>
-                            <li><img src="images/qqface/30.gif" ></li>
-                            <li><img src="images/qqface/31.gif" ></li>
-                            <li><img src="images/qqface/32.gif" ></li>
-                            <li><img src="images/qqface/33.gif" ></li>
-                            <li><img src="images/qqface/34.gif" ></li>
-                            <li><img src="images/qqface/35.gif" ></li>
-                            <li><img src="images/qqface/36.gif" ></li>
-                            <li><img src="images/qqface/37.gif" ></li>
-                            <li><img src="images/qqface/38.gif" ></li>
-                            <li><img src="images/qqface/39.gif" ></li>
-                            <li><img src="images/qqface/40.gif" ></li>
-                            <li><img src="images/qqface/41.gif" ></li>
-                            <li><img src="images/qqface/42.gif" ></li>
-                            <li><img src="images/qqface/43.gif" ></li>
-                            <li><img src="images/qqface/44.gif" ></li>
-                            <li><img src="images/qqface/45.gif" ></li>
-                            <li><img src="images/qqface/46.gif" ></li>
-                            <li><img src="images/qqface/47.gif" ></li>
-                            <li><img src="images/qqface/48.gif" ></li>
-                            <li><img src="images/qqface/49.gif" ></li>
-                            <li><img src="images/qqface/50.gif" ></li>
-                            <li><img src="images/qqface/51.gif" ></li>
-                        </ul>
+                       <jsp:include page="qqFace.jsp"></jsp:include>
                     </div>
-                    <input type="button" value="我要上墙" id="submit"/>
+                    <span id="error"></span>
+                    <input type="button" value="我要上墙" id="submit" onclick="return insert()"/>
                 </div>
             </div>
         </div>
@@ -104,12 +52,6 @@
             $('#wish').wish();
             $('.wish').draggable({containment:'#wish',scroll:false});
 
-
-            $("#submit").click(function(){
-                var str = $(".message").html();
-                $("#wish").append("<li><div class='text'>"+str+"</div></li>");
-
-            });
             //点击小图片，显示表情
             $("#emo").click(function(e){
                 $(".emotions").slideDown(500);//慢慢向下展开
@@ -127,6 +69,40 @@
                 $(".message").append(simg);
             });
         })
+        //发表留言
+         function insert(){
+    	 var uid = '${user.uid}';
+		 if(uid == 0){
+			 loginshow();
+			 return false;
+		 } 
+
+		 var length = ((String)($(".message").text())).trim().length;
+		 var ncontent = (String)($(".message").html());
+		 //判断是否有表情
+		 var img = ncontent.match(/<img.*?(?:>|\/>)/gi);
+		 //有表情长度增加
+		 if(img != null)
+		 	length = length + img.length;
+		 if(length == 0){
+			 $("#error").text("温馨提示：留言不能为空哟！！");
+			 return false;
+		 }
+		 if(ncontent.length > 400){
+			 $("#error").text("温馨提示：一个表情算30个字，输入的文字不能超过200个哟！！");
+			 return false;
+		 }
+  	  	 $.ajax({
+  	  	 	type:"get",
+			 url:"notes/insert.do",
+			 data:{ncontent:ncontent},
+			 success:function(data){
+				 alert("系统提示", "回复成功！", function () {
+					 location.reload();
+		            }, {type: 'success', confirmButtonText: '确定'});
+			 }
+  	  	 });
+     }
 </script>
 </body>
 </html>
