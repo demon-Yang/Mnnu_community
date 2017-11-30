@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.yxd.dao.ForumDao;
+import com.yxd.entity.Comment;
 import com.yxd.entity.Forum;
 import com.yxd.view.CommentView;
 import com.yxd.view.ForumView;
@@ -68,5 +69,29 @@ public class ForumService {
 			int cread = commentService.queryCread(uid);
 			int rread = replyService.queryRread(uid);
 			return cread+rread;
+		}
+		//按FID查询所有评论的CID
+		public List<Integer> queryCid(int fid){
+			return forumDao.queryCid(fid);
+		}
+		//根据FID删除评论
+		public int deleteComment(int cid) {
+			return commentService.delete(cid);
+		}
+		//按CID查询删除回复
+		public int deleteReply(int cid){
+			return replyService.deleteByCid(cid);
+		}
+		//按FID查找评论
+		public Forum findOne(int fid) {
+			return forumDao.findOne(fid);
+		}
+		//根据FID删除回复
+		public int delete(int fid) {
+			return forumDao.delete(fid);
+		}
+		//按CID查找评论
+		public Comment findComment(int cid) {
+			return commentService.findOne(cid);
 		}
 }

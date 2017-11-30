@@ -28,6 +28,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.yxd.entity.Comment;
 import com.yxd.entity.Forum;
 import com.yxd.entity.User;
 import com.yxd.service.ForumService;
@@ -270,6 +271,46 @@ public class ForumController {
 			request.getSession().setAttribute("fimage", null);
 			return "1";}
 		return "0";
+	}
+	/**
+	 * 根据FID删除回复
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request, @RequestParam("fid")int fid) {
+		List<Integer> cids = forumService.queryCid(fid);
+		if(!"[null]".equals(cids.toString())) {
+			for (int cid : cids) {
+				//删除回复
+				forumService.deleteReply(cid);
+				//删除评论
+				String path = ((Comment)(forumService.findComment(cid))).getCcontent();
+				String cimages = ((Comment)(forumService.findComment(cid))).getCimage();
+				if(cimages != null) {
+					cimages = cimages.substring(1,cimages.length()-1);
+					String []images = cimages.split(",");
+					for (String image : images) {
+						String savePath = request.getSession().getServletContext().getRealPath("/") + "/comment/image/";
+						HtmlIOUtil.delete(savePath+image.trim());
+					}
+				}
+				HtmlIOUtil.delete(path);
+				forumService.deleteComment(cid);
+			}
+		}
+		String path = ((Forum)(forumService.findOne(fid))).getFcontent();
+		String fimages = ((Forum)(forumService.findOne(fid))).getFimage();
+		if(fimages != null) {
+			fimages = fimages.substring(1,fimages.length()-1);
+			String []images = fimages.split(",");
+			for (String image : images) {
+				String savePath = request.getSession().getServletContext().getRealPath("/") + "/forum/image/";
+				HtmlIOUtil.delete(savePath+image.trim());
+			}
+		}
+		HtmlIOUtil.delete(path);
+		forumService.delete(fid);
+		return "1";
 	}
 	/**
 	 * 图片上传

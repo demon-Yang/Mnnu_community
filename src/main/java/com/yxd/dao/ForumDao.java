@@ -24,4 +24,10 @@ public interface ForumDao {
 	public ForumView queryById(@Param("fid")int fid);
 	//查询评论最多的帖子
 	public List<ForumView> queryHot();
+	//按FID查询所有评论的CID
+	public List<Integer> queryCid(@Param("fid")int fid);
+	//按FID查找评论
+	public Forum findOne(@Param("fid")int fid);
+	//根据FID删除回复
+	public int delete(@Param("fid")int fid);
 }

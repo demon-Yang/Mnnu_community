@@ -49,4 +49,12 @@ public class ReplyService {
 			int cread = commentService.queryCread(uid);
 			return rread+cread;
 		}
+		//根据RID删除回复
+		public int delete(int rid) {
+			return replyDao.delete(rid);
+		}
+		//根据CID删除回复
+		public int deleteByCid(int cid) {
+			return replyDao.deleteByCid(cid);
+		}
 }

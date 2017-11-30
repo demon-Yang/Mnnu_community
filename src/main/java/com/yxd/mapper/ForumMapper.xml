@@ -94,4 +94,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join tb_comment c on c.fid = f.fid group by f.fid order by ctotal desc
 		
 	</select>
+	<!-- 按FID查找评论 -->
+	<select id="findOne" parameterType="int" resultType="Forum">
+		select * from tb_forum where fid = #{fid}
+	</select>
+	<!-- 按FID查询所有评论的CID -->
+	<select id="queryCid" parameterType="int" resultType="Integer">
+		select c.cid from tb_forum f
+		left join tb_comment c on c.fid = f.fid
+		where f.fid = #{fid};
+
+	</select>
+	<!-- 根据FID删除回复 -->
+	<delete id="delete" parameterType="int">
+		delete from tb_forum where fid = #{fid}
+	</delete>
 </mapper>

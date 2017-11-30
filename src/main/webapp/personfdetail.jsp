@@ -8,6 +8,26 @@
     <title>个人评论</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript">
+    	function deleteOne(cid){
+    		confirm("系统提示", "您确定要删除当前评论吗!", function (isConfirm) {
+    			if(isConfirm) {
+    				$.ajax({
+    					type:"get",
+    					url:"comment/delete.do?cid="+cid+"",
+    					success:function(data){
+    						if(data == 1)
+	    						alert("系统提示", "删除成功！", function () {
+	    							location.href="comment/queryByUid.do";
+	    			            }, {type: 'success', confirmButtonText: '确定'});
+    					}
+    				});
+    	        }else {
+    	            return false;
+    	        }
+    	    }, {confirmButtonText: '确定', cancelButtonText: '取消', width: 400});
+    	}
+    </script>
 </head>
 <body>
 <div class="personfdetail">
@@ -29,7 +49,10 @@
 	                            <li>
 	                                <p class="title"><span>我&nbsp;回复&nbsp;&nbsp;<span class="to">${list.uname }&nbsp;</span>:&nbsp;</span>${list.comment.ccontent }</p>
 	                                <p class="source"><span>来&nbsp;自&nbsp;:&nbsp;</span><span class="ftitle">${list.ftitle }</span></p>
-	                                <p class="function" align="right"><span>${list.comment.cdate }</span>&nbsp;&nbsp;<a href="forum/queryOne.do?fid=${list.comment.fid }&cid=${list.comment.cid}" target="_blank">查看</a><a>删除</a></p>
+	                                <p class="function" align="right"><span>${list.comment.cdate }</span>&nbsp;&nbsp;
+		                                <a href="forum/queryOne.do?fid=${list.comment.fid }&cid=${list.comment.cid}" target="_blank">查看</a>
+		                                <a href="javascript:void(0)" onclick="deleteOne(${list.comment.cid})">删除</a>
+	                                </p>
 	                            </li>
                             </c:forEach>
                         </ul>

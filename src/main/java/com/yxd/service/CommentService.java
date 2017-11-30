@@ -53,4 +53,17 @@ public class CommentService {
 			int rread = replyService.queryRread(uid);
 			return cread+rread;
 		}
+		//按CID查找评论
+		public Comment findOne(int cid) {
+			return commentDao.findOne(cid);
+		}
+		//根据CID删除评论
+		public int delete(int cid) {
+			replyService.deleteByCid(cid);
+			return commentDao.delete(cid);
+		}
+		//根据FID删除评论
+		public int deleteByFid(int fid) {
+			return commentDao.deleteByFid(fid);
+		}
 }

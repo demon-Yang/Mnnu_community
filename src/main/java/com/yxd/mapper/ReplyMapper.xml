@@ -73,4 +73,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeRead" parameterType="int">
 		update tb_reply set rread = 'yes' where rid = #{rid}
 	</update>
+	<!-- 根据RID删除回复 -->
+	<delete id="delete" parameterType="int">
+		delete from tb_reply where rid = #{rid}
+	</delete>
+	<!-- 根据CID删除回复 -->
+	<delete id="deleteByCid" parameterType="int">
+		delete from tb_reply where cid = #{cid}
+	</delete>
 </mapper>

@@ -23,4 +23,8 @@ public interface ReplyDao {
 	public String queryRread(@Param("uid")int uid);
 	//根据RID改变是否未读状态
 	public int changeRead(@Param("rid")int rid);
+	//根据RID删除回复
+	public int delete(@Param("rid")int rid);
+	//根据CID删除回复
+	public int deleteByCid(@Param("cid")int cid);
 }

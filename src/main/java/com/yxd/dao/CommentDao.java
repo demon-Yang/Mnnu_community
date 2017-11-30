@@ -25,4 +25,10 @@ public interface CommentDao {
 	public int changeRead(@Param("cid")int cid);
 	//根据用户ID查询未读的评论
 	public String queryCread(@Param("uid")int uid);
+	//按CID查找评论
+	public Comment findOne(@Param("cid")int cid);
+	//根据CID删除评论
+	public int delete(@Param("cid")int cid);
+	//根据FID删除评论
+	public int deleteByFid(@Param("fid")int fid);
 }

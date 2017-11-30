@@ -8,6 +8,26 @@
     <title>个人论坛</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript">
+    	function deleteOne(fid){
+    		confirm("系统提示", "您确定要删除当前评论吗!", function (isConfirm) {
+    			if(isConfirm) {
+    				$.ajax({
+    					type:"get",
+    					url:"forum/delete.do?fid="+fid+"",
+    					success:function(data){
+    						if(data == 1)
+	    						alert("系统提示", "删除成功！", function () {
+	    							location.href="forum/queryByUid.do";
+	    			            }, {type: 'success', confirmButtonText: '确定'});
+    					}
+    				});
+    	        }else {
+    	            return false;
+    	        }
+    	    }, {confirmButtonText: '确定', cancelButtonText: '取消', width: 400});
+    	}
+    </script>
 </head>
 <body>
 <div class="personforum">
@@ -32,7 +52,10 @@
                         	<c:forEach items="${pfpage.list }" var="list">
 	                            <li>
 	                                <p class="title">${list.ftitle }</p>
-	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;<a href="forum/queryById.do?fid=${list.fid }" target="_blank">查看</a><a>删除</a></p>
+	                                <p class="function" align="right"><span>${list.ftype }</span>&nbsp;&nbsp;<span>${list.fdate }</span>&nbsp;&nbsp;
+		                                <a href="forum/queryById.do?fid=${list.fid }" target="_blank">查看</a>
+		                                <a href="javascript:void(0)" onclick="deleteOne(${list.fid})">删除</a>
+	                                </p>
 	                            </li>
                             </c:forEach>
                         </ul>

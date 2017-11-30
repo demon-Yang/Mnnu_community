@@ -66,7 +66,7 @@ public class CommentController {
 	@RequestMapping("/queryByUid.do")
 	public String queryByUid(HttpServletRequest request,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
 			int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
 			PageHelper.startPage(pageNum,pageSize);
 			List<PCommentView> lists = commentService.queryByUid(uid);
@@ -151,6 +151,26 @@ public class CommentController {
 			request.getSession().setAttribute("cimage", null);
 			return "1";}
 		return "0";
+	}
+	/**
+	 * 根据CID删除回复
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request, @RequestParam("cid")int cid) {
+		String path = ((Comment)(commentService.findOne(cid))).getCcontent();
+		String cimages = ((Comment)(commentService.findOne(cid))).getCimage();
+		if(cimages != null) {
+			cimages = cimages.substring(1,cimages.length()-1);
+			String []images = cimages.split(",");
+			for (String image : images) {
+				String savePath = request.getSession().getServletContext().getRealPath("/") + "/comment/image/";
+				HtmlIOUtil.delete(savePath+image.trim());
+			}
+		}
+		HtmlIOUtil.delete(path);
+		commentService.delete(cid);
+		return "1";
 	}
 	/**
 	 * 图片上传

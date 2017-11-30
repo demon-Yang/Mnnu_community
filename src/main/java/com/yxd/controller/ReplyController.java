@@ -104,12 +104,21 @@ public class ReplyController {
 	/**
 	 * 根据RID改变未读状态
 	 * */
-	@RequestMapping("changeRead.do")
+	@RequestMapping("/changeRead.do")
 	public String changeRead(HttpServletRequest request, @RequestParam("rid")int rid) {
 		replyService.changeRead(rid);
 		int uid = ((User)(request.getSession().getAttribute("user"))).getUid(); 
 		int read = replyService.queryRead(uid);
 		request.getSession().setAttribute("read",read);
 		return "forward:queryByPuid.do";
+	}
+	/**
+	 * 根据RID删除回复
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request, @RequestParam("rid")int rid) {
+		replyService.delete(rid);
+		return "1";
 	}
 }
