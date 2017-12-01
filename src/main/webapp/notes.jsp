@@ -8,7 +8,7 @@
     <title>留言表白</title>
    	<link type="text/css" rel="stylesheet" href="css/style.css"/>
     <style type="text/css">
-        #wish{height:850px;margin-top:15px;position:relative;width:1000px;background-color: #f4f4f4;border-radius: 5px;background: url("images/notesbg.png") no-repeat;}
+        #wish{height:815px;margin-top:15px;position:relative;width:1000px;border-radius: 5px;}
         .wish{background:url(images/wishbg.png) no-repeat 0 0;color:#000;height:166px;padding:10px 20px 30px 20px;width:185px;}
         .wish-close{background:url(images/wishclose.png) no-repeat 0 0;display:none;position:absolute;right:5px;top:-5px;width:17px;height:17px;}
         textarea{margin-left: 20px;width: 160px;height: 160px;background-color: #EDEDED; border:0;font-size: 16px;font-family: cursive;}
@@ -22,10 +22,12 @@
             <jsp:include page="header.jsp"></jsp:include>
         </div>
         <div class="container">
+        	<input type="date" id="serachText"/>
+        	<input type="button" id="serach" value="搜索" onclick="seraches()"/>
             <ul id="wish">
-            	<%-- <c:forEach items="${notes }" var="note"> --%>
-	                <li><div class="text">${notes.ncontent }</div></li>
-               <%--  </c:forEach> --%>
+            	<c:forEach items="${notes }" var="note">
+	                <li><div class="text">${note.ncontent }</div></li>
+                </c:forEach>
             </ul>
             <div class="edit">
                 <div class="gowish">
@@ -102,7 +104,19 @@
 		            }, {type: 'success', confirmButtonText: '确定'});
 			 }
   	  	 });
-     }
+     	}
+        //按日期查询
+        function seraches(){
+        	var ndate = $("#serachText").val();
+        	$.ajax({
+        		type:"get",
+        		url:"notes/queryByDate.do",
+        		data:{ndate:ndate},
+        		success:function(data){
+        			location.reload();
+        		}
+        	});
+        }
 </script>
 </body>
 </html>

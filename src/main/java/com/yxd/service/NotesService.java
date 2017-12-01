@@ -17,8 +17,12 @@ public class NotesService {
 		public List<Notes> queryAll(){
 			return notesDao.queryAll();
 		}
+		//按日期查询所有留言 
+		public List<Notes> queryByDate(String ndate){
+			return notesDao.queryByDate(ndate);
+		}
 		//按UID查询个人留言
-		public List<Notes> queryOne(int uid){
+		public Notes queryOne(int uid){
 			return notesDao.queryOne(uid);
 		}
 		//发表留言

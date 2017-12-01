@@ -331,8 +331,8 @@ body{background: url("../images/bg.jpg");}
 /*notes.html*/
 
 /*留言表白*/
-
-.notes .container #wish{width: 1000px;height: 850px;background: url("../images/notesbg.png")}
+.notes .container{background: url("../images/notesbg.png") no-repeat;}
+.notes .container #wish{width: 1000px;height: 820px;margin-top: 0px;}
 .notes .container .edit{margin-top: 10px;background: url("../images/forumbg.jpg");width: 100%;height: 200px;}
 .notes .container .edit .gowish{margin-left: 150px;padding-top: 35px;}
 .notes .container .edit .message{width: 700px;height: 70px;border-radius: 5px;background-color: #FFFFFF;font-size: 14px;}
@@ -342,7 +342,8 @@ body{background: url("../images/bg.jpg");}
 .notes .container .edit .emotions li{height: 24px;width: 24px;float: left;margin: 2px;cursor: pointer;}
 .notes .container .edit #error{display: inline-block; height: 20px; width: 450px; line-height: 20px; font-size: 15px; padding-left: 90px;color: red;}
 .notes .container .wish .text{margin-left: 20px;word-wrap: break-word;}
-
+.notes .container #serachText{margin: 10px 0 0 10px;border-radius:5px;}
+.notes .container #serach{width:40px;border-radius:3px; background-color: #77c788;}
 
 /*person.html*/
 

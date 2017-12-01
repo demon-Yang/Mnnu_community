@@ -5,7 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yxd.dao.NotesDao">
 	<!-- 查询所有留言 -->
 	<select id="queryAll" resultType="Notes">
-		select * from tb_notes
+		select * from tb_notes 
+		where str_to_date(ndate,'%Y-%m-%d') 
+		between  DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and CURDATE()
 	</select>
 	<!-- 按UID查询个人留言 -->
 	<select id="queryOne" parameterType="int" resultType="Notes">
@@ -15,5 +17,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="Notes">
 		insert into tb_notes values(null,#{ncontent},#{ndate},#{uid})
 	</insert>
-
+	<!-- 按日期查询 -->
+	<select id="queryByDate" parameterType="String" resultType="Notes">
+		select * from tb_notes
+		<if test="ndate != null and ndate.trim() != '' ">
+			<bind name="ndate_pattern" value="'%'+ndate+'%'"/>
+			where ndate like #{ndate_pattern}
+		</if>
+		<if test="ndate == null or ndate.trim() == '' ">
+			<bind name="ndate_pattern" value="'%'+ndate+'%'"/>
+			where str_to_date(ndate,'%Y-%m-%d') 
+			between  DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and CURDATE()
+		</if>
+	</select>
 </mapper>

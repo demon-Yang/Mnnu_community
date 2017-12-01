@@ -178,7 +178,7 @@
                         <li><a href="market.jsp">二手市场</a></li>
                     </ul>
                 </li>
-                <li><a href="notes.jsp">留言·表白</a></li>
+                <li><a href="notes/queryAll.do">留言·表白</a></li>
                 <c:if test="${user == null}">
 	                <li><a href="javascript:void(0)" onclick="registershow()">注册</a></li>
 	                <li><a href="javascript:void(0)" onclick="loginshow()">登陆</a></li>

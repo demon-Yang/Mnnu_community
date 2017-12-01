@@ -91,7 +91,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryHot" resultMap="forumHot">
 		select f.fid,f.ftitle,u.uid,u.uname,u.umotto,u.uportrait,count(c.fid) ctotal from tb_forum f
 		inner join tb_user u on f.uid = u.uid
-		left join tb_comment c on c.fid = f.fid group by f.fid order by ctotal desc
+		left join tb_comment c on c.fid = f.fid 
+		where str_to_date(f.fdate,'%Y-%m-%d') 
+		between  DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and CURDATE()
+		group by f.fid order by ctotal desc 
 		
 	</select>
 	<!-- 按FID查找评论 -->
