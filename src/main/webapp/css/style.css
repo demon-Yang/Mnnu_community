@@ -335,13 +335,13 @@ body{background: url("../images/bg.jpg");}
 .notes .container #wish{width: 1000px;height: 820px;margin-top: 0px;}
 .notes .container .edit{margin-top: 10px;background: url("../images/forumbg.jpg");width: 100%;height: 200px;}
 .notes .container .edit .gowish{margin-left: 150px;padding-top: 35px;}
-.notes .container .edit .message{width: 700px;height: 70px;border-radius: 5px;background-color: #FFFFFF;font-size: 14px;}
+.notes .container .edit .message{width: 700px;height: 70px;border-radius: 5px;background-color: #FFFFFF;font-size: 14px;overflow: hidden;}
 .notes .container .edit span{width: 24px;height: 24px;display: inline-block;}
 .notes .container .edit input[type='button']{width: 100px;height: 30px;font-size: 15px;border-radius: 5px;background-color: #7c7c7c;margin-top: 10px;margin-left: 30px;}
 .notes .container .edit .emotions{height: 120px;width: 365px;margin-left: 10px;background-color: #FFFFFF;position:absolute;display: none;}
 .notes .container .edit .emotions li{height: 24px;width: 24px;float: left;margin: 2px;cursor: pointer;}
 .notes .container .edit #error{display: inline-block; height: 20px; width: 450px; line-height: 20px; font-size: 15px; padding-left: 90px;color: red;}
-.notes .container .wish .text{margin-left: 20px;word-wrap: break-word;}
+.notes .container .wish .text{margin-left: 20px;word-wrap: break-word;height: 175px;overflow: hidden;}
 .notes .container #serachText{margin: 10px 0 0 10px;border-radius:5px;}
 .notes .container #serach{width:40px;border-radius:3px; background-color: #77c788;}
 
@@ -792,9 +792,22 @@ body{background: url("../images/bg.jpg");}
 .personnotes .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .personnotes .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/personbg.png") no-repeat;}
 .personnotes .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
-.personnotes .container .right .private p{font-size: 17px;}
-.personnotes .container .right .private p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
-.personnotes .container .right .private .lists li{margin: 5px;}
-.personnotes .container .right .private .lists .text{height: 25px;line-height: 25px;font-size: 14px;}
+.personnotes .container .right .private >p{font-size: 17px;}
+.personnotes .container .right .private >p .nav{display: inline-block;color: #858585;height: 30px;font-size: 17px;line-height: 30px;}
+.personnotes .container .right .private .lists{height: 520px;}
+.personnotes .container .right .private .lists li:nth-child(1){background-color: #dff0d8;border: 1px solid #d8d6d6;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 5px;}
+.personnotes .container .right .private .lists li:nth-child(2){background-color: #f2dede;border: 1px solid #d8d6d6;}
+.personnotes .container .right .private .lists li:nth-child(3){background-color: #fcf8e3;border: 1px solid #d8d6d6;}
+.personnotes .container .right .private .lists li:nth-child(4){background-color: #dff0d8;border: 1px solid #d8d6d6;}
+.personnotes .container .right .private .lists li:nth-child(5){background-color: #f2dede;border: 1px solid #d8d6d6;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;}
+
+.personnotes .container .right .private .lists .text{max-height:75px;line-height: 25px;font-size: 14px;text-indent: 2em;margin: 0 3px 0 8px;}
 .personnotes .container .right .private .lists .function{height: 30px;line-height: 30px;margin-bottom: 4px;}
-.personnotes .container .right .private .lists .function a{display:inline-block;height: 25px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #979797;}
+.personnotes .container .right .private .lists .function .ndate{font-size: 13px;color: #a5a3a3;}
+.personnotes .container .right .private .lists .function a{display:inline-block;height: 25px;width:40px;text-align: center;border-radius: 4px; line-height: 25px;background-color: #b1968d;border: 1px solid #d4d2d2;color: #443f3f;margin-right: 8px;}
+
+.personnotes .container .right .private .pagenav p{font-size: 17px;}
+.personnotes .container .right .private .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.personnotes .container .right .private .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.personnotes .container .right .private .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 1px 5px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.personnotes .container .right .private .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}

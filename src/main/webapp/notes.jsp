@@ -11,7 +11,6 @@
         #wish{height:815px;margin-top:15px;position:relative;width:1000px;border-radius: 5px;}
         .wish{background:url(images/wishbg.png) no-repeat 0 0;color:#000;height:166px;padding:10px 20px 30px 20px;width:185px;}
         .wish-close{background:url(images/wishclose.png) no-repeat 0 0;display:none;position:absolute;right:5px;top:-5px;width:17px;height:17px;}
-        textarea{margin-left: 20px;width: 160px;height: 160px;background-color: #EDEDED; border:0;font-size: 16px;font-family: cursive;}
     </style>
    
 </head>
@@ -70,6 +69,10 @@
                 var simg=$(this).find("img").clone();
                 $(".message").append(simg);
             });
+            $(".message").on("paste",function(){
+    			$(this).siblings("#error").text("温馨提示：不能粘贴！！");
+    			return false;
+    		});
         })
         //发表留言
          function insert(){
@@ -90,8 +93,8 @@
 			 $("#error").text("温馨提示：留言不能为空哟！！");
 			 return false;
 		 }
-		 if(ncontent.length > 400){
-			 $("#error").text("温馨提示：一个表情算30个字，输入的文字不能超过200个哟！！");
+		 if(ncontent.length > 200){
+			 $("#error").text("温馨提示：一个表情算30个字，输入的文字不能超过150个哟！！");
 			 return false;
 		 }
   	  	 $.ajax({
@@ -100,7 +103,7 @@
 			 data:{ncontent:ncontent},
 			 success:function(data){
 				 alert("系统提示", "回复成功！", function () {
-					 location.reload();
+					 location.href="notes/queryByWeek.do";
 		            }, {type: 'success', confirmButtonText: '确定'});
 			 }
   	  	 });

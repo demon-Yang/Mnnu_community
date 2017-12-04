@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yxd.entity.Notes;
 import com.yxd.entity.User;
 import com.yxd.service.NotesService;
@@ -36,13 +39,40 @@ public class NotesController {
 		return "forward:queryAll.do";
 	}
 	/**
+	 * 查询一周内所有留言
+	 * */
+	@RequestMapping("/queryByWeek.do")
+	public String queryByWeek(HttpServletRequest request) {
+		List<Notes> notes = notesService.queryByWeek();
+		request.getSession().setAttribute("notes", notes);
+		return "redirect:/notes.jsp";
+	}
+	/**
 	 * 查询所有留言
 	 * */
 	@RequestMapping("/queryAll.do")
-	public String queryAll(HttpServletRequest request) {
+	public String queryAll(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
 		List<Notes> notes = notesService.queryAll();
-		request.getSession().setAttribute("notes", notes);
-		return "redirect:/notes.jsp";
+		PageInfo<Notes> notespage = new PageInfo<>(notes);
+		request.getSession().setAttribute("notespage", notespage);
+		return "redirect:/admin/notes.jsp";
+	}
+	/**
+	 * 按用户查询个人留言
+	 * */
+	@RequestMapping("/queryByUid.do")
+	public String queryByUid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="5")int pageSize) {
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+		PageHelper.startPage(pageNum, pageSize);
+		List<Notes> notes = notesService.queryByUid(uid);
+		PageInfo<Notes> pnotespage = new PageInfo<>(notes);
+		request.getSession().setAttribute("pnotespage", pnotespage);
+		return "redirect:/personnotes.jsp";
 	}
 	/**
 	 * 按日期查询所有留言
@@ -52,5 +82,14 @@ public class NotesController {
 		List<Notes> notes = notesService.queryByDate(ndate);
 		request.getSession().setAttribute("notes", notes);
 		return "redirect:/notes.jsp";
+	}
+	/**
+	 * 删除留言
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request,@RequestParam("nid")int nid) {
+		notesService.delete(nid);
+		return "1";
 	}
 }

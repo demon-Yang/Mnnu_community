@@ -6,11 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询所有留言 -->
 	<select id="queryAll" resultType="Notes">
 		select * from tb_notes 
+	</select>
+	<!-- 查询一周内所有留言 -->
+	<select id="queryByWeek" resultType="Notes">
+		select * from tb_notes 
 		where str_to_date(ndate,'%Y-%m-%d') 
 		between  DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and CURDATE()
 	</select>
 	<!-- 按UID查询个人留言 -->
-	<select id="queryOne" parameterType="int" resultType="Notes">
+	<select id="queryByUid" parameterType="int" resultType="Notes">
 		select * from tb_notes where uid = #{uid}
 	</select>
 	<!-- 发表留言-->
@@ -30,4 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			between  DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and CURDATE()
 		</if>
 	</select>
+	<!-- 根据UID删除留言 -->
+	<delete id="delete" parameterType="int">
+		delete from tb_notes where nid = #{nid}
+	</delete>
 </mapper>

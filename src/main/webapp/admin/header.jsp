@@ -18,7 +18,7 @@
 	  				type:"get",
 	  				url:"/Mnnu_community/manager/loginout.do",
 	  				success:function(data){
-	  					location.href="/Mnnu_community/index.jsp";
+	  					location.href="/Mnnu_community/admin/news/index.do";
 	  				}
 	  			});
 	          }else {
