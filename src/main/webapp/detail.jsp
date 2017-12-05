@@ -57,7 +57,7 @@
            //点击小图标时，添加功能
            $(document).on("click",".emotions ul li",function(){
                var simg=$(this).find("img").clone();
-               $(".message").append(simg);
+               $(this).parents(".emotions").siblings(".message").append(simg);
            });
             
            //提交评论

@@ -38,7 +38,7 @@ jQuery.extend({
 		for(var i in fileElementId){ 
 			var oldElement = $('#' + fileElementId[i]);
 			var newElement = $(oldElement).clone();
-			$(oldElement).attr('id', fileId);
+			$(oldElement).attr('id', 'jUploadFile'+i);
 			$(oldElement).before(newElement);
 			$(oldElement).appendTo(form);
 		 }

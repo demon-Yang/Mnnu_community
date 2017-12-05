@@ -207,7 +207,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="js/oldajaxfileupload.js"></script>
 <script type="text/javascript">
 $(function(){
 	//菜单栏滑动

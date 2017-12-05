@@ -28,6 +28,7 @@
             });
             $(".preview2").click(function(){
            	 $.ajaxFileUpload({
+           			id:"slide2",
 				 	url:"/Mnnu_community/admin/slide2Preview.do",
 				  	secureuri : false,
 				  	type:"post",
@@ -43,6 +44,7 @@
            });
             $(".preview3").click(function(){
            	 $.ajaxFileUpload({
+           			id:"slide3",
 				 	url:"/Mnnu_community/admin/slide3Preview.do",
 				  	secureuri : false,
 				  	type:"post",
@@ -106,6 +108,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="js/oldajaxfileupload.js"></script>
 </body>
 </html>

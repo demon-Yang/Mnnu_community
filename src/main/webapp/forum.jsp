@@ -36,7 +36,6 @@
             		dataType:"json",
             		data:{ftype:ftype,pageNum:count,pageSize:2,serach:serach},
             		success:function(data){
-            			console.log(data);
             			$.each(data,function(index,list){
             				if(list.fList.fimage != null){
 	            				$(".list ul").append("<li>"+

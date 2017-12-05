@@ -44,7 +44,7 @@ public class AdminSlideController {
 			}
 			// 保存
 			try {
-				slide1.transferTo(targetFile);
+				slide2.transferTo(targetFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -57,12 +57,12 @@ public class AdminSlideController {
 			}
 			// 保存
 			try {
-				slide1.transferTo(targetFile);
+				slide3.transferTo(targetFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:/index.jsp";
+		return "redirect:/admin/news/index.do";
 	}
 	/**
 	 * 轮播图1预览
