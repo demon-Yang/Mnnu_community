@@ -3,8 +3,28 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxd.dao.MarketDao">
+	<!--  查询个人商品 -->
+	<select id="queryByUid" parameterType="int" resultType="Market">
+		select * from tb_market where uid = #{uid} order by mid desc
+	</select>
+	<!-- 查询单个商品 -->
+	<select id="queryByMid" parameterType="int" resultType="Market">
+		select * from tb_market where mid = #{mid}
+	</select>
+	<!-- 查询所有商品 -->
+	<select id="queryAll" resultType="Market" parameterType="String">
+		select * from tb_market
+		<if test="mtype != null and mtype.trim() != '' ">
+			where mtype = #{mtype}
+		</if>
+		order by mid desc 
+	</select>
 	<!-- 添加商品 -->
 	<insert id="add" parameterType="Market">
 		insert into tb_market values(null,#{mtitle},#{mcontact},#{mtype},#{mimage},#{mcontent},#{mdate},#{uid})
 	</insert>
+	<!-- 删除商品 -->
+	<delete id="delete" parameterType="int">
+		delete from tb_market where mid = #{mid}
+	</delete>
 </mapper>

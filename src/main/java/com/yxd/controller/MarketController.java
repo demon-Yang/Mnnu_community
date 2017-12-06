@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yxd.entity.Market;
 import com.yxd.entity.User;
 import com.yxd.service.MarketService;
+import com.yxd.util.HtmlIOUtil;
 
 @Controller
 @RequestMapping("/market")
@@ -119,6 +124,102 @@ public class MarketController {
 		market.setMimage(mimages);
 		marketService.add(market);
 		return "redirect:/personmarket.jsp";
+	}
+	/**
+	 * 查询个人商品
+	 * */
+	@RequestMapping("queryByUid.do")
+	public String queryByUid(HttpServletRequest request,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
+		PageHelper.startPage(pageNum, pageSize);
+		List<Market> lists = marketService.queryByUid(uid);
+		PageInfo<Market> pmpage = new PageInfo<>(lists);
+		request.getSession().setAttribute("pmpage", pmpage);
+		return "redirect:/personmarket.jsp";
+	}
+	/**
+	 * 查询个人商品
+	 * */
+	@RequestMapping("queryByMid.do")
+	public String queryByMid(HttpServletRequest request,@RequestParam("mid")int mid,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+		Market market = marketService.queryByMid(mid);
+		String images = market.getMimage();
+		Gson gson = new Gson();
+		Map<String,String> map = gson.fromJson(images,new TypeToken<HashMap<String,Object>>(){}.getType());
+		String mimage1 = map.get("mimage1");
+		String mimage2 = map.get("mimage2");
+		String mimage3 = map.get("mimage3");
+		String mimage4 = map.get("mimage4");
+		request.getSession().setAttribute("pmimage1",mimage1.substring(mimage1.length()-56,mimage1.length()));
+		request.getSession().setAttribute("pmimage2",mimage2.substring(mimage2.length()-56,mimage2.length()));
+		request.getSession().setAttribute("pmimage3",mimage3.substring(mimage3.length()-56,mimage3.length()));
+		request.getSession().setAttribute("pmimage4",mimage4.substring(mimage4.length()-56,mimage4.length()));
+		request.getSession().setAttribute("pmarket", market);
+		return "redirect:/personmcheck.jsp";
+	}
+	/**
+	 * 查询单个商品
+	 * */
+	@RequestMapping("queryOne.do")
+	public String queryOne(HttpServletRequest request,@RequestParam("mid")int mid,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+		Market market = marketService.queryByMid(mid);
+		String images = market.getMimage();
+		Gson gson = new Gson();
+		Map<String,String> map = gson.fromJson(images,new TypeToken<HashMap<String,Object>>(){}.getType());
+		String mimage1 = map.get("mimage1");
+		String mimage2 = map.get("mimage2");
+		String mimage3 = map.get("mimage3");
+		String mimage4 = map.get("mimage4");
+		request.getSession().setAttribute("mimage1",mimage1.substring(mimage1.length()-56,mimage1.length()));
+		request.getSession().setAttribute("mimage2",mimage2.substring(mimage2.length()-56,mimage2.length()));
+		request.getSession().setAttribute("mimage3",mimage3.substring(mimage3.length()-56,mimage3.length()));
+		request.getSession().setAttribute("mimage4",mimage4.substring(mimage4.length()-56,mimage4.length()));
+		request.getSession().setAttribute("market", market);
+		return "redirect:/admin/marketcheck.jsp";
+	}
+	/**
+	 * 查询所有商品
+	 * */
+	@RequestMapping("queryAll.do")
+	public String queryAll(HttpServletRequest request,
+			@RequestParam(value="mtype",required = false)String mtype,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Market> list = marketService.queryAll(mtype);
+		PageInfo<Market> marketpage = new PageInfo<>(list);
+		request.getSession().setAttribute("marketpage", marketpage);
+		request.getSession().setAttribute("mtype", mtype);
+		return "redirect:/admin/market.jsp";
+	}
+	/**
+	 * 根据MID删除回复
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete.do")
+	public String delete(HttpServletRequest request, @RequestParam("mid")int mid) {
+		Market market = marketService.queryByMid(mid);
+		//删除图片
+		String images = market.getMimage();
+		Gson gson = new Gson();
+		Map<String,String> map = gson.fromJson(images,new TypeToken<HashMap<String,Object>>(){}.getType());
+		String mimage1 = map.get("mimage1");
+		String mimage2 = map.get("mimage2");
+		String mimage3 = map.get("mimage3");
+		String mimage4 = map.get("mimage4");
+		HtmlIOUtil.delete(mimage1);
+		HtmlIOUtil.delete(mimage2);
+		HtmlIOUtil.delete(mimage3);
+		HtmlIOUtil.delete(mimage4);
+		//删除数据库的数据
+		marketService.delete(mid);
+		return "1";
 	}
 	/**
 	 * 图片预览

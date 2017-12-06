@@ -12,7 +12,7 @@
          <li><a href="person.jsp">个人信息</a></li>
          <li><a href="forum/queryByUid.do">论坛帖子</a></li>
          <li><a href="comment/queryByPuid.do">消息提醒</a></li>
-         <li><a href="personmarket.jsp">物品市场</a></li>
+         <li><a href="market/queryByUid.do">物品市场</a></li>
          <li><a href="notes/queryByUid.do">留言表白</a></li>
      </ul>
 </body>

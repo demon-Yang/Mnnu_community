@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,30 +34,29 @@
             <div class="right">
                 <div class="private">
                     <p>>><span class="nav">商品详情</span></p><br/><br/>
-                    <p>商品类型:<span class="type"> 生活用品</span></p>
-                    <p>发布时间:<span class="time"> 2017-10-10 09:45</span></p>
+                    <p>商品类型:<span class="type"> ${pmarket.mtype }</span></p>
+                    <p>发布时间:<span class="time"> ${pmarket.mdate }</span></p>
                     <hr/>
                     <ul>
                         <li>
-                            <p align="center" class="title">例如自行车出售</p>
+                            <p align="center" class="title">${pmarket.mtitle }</p>
                             <hr/>
                             <div class="left">
-                                <img src="images/market1.jpg" class="small" alt="img1">
-                                <img src="images/market2.jpg" class="small" alt="img2">
-                                <img src="images/market3.jpg" class="small" alt="img3">
-                                <img src="images/market4.jpg" class="small" alt="img4">
+                                <img src="${pmimage1 }" class="small" alt="img1">
+                                <img src="${pmimage2 }" class="small" alt="img2">
+                                <img src="${pmimage3 }" class="small" alt="img3">
+                                <img src="${pmimage4 }" class="small" alt="img4">
                             </div>
                             <div class="right">
-                                <img src="images/market1.jpg" class="big img1"/>
-                                <img src="images/market2.jpg" class="big img2"/>
-                                <img src="images/market3.jpg" class="big img3"/>
-                                <img src="images/market4.jpg" class="big img4"/>
+                                <img src="${pmimage1 }" class="big img1"/>
+                                <img src="${pmimage2 }" class="big img2"/>
+                                <img src="${pmimage3 }" class="big img3"/>
+                                <img src="${pmimage4 }" class="big img4"/>
 
                             </div>
-                            <p class="contact">联系方式：<span>qq：45789999</span></p>
+                            <p class="contact">联系方式：<span>${pmarket.mcontact }</span></p>
                             <p class="content">说明：
-                                <span>性用于指定当前文档与被链接文档的关系文档与被链接文档的关系性
-                                用于指定当前文档与被链接文档的关系文档与被链接文档的关系。</span>
+                                <span>${pmarket.mcontent }</span>
                             </p>
                         </li>
                     </ul>

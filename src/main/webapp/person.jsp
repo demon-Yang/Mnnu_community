@@ -29,6 +29,7 @@
 		  
 		  if(result == 0){
 			  $.ajaxFileUpload({
+				    id:"person",
 				 	url:"user/updateBase.do",
 				  	secureuri : false,
 				  	type:"post",
@@ -207,7 +208,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/oldajaxfileupload.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript">
 $(function(){
 	//菜单栏滑动

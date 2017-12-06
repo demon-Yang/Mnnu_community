@@ -8,6 +8,26 @@
     <title>个人商品</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript">
+    	function deleteOne(mid){
+    		confirm("系统提示", "您确定要删除当前评论吗!", function (isConfirm) {
+    			if(isConfirm) {
+    				$.ajax({
+    					type:"get",
+    					url:"market/delete.do?mid="+mid+"",
+    					success:function(data){
+    						if(data == 1)
+	    						alert("系统提示", "删除成功！", function () {
+	    							location.href="market/queryByUid.do";
+	    			            }, {type: 'success', confirmButtonText: '确定'});
+    					}
+    				});
+    	        }else {
+    	            return false;
+    	        }
+    	    }, {confirmButtonText: '确定', cancelButtonText: '取消', width: 400});
+    	}
+    </script>
 </head>
 <body>
 <div class="personmarket">
@@ -23,18 +43,19 @@
                 <div class="private">
                     <p>>><span class="nav">个人商品</span></p>
                     <p align="right">
-                        <a href="personmcheck.jsp">已发商品</a>
                         <a href="personmedit.jsp">发布商品</a>
                     </p>
                     <div class="lists">
                         <ul>
-                            <li>
-                                <p class="title">本人有大量tvb经典古装配乐要的留邮箱。一周之内发送。- 来自tvb配乐吧</p>
-                                <p class="function" align="right"><span>2017-10-10 01:24</span>&nbsp;&nbsp;
-	                                <a href="forum/queryById.do?fid=${list.mid }" target="_blank">查看</a>
-		                            <a href="javascript:void(0)" onclick="deleteOne(${list.mid})">删除</a>
-                                </p>
-                            </li>
+                        	<c:forEach items="${pmpage.list }" var="list">
+	                            <li>
+	                                <p class="title">${list.mtitle }</p>
+	                                <p class="function" align="right"><span>${list.mtype }</span>&nbsp;&nbsp;<span>${list.mdate }</span>&nbsp;&nbsp;
+		                                <a href="market/queryByMid.do?mid=${list.mid }" target="_blank">查看</a>
+			                            <a href="javascript:void(0)" onclick="deleteOne(${list.mid})">删除</a>
+	                                </p>
+	                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
                      <div class="pagenav">

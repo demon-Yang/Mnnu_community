@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yxd.dao.NotesDao">
 	<!-- 查询所有留言 -->
 	<select id="queryAll" resultType="Notes">
-		select * from tb_notes 
+		select * from tb_notes order by nid desc 
 	</select>
 	<!-- 查询一周内所有留言 -->
 	<select id="queryByWeek" resultType="Notes">
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 按UID查询个人留言 -->
 	<select id="queryByUid" parameterType="int" resultType="Notes">
-		select * from tb_notes where uid = #{uid}
+		select * from tb_notes where uid = #{uid} order by nid desc
 	</select>
 	<!-- 发表留言-->
 	<insert id="insert" parameterType="Notes">

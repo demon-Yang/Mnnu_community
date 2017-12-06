@@ -13,6 +13,7 @@
             $(".show").hide();
             $(".preview1").click(function(){
             	 $.ajaxFileUpload({
+            		id:"slide1",
  				 	url:"/Mnnu_community/admin/slide1Preview.do",
  				  	secureuri : false,
  				  	type:"post",
@@ -108,6 +109,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="js/oldajaxfileupload.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 </body>
 </html>
