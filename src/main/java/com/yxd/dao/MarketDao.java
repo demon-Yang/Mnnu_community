@@ -17,6 +17,8 @@ public interface MarketDao {
 	public Market queryByMid(@Param("mid")int mid);
 	//查询所有商品
 	public List<Market> queryAll(@Param("mtype")String mtype);
+	//按类型查询商品
+	public List<Market> queryByType(@Param("mtype")String mtype,@Param("mtitle")String mtitle);
 	//删除商品
 	public int delete(@Param("mid")int mid);
 }

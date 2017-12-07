@@ -29,6 +29,10 @@ public class MarketService {
 	public List<Market> queryAll(String mtype){
 		return marketDao.queryAll(mtype);
 	}
+	//按类型查询商品
+	public List<Market> queryByType(String mtype,String mtitle){
+		return marketDao.queryByType(mtype, mtitle);
+	}
 	//删除商品
 	public int delete(int mid) {
 		return marketDao.delete(mid);

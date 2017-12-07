@@ -2,6 +2,7 @@ package com.yxd.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ import com.yxd.entity.Market;
 import com.yxd.entity.User;
 import com.yxd.service.MarketService;
 import com.yxd.util.HtmlIOUtil;
+import com.yxd.view.MarketView;
 
 @Controller
 @RequestMapping("/market")
@@ -197,6 +199,43 @@ public class MarketController {
 		request.getSession().setAttribute("marketpage", marketpage);
 		request.getSession().setAttribute("mtype", mtype);
 		return "redirect:/admin/market.jsp";
+	}
+	/**
+	 * 类型查询商品
+	 * */
+	@RequestMapping("queryByType.do")
+	public String queryByType(HttpServletRequest request,
+			@RequestParam(value="mtype",defaultValue="共享图书",required = false)String mtype,
+			@RequestParam(value="condition",required = false)String mtitle,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(value="pageSize",defaultValue="6")int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Market> list = marketService.queryByType(mtype, mtitle);
+		
+		//建立marketview
+		List<MarketView> view = new ArrayList<MarketView>();
+		Gson gson = new Gson();
+		for (Market market : list) {
+			String mimage = market.getMimage();
+			Map<String,String> map = gson.fromJson(mimage,new TypeToken<HashMap<String,Object>>(){}.getType());
+			String mimage1 = map.get("mimage1");
+			String mimage2 = map.get("mimage2");
+			String mimage3 = map.get("mimage3");
+			String mimage4 = map.get("mimage4");
+			MarketView marketView = new MarketView();
+			marketView.setMarket(market);
+			marketView.setMimage1(mimage1.substring(mimage1.length()-56,mimage1.length()));
+			marketView.setMimage2(mimage2.substring(mimage2.length()-56,mimage2.length()));
+			marketView.setMimage3(mimage3.substring(mimage3.length()-56,mimage3.length()));
+			marketView.setMimage4(mimage4.substring(mimage4.length()-56,mimage4.length()));
+			view.add(marketView);
+		}
+		PageInfo<Market> mtypepage = new PageInfo<>(list);
+		request.getSession().setAttribute("mtypepage", mtypepage);
+		request.getSession().setAttribute("marketView", view);
+		request.getSession().setAttribute("mtype", mtype);
+		request.getSession().setAttribute("condition", mtitle);
+		return "redirect:/market.jsp";
 	}
 	/**
 	 * 根据MID删除回复

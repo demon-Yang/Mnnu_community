@@ -79,7 +79,6 @@
         	var ftype = '${ftype}';
         	var condition = $(".seraches option:selected").val();
         	var serach = $(".serach").val();
-        	console.log(serach);
         	$.ajax({
         		type:"get",
         		url:"forum/queryList.do",
@@ -113,7 +112,7 @@
                     </ul>
                 </div>
                 <c:if test="${user == null }">
-                	<a href="#" onclick="loginshow()"  class="post">发帖</a>
+                	<a href="javascript:void(0)" onclick="loginshow()"  class="post">发帖</a>
                 </c:if>
                  <c:if test="${user != null }">
                 	<a href="personfpost.jsp" class="post">发帖</a>

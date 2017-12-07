@@ -307,16 +307,17 @@ body{background: url("../images/bg.jpg");}
 /*market.html*/
 
 /*物品市场*/
+.market .container{background: url("../images/forumbg.jpg");}
 .market .container .itab{height:37px; border-bottom:solid 1px #727e85;margin-top: 10px;}
-.market .container .itab li{float:left;height:37px; line-height:37px;background-color: #a7afba; border-right:solid 1px #727e85;}
+.market .container .itab li{float:left;height:37px; line-height:37px;background-color: #c9cbce; border-right:solid 1px #727e85;}
 .market .container .itab ul li a{font-size:14px; color:#000; padding-left:25px; padding-right:25px;}
-.market .container .itab ul li a.selected{ height:37px; display:block; background-color: #dfdfdf; font-weight:bold;border-top: solid 2px #00a4ac;border-left: solid 1px #d0dee5;}
-.market .container .edit{display: block; float: left; width: 80px; background-color: #8a8682; line-height: 30px; height: 30px; font-size: 15px; text-align: center; border-radius: 4px; margin-top: 10px;}
+.market .container .itab ul li a.selected{ height:37px; display:block;background: url(../images/forumbg.jpg);font-weight:bold;border-top: solid 2px #00a4ac;border-left: solid 1px #d0dee5;}
+.market .container .edit{display: block; float: left; width: 70px; background-color: #729054; line-height: 30px; height: 30px; font-size: 15px; text-align: center; border-radius: 4px; margin-top: 10px;letter-spacing: 5px;margin-left: 10px;}
 .market .container .seraches{margin-top: 10px;height: 45px;margin-left: 700px;}
 .market .container .seraches input[type='text']{width: 200px; height: 32px; line-height: 32px; text-indent: 10px;border-radius: 4px;}
-.market .container .seraches input[type='submit']{width: 80px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center;background-color: #a7afba;}
-.market .container .goods{width: 100%;}
-.market .container .goods li{float: left;width: 320px;height: 350px;background: url("../images/forumbg.jpg");margin-top: 10px;border-radius: 5px;margin-left: 10px;}
+.market .container .seraches input[type='button']{width: 80px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center;background-color: #c5b1a0;}
+.market .container .goods{width: 100%;min-height: 745px;}
+.market .container .goods li{float: left;width: 320px;height: 350px;background: #ece9e9;margin-top: 10px;border-radius: 5px;margin-left: 10px;}
 .market .container .goods .left{width: 50px;height: 300px;float: left;}
 .market .container .goods .left:first-child{margin-top: 30px;}
 .market .container .goods .small{width: 50px;height: 50px;margin-top: 5px;margin-left: 5px;border-radius: 4px;object-fit: cover;}
@@ -327,6 +328,11 @@ body{background: url("../images/bg.jpg");}
 .market .container .goods .time{margin-right: 5px;color: #a7a7a7;}
 .market .container .goods .big{width: 240px;height: 200px;margin-left: 18px;border-radius: 4px;object-fit: cover;}
 
+.market .container .pagenav p{font-size: 17px;height: 35px;margin-right: 20px;}
+.market .container .pagenav p .pgTotal{color: #615b5b;background-color: #b1968d;padding: 3px 10px;border-radius: 3px;font-size: 15px;border: 1px solid #d4d2d2;margin-right: 5px;}
+.market .container .pagenav p .pgCurrent{color: #615b5b;background-color: #6cb359;padding: 3px 6px;border-radius: 3px;cursor: pointer;border: 1px solid #d4d2d2;}
+.market .container .pagenav p a{font-size: 14px;color: #615b5b;background-color: #b1968d;padding: 3px 12px;border-radius: 3px;border: 1px solid #d4d2d2;}
+.market .container .pagenav p a:hover{background-color: #b5c1ca;border-radius: 1px;}
 
 /*notes.html*/
 
