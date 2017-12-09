@@ -26,7 +26,7 @@
         		success:function(data){}
         	});
             //点击查看更多，加载数据
-            var count = 2;
+            var count = 10;
             $(".more").click(function(){
             	var serach = '${serachText }';
             	var ftype = '${ftype }';
@@ -34,7 +34,7 @@
             		type:"get",
             		url:"forum/queryMore.do",
             		dataType:"json",
-            		data:{ftype:ftype,pageNum:count,pageSize:2,serach:serach},
+            		data:{ftype:ftype,pageNum:count,pageSize:5,serach:serach},
             		success:function(data){
             			$.each(data,function(index,list){
             				if(list.fList.fimage != null){

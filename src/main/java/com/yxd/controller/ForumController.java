@@ -49,7 +49,7 @@ public class ForumController {
 			@RequestParam(value="serach",required=false)String serach,
 		    @RequestParam(value="condition",required=false)String condition) {
 		//论坛列表
-		PageHelper.startPage(1,2);
+		PageHelper.startPage(1,10);
 		List<ForumView> lists = null;
 		if("按关键字查找".equals(condition))
 			 lists = forumService.queryKey(ftype,serach);
@@ -129,7 +129,7 @@ public class ForumController {
 	@RequestMapping("queryById.do")
 	public String queryById(HttpServletRequest request, @RequestParam("fid")int fid) {
 		ForumView forumView = forumService.queryById(fid);
-		PageHelper.startPage(1,2);
+		PageHelper.startPage(1,5);
 		List<CommentView> commentViewList = forumService.queryComment(fid);
 		if(forumView != null && commentViewList != null) {
 			//获取楼主帖子和个人信息

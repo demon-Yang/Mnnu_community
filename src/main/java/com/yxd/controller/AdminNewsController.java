@@ -84,7 +84,7 @@ public class AdminNewsController {
 	public String queryList(HttpServletRequest request,@RequestParam("ntype")String ntype,
 			@RequestParam(value="ntitle",required=false)String ntitle,@RequestParam(value="ndate",required=false)String ndate,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="3")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="15")int pageSize) {
 		/*获取新闻,并裁剪新闻标题*/
 		PageHelper.startPage(1,4);
 		List<News> acadList = newsService.queryByType("学术报告");

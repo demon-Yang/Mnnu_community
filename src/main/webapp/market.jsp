@@ -10,6 +10,14 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         $(function(){
+        	 //加载数据
+            $.ajax({
+        		type:"get",
+        		url:"market/queryByType.do?mtype=共享图书",
+        		async:false,
+        		success:function(data){}
+        	});
+        	
             $(".goods .right .big").not(":first-child").hide();
             $(".goods .left .small").click(function(){
                 var current = ("." + this.alt);

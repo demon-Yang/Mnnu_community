@@ -44,7 +44,7 @@ body{background: url("../images/adminbg.jpg");}
 .index .container .left ul li a{font-size: 20px;display: block;letter-spacing: 10px;font-family: cursive;}
 .index .container .right{width: 800px;height: 700px;background-color: #ffffff;float: right;background: url("../images/indexbg.png") no-repeat;}
 .index .container .right .private{margin:40px 60px;height: 630px;width: 680px;}
-
+.index .container .right .private span{display: inline-block; margin: 100px 0 0 313px; background-color: #c7988a; padding: 8px; letter-spacing: 2px; border-radius: 4px; font-family: cursive; font-size: 13px;cursor: pointer;}
 
 /*slideshow.html*/
 

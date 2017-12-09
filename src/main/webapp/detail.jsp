@@ -98,14 +98,14 @@
            		 return false;
        	  });
            //点击查看更多，加载数据
-           var count = 2;
+           var count = 5;
            $(".more").click(function(){
 	           	var fid = '${forumView.fList.fid }';
 	           	$.ajax({
 	           		type:"get",
 	           		url:"comment/queryMore.do",
 	           		dataType:"json",
-	           		data:{fid:fid,pageNum:count,pageSize:2},
+	           		data:{fid:fid,pageNum:count,pageSize:5},
 	           		success:function(data){
 	           			$.each(data,function(index,list){
 	           				$(".comments > ul").append(

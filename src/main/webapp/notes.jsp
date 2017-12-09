@@ -49,6 +49,14 @@
 <script type="text/javascript" src="js/wish.js"></script>
  <script type="text/javascript">
         $(function(){
+        	 //加载数据
+            $.ajax({
+        		type:"get",
+        		url:"notes/queryByWeek.do",
+        		async:false,
+        		success:function(data){}
+        	});
+        	
             /*留言板*/
             $('#wish').wish();
             $('.wish').draggable({containment:'#wish',scroll:false});
