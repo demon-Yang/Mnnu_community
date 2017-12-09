@@ -260,6 +260,11 @@
 			 }
   	  	 });
      }
+     //滚动到底部
+     function goBottom(){
+    	 var h = $(document).height()-$(window).height();
+    	 $(document).scrollTop(h);
+     }
 	</script>
 </head>
 <body>
@@ -273,7 +278,7 @@
                 <div class="landlord">
                     <div class="img"><img src="${forumView.uList.uportrait }"/></div>
                     <div class="info"><p class="name">${forumView.uList.uname }</p><p class="motto"> ${forumView.uList.umotto }</p></div>
-                    <p align="right"><button class="gocomment">我要评论</button><span class="type">${forumView.fList.ftype }</span>&nbsp;当前评论人数：<span class="reply">${forumView.cTotal }</span></p>
+                    <p align="right"><button class="gocomment" onclick="goBottom()">我要评论</button><span class="type">${forumView.fList.ftype }</span>&nbsp;当前评论人数：<span class="reply">${forumView.cTotal }</span></p>
                     <hr/>
                     <p class="title" align="center">${forumView.fList.ftitle }</p>
                     <hr/>
