@@ -118,17 +118,17 @@
                 <div class="slides">
                     <ul>
                         <li>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/xlwb.png" ><br>新浪官方微博</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/xywx.jpg" ><br>校友总会微信</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/gzwx.jpg" ><br>公众官方微信</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/twwx.png" ><br>闽师团委微信</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/xlwb.png" ><br>新浪官方微博</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/xywx.jpg" ><br>校友总会微信</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/gzwx.jpg" ><br>公众官方微信</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/twwx.png" ><br>闽师团委微信</a></div>
                         </li>
 
                         <li>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/msxb.jpg" ><br>闽师校报</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/xsxb.png" ><br>学生信报</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/xytx.jpg" ><br>校友通讯</a></div>
-                            <div class="campuses"><a href="#" target="_blank"><img src="images/ljqn.jpg" ><br>龙江青年</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/msxb.jpg" ><br>闽师校报</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/xsxb.png" ><br>学生信报</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/xytx.jpg" ><br>校友通讯</a></div>
+                            <div class="campuses"><a href="javascript:void(0);" ><img src="images/ljqn.jpg" ><br>龙江青年</a></div>
                         </li>
                     </ul>
                     <p class="prev">«</p><p class="next">»</p>

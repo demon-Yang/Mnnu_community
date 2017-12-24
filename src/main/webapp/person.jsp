@@ -61,18 +61,23 @@
 				  $(".pwd .oupwd_info").html("*长度6-20之间");
 				  result++;
 			  }else{
-				  	$.ajax({
-				  		type:"post",
-				  		url:"user/queryUpwd.do",
-				  		data:{oupwd:oupwd},
-				  		async:false,
-				  		success:function(data){
-				  			if(data == 1)
-				  				$(".pwd .oupwd_info").html("");
-				  			else
-				  				$(".pwd .oupwd_info").html("*原密码错误");
-				  		}
-				  	});
+				  var flag = false;
+			  	  $.ajax({
+			  		  type:"post",
+			  		  url:"user/queryUpwd.do",
+			  		  data:{oupwd:oupwd},
+			  		  async:false,
+			  		  success:function(data){
+			  			  if(data == 1)
+			  				  $(".pwd .oupwd_info").html("");
+			  			  else{
+			  				  $(".pwd .oupwd_info").html("*原密码错误");
+			  				  flag = true;
+			  			  }
+			  		  }
+			  	  });
+				 if(flag) 	
+					 return false;
 			  }
 		 }
   		
@@ -158,7 +163,7 @@
                                         </tr>
                                         <tr>
                                             <td align="right">格言：</td>
-                                            <td><textarea name="umotto" class="umotto" cols="25" rows="4" placeholder="三十个字以内" maxlength="50"></textarea></td>
+                                            <td><textarea name="umotto" class="umotto" cols="25" rows="4" placeholder="三十个字以内" maxlength="50">${user.umotto }</textarea></td>
                                         </tr>
                                         <tr>
                                         	<td colspan="2"></td>

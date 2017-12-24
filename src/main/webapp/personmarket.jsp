@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
       <script type="text/javascript">
     	function deleteOne(mid){
-    		confirm("系统提示", "您确定要删除当前评论吗!", function (isConfirm) {
+    		confirm("系统提示", "您确定要删除当前商品吗!", function (isConfirm) {
     			if(isConfirm) {
     				$.ajax({
     					type:"get",

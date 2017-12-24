@@ -53,11 +53,11 @@
                 <ul>
                 <c:if test="${mtype == '共享图书' }">
                     <li><a href="market/queryByType.do?mtype=共享图书" class="selected">共享图书</a></li>
-                    <li><a href="market/queryByType.do?mtype=二手物品">二手物品</a></li>
+                    <li><a href="market/queryByType.do?mtype=生活物品">二手物品</a></li>
                 </c:if>
-                <c:if test="${mtype == '二手物品' }">
+                <c:if test="${mtype == '生活物品' }">
                     <li><a href="market/queryByType.do?mtype=共享图书">共享图书</a></li>
-                    <li><a href="market/queryByType.do?mtype=二手物品"  class="selected">二手物品</a></li>
+                    <li><a href="market/queryByType.do?mtype=生活物品"  class="selected">二手物品</a></li>
                 </c:if>
                 </ul>
             </div>

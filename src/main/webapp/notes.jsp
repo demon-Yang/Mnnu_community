@@ -110,7 +110,7 @@
 			 url:"notes/insert.do",
 			 data:{ncontent:ncontent},
 			 success:function(data){
-				 alert("系统提示", "回复成功！", function () {
+				 alert("系统提示", "留言成功！", function () {
 					 location.href="notes/queryByWeek.do";
 		            }, {type: 'success', confirmButtonText: '确定'});
 			 }

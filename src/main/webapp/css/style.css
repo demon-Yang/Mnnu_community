@@ -316,7 +316,7 @@ body{background: url("../images/bg.jpg");}
 .market .container .seraches{margin-top: 10px;height: 45px;margin-left: 700px;}
 .market .container .seraches input[type='text']{width: 200px; height: 32px; line-height: 32px; text-indent: 10px;border-radius: 4px;}
 .market .container .seraches input[type='button']{width: 80px; height: 35px; line-height: 32px;border-radius: 4px;text-align: center;background-color: #c5b1a0;}
-.market .container .goods{width: 100%;min-height: 745px;}
+.market .container .goods{width: 100%;min-height: 1090px;}
 .market .container .goods li{float: left;width: 320px;height: 350px;background: #ece9e9;margin-top: 10px;border-radius: 5px;margin-left: 10px;}
 .market .container .goods .left{width: 50px;height: 300px;float: left;}
 .market .container .goods .left:first-child{margin-top: 30px;}

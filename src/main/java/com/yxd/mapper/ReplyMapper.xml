@@ -40,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join tb_user ufrom on ufrom.uid = r.fromid
 		left join tb_user uto on uto.uid = r.toid
 		where c.cid = #{cid}
+		order by r.rid
 	</select>
 	<!-- 根据用户ID查询对应的回复 -->
 	<select id="queryByUid" parameterType="int" resultMap="preplyList">

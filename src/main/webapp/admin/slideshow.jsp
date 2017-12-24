@@ -76,7 +76,7 @@
                 <div class="private">
                     <p>>><span class="nav">首页轮播图切换</span></p>
                     <div class="upload">
-                        <form action="/Mnnu_community/admin/slide.do" enctype="multipart/form-data" method="post">
+                        <form target="_blank" action="/Mnnu_community/admin/slide.do" enctype="multipart/form-data" method="post">
                             <table>
                                 <tr>
                                     <td>图片1：</td>

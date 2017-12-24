@@ -125,7 +125,7 @@ public class MarketController {
 		String mimages = gson.toJson(mimage);
 		market.setMimage(mimages);
 		marketService.add(market);
-		return "redirect:/personmarket.jsp";
+		return "forward:queryByUid.do";
 	}
 	/**
 	 * 查询个人商品
@@ -133,7 +133,7 @@ public class MarketController {
 	@RequestMapping("queryByUid.do")
 	public String queryByUid(HttpServletRequest request,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="7")int pageSize) {
 		int uid = ((User)(request.getSession().getAttribute("user"))).getUid();
 		PageHelper.startPage(pageNum, pageSize);
 		List<Market> lists = marketService.queryByUid(uid);
@@ -145,9 +145,7 @@ public class MarketController {
 	 * 查询个人商品
 	 * */
 	@RequestMapping("queryByMid.do")
-	public String queryByMid(HttpServletRequest request,@RequestParam("mid")int mid,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+	public String queryByMid(HttpServletRequest request,@RequestParam("mid")int mid) {
 		Market market = marketService.queryByMid(mid);
 		String images = market.getMimage();
 		Gson gson = new Gson();
@@ -167,9 +165,7 @@ public class MarketController {
 	 * 查询单个商品
 	 * */
 	@RequestMapping("queryOne.do")
-	public String queryOne(HttpServletRequest request,@RequestParam("mid")int mid,
-			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="2")int pageSize) {
+	public String queryOne(HttpServletRequest request,@RequestParam("mid")int mid) {
 		Market market = marketService.queryByMid(mid);
 		String images = market.getMimage();
 		Gson gson = new Gson();
@@ -208,7 +204,7 @@ public class MarketController {
 			@RequestParam(value="mtype",defaultValue="共享图书",required = false)String mtype,
 			@RequestParam(value="condition",required = false)String mtitle,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum,
-			@RequestParam(value="pageSize",defaultValue="6")int pageSize) {
+			@RequestParam(value="pageSize",defaultValue="9")int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Market> list = marketService.queryByType(mtype, mtitle);
 		

@@ -72,7 +72,7 @@ public class UserController {
 		if(pwd == null)
 			return "0";
 		else {
-			//JavaMail.send(pwd ,uemail);
+			JavaMail.send(pwd ,uemail);
 			return "1";
 		} 
 	}
@@ -86,7 +86,7 @@ public class UserController {
 		int result = userService.queryByEmail(uemail);
 		if(result == 0) {
 			int rvcode = (int)(Math.random()*9000+1000);
-			//JavaMail.send(rvcode+"" ,uemail);
+			JavaMail.send(rvcode+"" ,uemail);
 			System.out.println(rvcode);
 			request.getSession().setAttribute("rvcode",rvcode);
 			return "0";
@@ -105,7 +105,7 @@ public class UserController {
 		int result = userService.queryByEmail(uemail);
 		if(result != 0) {
 			int rvcode = (int)(Math.random()*9000+1000);
-			//JavaMail.send(rvcode+"" ,uemail);
+			JavaMail.send(rvcode+"" ,uemail);
 			System.out.println(rvcode);
 			request.getSession().setAttribute("rvcode",rvcode);
 			return "1";

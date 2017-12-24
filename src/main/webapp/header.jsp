@@ -175,7 +175,7 @@
                 <li><a href="javascript:void(0)">物品·市场</a>
                     <ul class="submenu">
                         <li><a href="market/queryByType.do?mtype=共享图书">共享图书</a></li>
-                        <li><a href="market/queryByType.do?mtype=二手市场">二手市场</a></li>
+                        <li><a href="market/queryByType.do?mtype=生活物品">二手物品</a></li>
                     </ul>
                 </li>
                 <li><a href="notes/queryByWeek.do">留言·表白</a></li>
